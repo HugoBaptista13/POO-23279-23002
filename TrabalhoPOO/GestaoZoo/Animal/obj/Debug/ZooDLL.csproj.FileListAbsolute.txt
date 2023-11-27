@@ -1,0 +1,6 @@
+C:\Users\Baptista\Desktop\Ficheiros\POO\TrabalhoPOO\GestaoZoo\Animal\obj\Debug\ZooDLL.csproj.AssemblyReference.cache
+C:\Users\Baptista\Desktop\Ficheiros\POO\TrabalhoPOO\GestaoZoo\Animal\obj\Debug\ZooDLL.csproj.CoreCompileInputs.cache
+C:\Users\Baptista\Desktop\Ficheiros\POO\TrabalhoPOO\GestaoZoo\Animal\bin\Debug\ZooDLL.dll
+C:\Users\Baptista\Desktop\Ficheiros\POO\TrabalhoPOO\GestaoZoo\Animal\bin\Debug\ZooDLL.pdb
+C:\Users\Baptista\Desktop\Ficheiros\POO\TrabalhoPOO\GestaoZoo\Animal\obj\Debug\ZooDLL.dll
+C:\Users\Baptista\Desktop\Ficheiros\POO\TrabalhoPOO\GestaoZoo\Animal\obj\Debug\ZooDLL.pdb
