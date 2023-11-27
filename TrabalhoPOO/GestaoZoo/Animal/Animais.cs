@@ -166,6 +166,39 @@ namespace ZooDLL
             }
             return true;
         }
+        /// <summary>
+        /// Método para remover os dados de um animal
+        /// </summary>
+        /// <param name="animal">Objeto do tipo animal</param>
+        /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
+        public bool Remover(Animal animal)
+        {
+            if (animal == null || l_animais == null)
+                return false;
+            for (int i = 0; i < MAXANIMAIS; i++)
+            {
+                if (l_animais[i] != animal)
+                {
+                    return false;
+                }
+                if (l_animais[i].Id == animal.Id)
+                {
+                    l_animais[i].Id = -1;
+                    l_animais[i].Nome = "";
+                    l_animais[i].Idade = -1;
+                    l_animais[i].Sexo = "";
+                    l_animais[i].Classe = "";
+                    l_animais[i].Especie = "";
+                    l_animais[i].Dieta = "";
+                    l_animais[i].Estado = -1;
+                    l_animais[i].DataUltimaConsulta = DateTime.MinValue;
+                    l_animais[i].DataProximaConsulta = DateTime.MinValue;
+                    l_animais[i].Recinto = "";
+                    l_animais[i].Descricao = "";
+                }
+            }
+            return true;
+        }
         #endregion
         #endregion
     }
