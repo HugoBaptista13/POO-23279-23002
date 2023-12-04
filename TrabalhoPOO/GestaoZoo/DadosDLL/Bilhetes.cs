@@ -99,6 +99,95 @@ namespace DadosDLL
                 i++;
             }
         }
+        public bool Inserir(Bilhete bilhete)
+        {
+            if (l_bilhetes == null || bilhete == null)
+            {
+                return false;
+            }
+            for (int i = 0; i < MAXBILHETES; i++)
+            {
+                if (l_bilhetes[i] == bilhete)
+                {
+                    return false;
+                }
+                if (l_bilhetes[i].Id == -1)
+                {
+                    l_bilhetes[i].Id = bilhete.Id;
+                    l_bilhetes[i].Tipo = bilhete.Tipo;
+                    l_bilhetes[i].Preco = bilhete.Preco;
+                    l_bilhetes[i].Desconto = bilhete.Desconto;
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// Método para alterar os dados de um bilhete
+        /// </summary>
+        /// <param name="bilhete">Objeto do tipo bilhete</param>
+        /// <returns>Se conseguir alterar retorna true, senão retorna false</returns>
+        public bool Alterar(Bilhete bilhete)
+        {
+            if (bilhete == null || l_bilhetes == null)
+                return false;
+            for (int i = 0; i < MAXBILHETES; i++)
+            {
+                if (l_bilhetes[i] != bilhete)
+                {
+                    return false;
+                }
+                if (l_bilhetes[i].Id == bilhete.Id)
+                {
+                    l_bilhetes[i].Id = bilhete.Id;
+                    l_bilhetes[i].Tipo = bilhete.Tipo;
+                    l_bilhetes[i].Preco = bilhete.Preco;
+                    l_bilhetes[i].Desconto = bilhete.Desconto;
+                }
+            }
+            return true;
+        }
+        public bool Remover(Bilhete bilhete)
+        {
+            if (bilhete == null || l_bilhetes == null)
+                return false;
+            for (int i = 0; i < MAXBILHETES; i++)
+            {
+                if (l_bilhetes[i] != bilhete)
+                {
+                    return false;
+                }
+                if (l_bilhetes[i].Id == bilhete.Id)
+                {
+                    l_bilhetes[i].Id = -1;
+                    l_bilhetes[i].Tipo = "";
+                    l_bilhetes[i].Preco = -1;
+                    l_bilhetes[i].Desconto = -1;
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// Método para verificar se existe um bilhete
+        /// </summary>
+        /// <param name="bilhete">Objeto do tipo bilhete</param>
+        /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
+        public bool Existe(Bilhete bilhete)
+        {
+            if (bilhete == null || l_bilhetes == null)
+                return false;
+            for (int i = 0; i < MAXBILHETES; i++)
+            {
+                if (l_bilhetes[i] != bilhete)
+                {
+                    return false;
+                }
+                if (l_bilhetes[i].Id == bilhete.Id)
+                {
+                    break;
+                }
+            }
+            return true;
+        }
         #endregion
         #endregion
     }
