@@ -147,6 +147,53 @@ namespace DadosDLL
             return true;
         }
 
+        /// <summary>
+        /// Método para remover os dados de uma consulta
+        /// </summary>
+        /// <param name="consulta">Objeto do tipo consulta</param>
+        /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
+        public bool Remover(Consulta consulta)
+        {
+            if (consulta == null || l_consultas == null)
+                return false;
+            for (int i = 0; i < MAXCONSULTAS; i++)
+            {
+                if (l_consultas[i] != consulta)
+                {
+                    return false;
+                }
+                if (l_consultas[i].Id == consulta.Id)
+                {
+                    l_consultas[i].Id = -1;
+                    l_consultas[i].Animal = -1;
+                    l_consultas[i].Funcionario = -1;
+                    l_consultas[i].Data = DateTime.MinValue;
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// Método para verificar se existe uma consulta
+        /// </summary>
+        /// <param name="consulta">Objeto do tipo consulta</param>
+        /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
+        public bool Existe(Consulta consulta)
+        {
+            if (consulta == null || l_consultas == null)
+                return false;
+            for (int i = 0; i < MAXCONSULTAS; i++)
+            {
+                if (l_consultas[i] != consulta)
+                {
+                    return false;
+                }
+                if (l_consultas[i].Id == consulta.Id)
+                {
+                    break;
+                }
+            }
+            return true;
+        }
         #endregion
         #endregion
     }
