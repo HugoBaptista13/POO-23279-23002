@@ -155,6 +155,56 @@ namespace DadosDLL
             }
             return true;
         }
+
+        /// <summary>
+        /// Método para remover os dados de um Funcionario
+        /// </summary>
+        /// <param name="funcionario">Objeto do tipo funcionario</param>
+        /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
+        public bool Remover(Funcionario funcionario)
+        {
+            if (funcionario == null || l_funcionarios == null)
+                return false;
+            for (int i = 0; i < MAXFUNCIONARIOS; i++)
+            {
+                if (l_funcionarios[i] != funcionario)
+                {
+                    return false;
+                }
+                if (l_funcionarios[i].Id == funcionario.Id)
+                {
+                    l_funcionarios[i].Id = -1;
+                    l_funcionarios[i].Nome = "";
+                    l_funcionarios[i].Idade = -1;
+                    l_funcionarios[i].Telefone = -1;
+                    l_funcionarios[i].Email = "";
+                    l_funcionarios[i].Cargo = "";
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// Método para verificar se existe um funcionario
+        /// </summary>
+        /// <param name="funcionario">Objeto do tipo animal</param>
+        /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
+        public bool Existe(Funcionario funcionario)
+        {
+            if (funcionario == null || l_funcionarios == null)
+                return false;
+            for (int i = 0; i < MAXFUNCIONARIOS; i++)
+            {
+                if (l_funcionarios[i] != funcionario)
+                {
+                    return false;
+                }
+                if (l_funcionarios[i].Id == funcionario.Id)
+                {
+                    break;
+                }
+            }
+            return true;
+        }
         #endregion
         #endregion
     }
