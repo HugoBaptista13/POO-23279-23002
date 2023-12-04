@@ -8,13 +8,13 @@ using ZooDLL;
 namespace DadosDLL
 {
     /// <summary>
-    /// Classe para guardar os eventos
+    /// Classe para guardar as consultas
     /// </summary>
     public class Consultas
     {
         #region ATRIBUTOS
-        private const int MAXEVENTOS = 100;
-        private static Evento[] l_eventos;
+        private const int MAXCONSULTAS = 100;
+        private static Consulta[] l_consultas;
         #endregion
 
         #region METODOS
@@ -24,17 +24,17 @@ namespace DadosDLL
         /// </summary>
         public Consultas()
         {
-            for (int i = 0; i < MAXEVENTOS; i++)
+            for (int i = 0; i < MAXCONSULTAS; i++)
             {
-                l_eventos[i] = new Evento();
+                l_consultas[i] = new Consulta();
             }
         }
         #endregion
         #region PROPRIEDADES
-        public static Evento[] LEventos
+        public static Consulta[] LConsultas
         {
-            set { l_eventos = value; }
-            get { return l_eventos; }
+            set { l_consultas = value; }
+            get { return l_consultas; }
         }
         #endregion
         #region OPERADORES
@@ -70,13 +70,13 @@ namespace DadosDLL
         public override string ToString()
         {
             string output = "";
-            if (LEventos == null)
+            if (LConsultas == null)
                 return String.Format(output);
             else
             {
-                foreach (Evento evento in l_eventos)
+                foreach (Consulta consulta in l_consultas)
                 {
-                    output += evento.Listar();
+                    output += consulta.Listar();
                 }
                 return String.Format(output);
             }
@@ -84,18 +84,18 @@ namespace DadosDLL
         #endregion
         #region OUTROS
         /// <summary>
-        /// Método para listar os eventos todos
+        /// Método para listar as consultas todas
         /// </summary>
-        /// <param name="output">Array de strings com os eventos</param>
+        /// <param name="output">Array de strings com as consultas</param>
         public void Listar(out string[] output)
         {
             int i = 0;
             output = null;
-            foreach (Evento evento in l_eventos)
+            foreach (Consulta consulta in l_consultas)
             {
-                if (evento.Id == -1)
+                if (consulta.Id == -1)
                     continue;
-                output[i] = evento.Listar();
+                output[i] = consulta.Listar();
                 i++;
             }
         }
