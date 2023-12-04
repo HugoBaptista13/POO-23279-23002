@@ -50,6 +50,7 @@
     <Compile Include="Consultas.cs" />
     <Compile Include="Eventos.cs" />
     <Compile Include="Funcionarios.cs" />
+    <Compile Include="Limpezas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recintos.cs" />
     <Compile Include="Vendas.cs" />
