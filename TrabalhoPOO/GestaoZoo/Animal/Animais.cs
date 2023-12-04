@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ZooDLL
 {
     /// <summary>
-    /// Classe para guardar os animais
+    /// Classe para guardar os animais todos
     /// </summary>
     public class Animais
     {
