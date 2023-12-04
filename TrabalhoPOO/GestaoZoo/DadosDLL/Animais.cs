@@ -200,6 +200,28 @@ namespace DadosDLL
             }
             return true;
         }
+        /// <summary>
+        /// Método para verificar se existe um animal
+        /// </summary>
+        /// <param name="animal">Objeto do tipo animal</param>
+        /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
+        public bool Existe(Animal animal)
+        {
+            if (animal == null || l_animais == null)
+                return false;
+            for (int i = 0; i < MAXANIMAIS; i++)
+            {
+                if (l_animais[i] != animal)
+                {
+                    return false;
+                }
+                if (l_animais[i].Id == animal.Id)
+                {
+                    break;
+                }
+            }
+            return true;
+        }
         #endregion
         #endregion
     }
