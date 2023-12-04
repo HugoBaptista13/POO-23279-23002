@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZooDLL", "Animal\ZooDLL.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceDLL", "InterfaceDLL\InterfaceDLL.csproj", "{30143318-C115-4ECC-ACB0-EA715357A877}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DadosDLL", "DadosDLL\DadosDLL.csproj", "{DC35F574-770E-41DF-AD66-078F0EECF009}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{30143318-C115-4ECC-ACB0-EA715357A877}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30143318-C115-4ECC-ACB0-EA715357A877}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30143318-C115-4ECC-ACB0-EA715357A877}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC35F574-770E-41DF-AD66-078F0EECF009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC35F574-770E-41DF-AD66-078F0EECF009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC35F574-770E-41DF-AD66-078F0EECF009}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC35F574-770E-41DF-AD66-078F0EECF009}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
