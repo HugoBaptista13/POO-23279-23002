@@ -117,7 +117,7 @@ namespace ZooDLL
         }
         public override string ToString()
         {
-            return String.Format("{0};{1};{2};{3};{4};{5};", this.id, this.nome, this.tipo, this.dieta, this.stock, this.data_validade);
+            return String.Format("{0};{1};{2};{3};{4};{5};", this.id.ToString(), this.nome.ToString(), this.tipo.ToString(), this.dieta.ToString(), this.stock.ToString(), this.data_validade.ToString());
         }
         #endregion
         #region OUTROS

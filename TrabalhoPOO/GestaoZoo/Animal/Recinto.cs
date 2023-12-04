@@ -10,7 +10,7 @@ namespace ZooDLL
     /// <summary>
     /// Classe para descrever um recinto
     /// </summary>
-    public class Recinto : Interfaces
+    public class Recinto
     {
         #region ATRIBUTOS
         private int id;
@@ -118,7 +118,7 @@ namespace ZooDLL
         }
         public override string ToString()
         {
-            return String.Format("{0};{1};{2};{3};{4};{5};", this.id, this.nome, this.tipo, this.comprimento, this.largura, this.altura);
+            return String.Format("{0};{1};{2};{3};{4};{5};", this.id.ToString(), this.nome.ToString(), this.tipo.ToString(), this.comprimento.ToString(), this.largura.ToString(), this.altura.ToString());
         }
         #endregion
         #region OUTROS

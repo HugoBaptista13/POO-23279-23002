@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Animal.cs" />
     <Compile Include="Bilhete.cs" />
+    <Compile Include="Consulta.cs" />
     <Compile Include="Evento.cs" />
     <Compile Include="Comida.cs" />
     <Compile Include="Funcionario.cs" />
