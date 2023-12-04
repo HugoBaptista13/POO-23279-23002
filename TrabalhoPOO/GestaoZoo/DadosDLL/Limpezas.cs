@@ -99,6 +99,54 @@ namespace DadosDLL
                 i++;
             }
         }
+
+        public bool Inserir(Limpeza limpeza)
+        {
+            if (l_limpezas == null || limpeza == null)
+            {
+                return false;
+            }
+            for (int i = 0; i < MAXLIMPEZAS; i++)
+            {
+                if (l_limpezas[i] == limpeza)
+                {
+                    return false;
+                }
+                if (l_limpezas[i].Id == -1)
+                {
+                    l_limpezas[i].Id = limpeza.Id;
+                    l_limpezas[i].Recinto = limpeza.Recinto;
+                    l_limpezas[i].Funcionario = limpeza.Funcionario;
+                    l_limpezas[i].Data = limpeza.Data;
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// Método para alterar os dados de uma limpeza
+        /// </summary>
+        /// <param name="limpeza">Objeto do tipo limpeza</param>
+        /// <returns>Se conseguir alterar retorna true, senão retorna false</returns>
+        public bool Alterar(Limpeza limpeza)
+        {
+            if (limpeza == null || l_limpezas == null)
+                return false;
+            for (int i = 0; i < MAXLIMPEZAS; i++)
+            {
+                if (l_limpezas[i] != limpeza)
+                {
+                    return false;
+                }
+                if (l_limpezas[i].Id == limpeza.Id)
+                {
+                    l_limpezas[i].Id = limpeza.Id;
+                    l_limpezas[i].Recinto = limpeza.Recinto;
+                    l_limpezas[i].Funcionario = limpeza.Funcionario;
+                    l_limpezas[i].Data = limpeza.Data;
+                }
+            }
+            return true;
+        }
         #endregion
         #endregion
     }
