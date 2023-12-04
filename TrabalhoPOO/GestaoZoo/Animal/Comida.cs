@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ZooDLL
 {
     /// <summary>
-    /// Classe para descrever a comida
+    /// Classe para descrever a comida dos animais
     /// </summary>
     public class Comida
     {
