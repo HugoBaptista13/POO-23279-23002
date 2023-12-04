@@ -25,6 +25,7 @@ namespace ZooDLL
         private DateTime data_proxima_consulta;
         private string recinto;
         private string descricao;
+        private string descricao2;
         #endregion
 
         #region METODOS
