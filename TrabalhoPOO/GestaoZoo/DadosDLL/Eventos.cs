@@ -99,6 +99,110 @@ namespace DadosDLL
                 i++;
             }
         }
+        public bool Inserir(Evento evento)
+        {
+            if (l_eventos == null || evento == null)
+            {
+                return false;
+            }
+            for (int i = 0; i < MAXEVENTOS; i++)
+            {
+                if (l_eventos[i] == evento)
+                {
+                    return false;
+                }
+                if (l_eventos[i].Id == -1)
+                {
+                    l_eventos[i].Id = evento.Id;
+                    l_eventos[i].Nome = evento.Nome;
+                    l_eventos[i].Lotacao = evento.Lotacao;
+                    l_eventos[i].LotacaoTotal = evento.LotacaoTotal;
+                    l_eventos[i].Local = evento.Local;
+                    l_eventos[i].DataInicio = evento.DataInicio;
+                    l_eventos[i].DataFim = evento.DataFim;
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// Método para alterar os dados de um evento
+        /// </summary>
+        /// <param name="evento">Objeto do tipo evento</param>
+        /// <returns>Se conseguir alterar retorna true, senão retorna false</returns>
+        public bool Alterar(Evento evento)
+        {
+            if (evento == null || l_eventos == null)
+                return false;
+            for (int i = 0; i < MAXEVENTOS; i++)
+            {
+                if (l_eventos[i] != evento)
+                {
+                    return false;
+                }
+                if (l_eventos[i].Id == evento.Id)
+                {
+                    l_eventos[i].Id = evento.Id;
+                    l_eventos[i].Nome = evento.Nome;
+                    l_eventos[i].Lotacao = evento.Lotacao;
+                    l_eventos[i].LotacaoTotal = evento.LotacaoTotal;
+                    l_eventos[i].Local = evento.Local;
+                    l_eventos[i].DataInicio = evento.DataInicio;
+                    l_eventos[i].DataFim = evento.DataFim;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Método para remover os dados de um evento
+        /// </summary>
+        /// <param name="evento">Objeto do tipo evento</param>
+        /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
+        public bool Remover(Evento evento)
+        {
+            if (evento == null || l_eventos == null)
+                return false;
+            for (int i = 0; i < MAXEVENTOS; i++)
+            {
+                if (l_eventos[i] != evento)
+                {
+                    return false;
+                }
+                if (l_eventos[i].Id == evento.Id)
+                {
+                    l_eventos[i].Id = -1;
+                    l_eventos[i].Nome = "";
+                    l_eventos[i].Lotacao = -1;
+                    l_eventos[i].LotacaoTotal = -1;
+                    l_eventos[i].Local = "";
+                    l_eventos[i].DataInicio = DateTime.MinValue;
+                    l_eventos[i].DataFim = DateTime.MinValue;
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// Método para verificar se existe um evento
+        /// </summary>
+        /// <param name="evento">Objeto do tipo evento</param>
+        /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
+        public bool Existe(Evento evento)
+        {
+            if (evento == null || l_eventos == null)
+                return false;
+            for (int i = 0; i < MAXEVENTOS; i++)
+            {
+                if (l_eventos[i] != evento)
+                {
+                    return false;
+                }
+                if (l_eventos[i].Id == evento.Id)
+                {
+                    break;
+                }
+            }
+            return true;
+        }
         #endregion
         #endregion
     }
