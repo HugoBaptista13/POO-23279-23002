@@ -99,6 +99,101 @@ namespace DadosDLL
                 i++;
             }
         }
+        public bool Inserir(Comida comida)
+        {
+            if (l_comidas == null || comida == null)
+            {
+                return false;
+            }
+            for (int i = 0; i < MAXCOMIDA; i++)
+            {
+                if (l_comidas[i] == comida)
+                {
+                    return false;
+                }
+                if (l_comidas[i].Id == -1)
+                {
+                    l_comidas[i].Id = comida.Id;
+                    l_comidas[i].Nome = comida.Nome;
+                    l_comidas[i].Tipo = comida.Tipo;
+                    l_comidas[i].Dieta = comida.Dieta;
+                    l_comidas[i].Stock = comida.Stock;
+                    l_comidas[i].DataValidade = comida.DataValidade;
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// Método para alterar os dados de uma comida
+        /// </summary>
+        /// <param name="comida">Objeto do tipo comida</param>
+        /// <returns>Se conseguir alterar retorna true, senão retorna false</returns>
+        public bool Alterar(Comida comida)
+        {
+            if (comida == null || l_comidas == null)
+                return false;
+            for (int i = 0; i < MAXCOMIDA; i++)
+            {
+                if (l_comidas[i] != comida)
+                {
+                    return false;
+                }
+                if (l_comidas[i].Id == comida.Id)
+                {
+                    l_comidas[i].Id = comida.Id;
+                    l_comidas[i].Nome = comida.Nome;
+                    l_comidas[i].Tipo = comida.Tipo;
+                    l_comidas[i].Dieta = comida.Dieta;
+                    l_comidas[i].Stock = comida.Stock;
+                    l_comidas[i].DataValidade = comida.DataValidade;
+                }
+            }
+            return true;
+        }
+        public bool Remover(Comida comida)
+        {
+            if (comida == null || l_comidas == null)
+                return false;
+            for (int i = 0; i < MAXCOMIDA; i++)
+            {
+                if (l_comidas[i] != comida)
+                {
+                    return false;
+                }
+                if (l_comidas[i].Id == comida.Id)
+                {
+                    l_comidas[i].Id = -1;
+                    l_comidas[i].Nome = "";
+                    l_comidas[i].Tipo = "";
+                    l_comidas[i].Dieta = "";
+                    l_comidas[i].Stock = -1;
+                    l_comidas[i].DataValidade = DateTime.MinValue;
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// Método para verificar se existe uma comida
+        /// </summary>
+        /// <param name="comida">Objeto do tipo comida</param>
+        /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
+        public bool Existe(Comida comida)
+        {
+            if (comida == null || l_comidas == null)
+                return false;
+            for (int i = 0; i < MAXCOMIDA; i++)
+            {
+                if (l_comidas[i] != comida)
+                {
+                    return false;
+                }
+                if (l_comidas[i].Id == comida.Id)
+                {
+                    break;
+                }
+            }
+            return true;
+        }
         #endregion
         #endregion
     }
