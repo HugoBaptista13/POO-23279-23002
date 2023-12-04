@@ -10,7 +10,7 @@ namespace DadosDLL
     /// <summary>
     /// Classe para guardar os eventos
     /// </summary>
-    public class Consultas
+    public class Eventos
     {
         #region ATRIBUTOS
         private const int MAXEVENTOS = 100;
@@ -22,7 +22,7 @@ namespace DadosDLL
         /// <summary>
         /// Construtor por defeito, sem argumentos
         /// </summary>
-        public Consultas()
+        public Eventos()
         {
             for (int i = 0; i < MAXEVENTOS; i++)
             {
@@ -58,7 +58,7 @@ namespace DadosDLL
         }
         public override bool Equals(object obj)
         {
-            if (obj is Consultas e)
+            if (obj is Eventos e)
             {
                 if (this == e)
                 {
