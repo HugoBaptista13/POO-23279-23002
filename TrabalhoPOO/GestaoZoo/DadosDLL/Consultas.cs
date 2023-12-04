@@ -99,6 +99,54 @@ namespace DadosDLL
                 i++;
             }
         }
+        public bool Inserir(Consulta consulta)
+        {
+            if (l_consultas == null || consulta == null)
+            {
+                return false;
+            }
+            for (int i = 0; i < MAXCONSULTAS; i++)
+            {
+                if (l_consultas[i] == consulta)
+                {
+                    return false;
+                }
+                if (l_consultas[i].Id == -1)
+                {
+                    l_consultas[i].Id = consulta.Id;
+                    l_consultas[i].Animal = consulta.Animal;
+                    l_consultas[i].Funcionario = consulta.Funcionario;
+                    l_consultas[i].Data = consulta.Data;
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// Método para alterar os dados de um consulta
+        /// </summary>
+        /// <param name="consulta">Objeto do tipo consulta</param>
+        /// <returns>Se conseguir alterar retorna true, senão retorna false</returns>
+        public bool Alterar(Consulta consulta)
+        {
+            if (consulta == null || l_consultas == null)
+                return false;
+            for (int i = 0; i < MAXCONSULTAS; i++)
+            {
+                if (l_consultas[i] != consulta)
+                {
+                    return false;
+                }
+                if (l_consultas[i].Id == consulta.Id)
+                {
+                    l_consultas[i].Id = consulta.Id;
+                    l_consultas[i].Animal = consulta.Animal;
+                    l_consultas[i].Funcionario = consulta.Funcionario;
+                    l_consultas[i].Data = consulta.Data;
+                }
+            }
+            return true;
+        }
+
         #endregion
         #endregion
     }
