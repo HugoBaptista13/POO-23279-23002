@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InterfaceDLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -10,7 +11,7 @@ namespace ZooDLL
     /// <summary>
     /// Classe para descrever uma limpeza
     /// </summary>
-    public class Limpeza
+    public class Limpeza : ILimpeza
     {
         #region ATRIBUTOS
         private int id;
