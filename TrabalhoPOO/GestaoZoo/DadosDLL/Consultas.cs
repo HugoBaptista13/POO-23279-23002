@@ -176,17 +176,17 @@ namespace DadosDLL
         /// </summary>
         /// <param name="consulta">Objeto do tipo consulta</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
-        public bool Existe(Consulta consulta)
+        public bool Existe(int consulta)
         {
-            if (consulta == null || l_consultas == null)
+            if (consulta == -1 || l_consultas == null)
                 return false;
             for (int i = 0; i < MAXCONSULTAS; i++)
             {
-                if (l_consultas[i] != consulta)
+                if (l_consultas[i].Id != consulta)
                 {
                     return false;
                 }
-                if (l_consultas[i].Id == consulta.Id)
+                if (l_consultas[i].Id == consulta)
                 {
                     break;
                 }
