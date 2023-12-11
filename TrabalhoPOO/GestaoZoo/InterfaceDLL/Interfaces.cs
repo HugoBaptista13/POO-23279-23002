@@ -77,6 +77,17 @@ namespace InterfaceDLL
         DateTime Data { get; set; }
         string Listar();
     }
+    public interface IEvento
+    {
+        int Id { get; set; }
+        string Nome { get; set; }
+        int Lotacao { get; set; }
+        int LotacaoTotal { get; set; }
+        string Local { get; set; }
+        DateTime DataInicio { get; set; }
+        DateTime DataFim { get; set; }
+        string Listar();
+    }
     public interface IRecintos
     {
         void Listar();

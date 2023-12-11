@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
+using InterfaceDLL;
 
 namespace ZooDLL
 {
     /// <summary>
     /// Classe para descrever um evento
     /// </summary>
-    public class Evento
+    public class Evento : IEvento
     {
         #region ATRIBUTOS
         private int id;
