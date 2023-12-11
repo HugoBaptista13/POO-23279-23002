@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using InterfaceDLL;
 
 namespace ZooDLL
 {
     /// <summary>
     /// Classe para descrever a comida dos animais
     /// </summary>
-    public class Comida
+    public class Comida : IComida
     {
         #region ATRIBUTOS
         private int id;

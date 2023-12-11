@@ -60,6 +60,16 @@ namespace InterfaceDLL
         double Desconto { get; set; }
         string Listar();
     }
+    public interface IComida
+    {
+        int Id { get; set; }
+        string Nome { get; set; }
+        string Tipo { get; set; }
+        string Dieta { get; set; }
+
+        int Stock { get; set; }
+        string Listar();
+    }
     public interface IRecintos
     {
         void Listar();
