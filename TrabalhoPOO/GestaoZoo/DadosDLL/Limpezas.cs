@@ -147,6 +147,54 @@ namespace DadosDLL
             }
             return true;
         }
+
+        /// <summary>
+        /// Método para remover os dados de uma Limpeza
+        /// </summary>
+        /// <param name="limpeza">Objeto do tipo limpeza</param>
+        /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
+        public bool Remover(Limpeza limpeza)
+        {
+            if (limpeza == null || l_limpezas == null)
+                return false;
+            for (int i = 0; i < MAXLIMPEZAS; i++)
+            {
+                if (l_limpezas[i] != limpeza)
+                {
+                    return false;
+                }
+                if (l_limpezas[i].Id == limpeza.Id)
+                {
+                    l_limpezas[i].Id = -1;
+                    l_limpezas[i].Recinto = -1;
+                    l_limpezas[i].Funcionario = -1;
+                    l_limpezas[i].Data = DateTime.MinValue;
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// Método para verificar se existe uma Limpeza
+        /// </summary>
+        /// <param name="limpeza">Objeto do tipo limpeza</param>
+        /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
+        public bool Existe(Limpeza limpeza)
+        {
+            if (limpeza == null || l_limpezas == null)
+                return false;
+            for (int i = 0; i < MAXLIMPEZAS; i++)
+            {
+                if (l_limpezas[i] != limpeza)
+                {
+                    return false;
+                }
+                if (l_limpezas[i].Id == limpeza.Id)
+                {
+                    break;
+                }
+            }
+            return true;
+        }
         #endregion
         #endregion
     }
