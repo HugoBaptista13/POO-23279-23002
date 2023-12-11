@@ -100,6 +100,110 @@ namespace DadosDLL
                 i++;
             }
         }
+
+        /// <summary>
+        /// Método para adicionar uma venda
+        /// </summary>
+        /// <param name="venda">Objeto do tipo venda</param>
+        /// <returns>Se conseguir adicionar retorna true, senão retorna false</returns>
+        public bool Inserir(Venda venda)
+        {
+            if (l_vendas == null || venda == null)
+            {
+                return false;
+            }
+            for (int i = 0; i < MAXVENDAS; i++)
+            {
+                if (l_vendas[i] == venda)
+                {
+                    return false;
+                }
+                if (l_vendas[i].Id == -1)
+                {
+                    l_vendas[i].Id = venda.Id;
+                    l_vendas[i].Bilhete = venda.Bilhete;
+                    l_vendas[i].NumBilhetes = venda.NumBilhetes;
+                    l_vendas[i].Valor = venda.Valor;
+                    l_vendas[i].DataVenda = venda.DataVenda;
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// Método para alterar os dados de uma venda
+        /// </summary>
+        /// <param name="venda">Objeto do tipo venda</param>
+        /// <returns>Se conseguir alterar retorna true, senão retorna false</returns>
+        public bool Alterar(Venda venda)
+        {
+            if (venda == null || l_vendas == null)
+                return false;
+            for (int i = 0; i < MAXVENDAS; i++)
+            {
+                if (l_vendas[i] != venda)
+                {
+                    return false;
+                }
+                if (l_vendas[i].Id == venda.Id)
+                {
+                    l_vendas[i].Id = venda.Id;
+                    l_vendas[i].Bilhete = venda.Bilhete;
+                    l_vendas[i].NumBilhetes = venda.NumBilhetes;
+                    l_vendas[i].Valor = venda.Valor;
+                    l_vendas[i].DataVenda = venda.DataVenda;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Método para remover os dados de uma venda
+        /// </summary>
+        /// <param name="venda">Objeto do tipo venda</param>
+        /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
+        public bool Remover(Venda venda)
+        {
+            if (venda == null || l_vendas == null)
+                return false;
+            for (int i = 0; i < MAXVENDAS; i++)
+            {
+                if (l_vendas[i] != venda)
+                {
+                    return false;
+                }
+                if (l_vendas[i].Id == venda.Id)
+                {
+                    l_vendas[i].Id = -1;
+                    l_vendas[i].Bilhete = -1;
+                    l_vendas[i].NumBilhetes = -1;
+                    l_vendas[i].Valor = -1;
+                    l_vendas[i].DataVenda = DateTime.MinValue;
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// Método para verificar se existe uma venda
+        /// </summary>
+        /// <param name="venda">Objeto do tipo venda</param>
+        /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
+        public bool Existe(Venda venda)
+        {
+            if (venda == null || l_vendas == null)
+                return false;
+            for (int i = 0; i < MAXVENDAS; i++)
+            {
+                if (l_vendas[i] != venda)
+                {
+                    return false;
+                }
+                if (l_vendas[i].Id == venda.Id)
+                {
+                    break;
+                }
+            }
+            return true;
+        }
         #endregion
         #endregion
     }
