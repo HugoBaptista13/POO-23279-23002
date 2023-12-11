@@ -139,7 +139,6 @@ namespace DadosDLL
                 }
                 if (l_limpezas[i].Id == limpeza.Id)
                 {
-                    l_limpezas[i].Id = limpeza.Id;
                     l_limpezas[i].Recinto = limpeza.Recinto;
                     l_limpezas[i].Funcionario = limpeza.Funcionario;
                     l_limpezas[i].Data = limpeza.Data;
@@ -153,17 +152,17 @@ namespace DadosDLL
         /// </summary>
         /// <param name="limpeza">Objeto do tipo limpeza</param>
         /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
-        public bool Remover(Limpeza limpeza)
+        public bool Remover(int limpeza)
         {
-            if (limpeza == null || l_limpezas == null)
+            if (limpeza == -1 || l_limpezas == null)
                 return false;
             for (int i = 0; i < MAXLIMPEZAS; i++)
             {
-                if (l_limpezas[i] != limpeza)
+                if (l_limpezas[i].Id != limpeza)
                 {
                     return false;
                 }
-                if (l_limpezas[i].Id == limpeza.Id)
+                if (l_limpezas[i].Id == limpeza)
                 {
                     l_limpezas[i].Id = -1;
                     l_limpezas[i].Recinto = -1;
@@ -178,17 +177,17 @@ namespace DadosDLL
         /// </summary>
         /// <param name="limpeza">Objeto do tipo limpeza</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
-        public bool Existe(Limpeza limpeza)
+        public bool Existe(int limpeza)
         {
-            if (limpeza == null || l_limpezas == null)
+            if (limpeza == -1 || l_limpezas == null)
                 return false;
             for (int i = 0; i < MAXLIMPEZAS; i++)
             {
-                if (l_limpezas[i] != limpeza)
+                if (l_limpezas[i].Id != limpeza)
                 {
                     return false;
                 }
-                if (l_limpezas[i].Id == limpeza.Id)
+                if (l_limpezas[i].Id == limpeza)
                 {
                     break;
                 }

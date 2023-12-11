@@ -146,7 +146,6 @@ namespace DadosDLL
                 }
                 if (l_recintos[i].Id == recinto.Id)
                 {
-                    l_recintos[i].Id = recinto.Id;
                     l_recintos[i].Nome = recinto.Nome;
                     l_recintos[i].Tipo = recinto.Tipo;
                     l_recintos[i].Comprimento = recinto.Comprimento;
@@ -162,17 +161,17 @@ namespace DadosDLL
         /// </summary>
         /// <param name="recinto">Objeto do tipo recinto</param>
         /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
-        public bool Remover(Recinto recinto)
+        public bool Remover(int recinto)
         {
-            if (recinto == null || l_recintos == null)
+            if (recinto == -1 || l_recintos == null)
                 return false;
             for (int i = 0; i < MAXRECINTOS; i++)
             {
-                if (l_recintos[i] != recinto)
+                if (l_recintos[i].Id != recinto)
                 {
                     return false;
                 }
-                if (l_recintos[i].Id == recinto.Id)
+                if (l_recintos[i].Id == recinto)
                 {
                     l_recintos[i].Id = -1;
                     l_recintos[i].Nome = "";
@@ -189,17 +188,17 @@ namespace DadosDLL
         /// </summary>
         /// <param name="recinto">Objeto do tipo recinto</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
-        public bool Existe(Recinto recinto)
+        public bool Existe(int recinto)
         {
-            if (recinto == null || l_recintos == null)
+            if (recinto == -1 || l_recintos == null)
                 return false;
             for (int i = 0; i < MAXRECINTOS; i++)
             {
-                if (l_recintos[i] != recinto)
+                if (l_recintos[i].Id != recinto)
                 {
                     return false;
                 }
-                if (l_recintos[i].Id == recinto.Id)
+                if (l_recintos[i].Id == recinto)
                 {
                     break;
                 }

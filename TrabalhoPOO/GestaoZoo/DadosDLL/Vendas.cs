@@ -146,7 +146,6 @@ namespace DadosDLL
                 }
                 if (l_vendas[i].Id == venda.Id)
                 {
-                    l_vendas[i].Id = venda.Id;
                     l_vendas[i].Bilhete = venda.Bilhete;
                     l_vendas[i].NumBilhetes = venda.NumBilhetes;
                     l_vendas[i].Valor = venda.Valor;
@@ -161,17 +160,17 @@ namespace DadosDLL
         /// </summary>
         /// <param name="venda">Objeto do tipo venda</param>
         /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
-        public bool Remover(Venda venda)
+        public bool Remover(int venda)
         {
-            if (venda == null || l_vendas == null)
+            if (venda == -1 || l_vendas == null)
                 return false;
             for (int i = 0; i < MAXVENDAS; i++)
             {
-                if (l_vendas[i] != venda)
+                if (l_vendas[i].Id != venda)
                 {
                     return false;
                 }
-                if (l_vendas[i].Id == venda.Id)
+                if (l_vendas[i].Id == venda)
                 {
                     l_vendas[i].Id = -1;
                     l_vendas[i].Bilhete = -1;
@@ -187,17 +186,17 @@ namespace DadosDLL
         /// </summary>
         /// <param name="venda">Objeto do tipo venda</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
-        public bool Existe(Venda venda)
+        public bool Existe(int venda)
         {
-            if (venda == null || l_vendas == null)
+            if (venda == -1 || l_vendas == null)
                 return false;
             for (int i = 0; i < MAXVENDAS; i++)
             {
-                if (l_vendas[i] != venda)
+                if (l_vendas[i].Id != venda)
                 {
                     return false;
                 }
-                if (l_vendas[i].Id == venda.Id)
+                if (l_vendas[i].Id == venda)
                 {
                     break;
                 }

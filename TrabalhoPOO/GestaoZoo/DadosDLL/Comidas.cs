@@ -140,7 +140,6 @@ namespace DadosDLL
                 }
                 if (l_comidas[i].Id == comida.Id)
                 {
-                    l_comidas[i].Id = comida.Id;
                     l_comidas[i].Nome = comida.Nome;
                     l_comidas[i].Tipo = comida.Tipo;
                     l_comidas[i].Dieta = comida.Dieta;
@@ -150,17 +149,17 @@ namespace DadosDLL
             }
             return true;
         }
-        public bool Remover(Comida comida)
+        public bool Remover(int comida)
         {
-            if (comida == null || l_comidas == null)
+            if (comida == -1 || l_comidas == null)
                 return false;
             for (int i = 0; i < MAXCOMIDA; i++)
             {
-                if (l_comidas[i] != comida)
+                if (l_comidas[i].Id != comida)
                 {
                     return false;
                 }
-                if (l_comidas[i].Id == comida.Id)
+                if (l_comidas[i].Id == comida)
                 {
                     l_comidas[i].Id = -1;
                     l_comidas[i].Nome = "";
@@ -177,17 +176,17 @@ namespace DadosDLL
         /// </summary>
         /// <param name="comida">Objeto do tipo comida</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
-        public bool Existe(Comida comida)
+        public bool Existe(int comida)
         {
-            if (comida == null || l_comidas == null)
+            if (comida == -1 || l_comidas == null)
                 return false;
             for (int i = 0; i < MAXCOMIDA; i++)
             {
-                if (l_comidas[i] != comida)
+                if (l_comidas[i].Id != comida)
                 {
                     return false;
                 }
-                if (l_comidas[i].Id == comida.Id)
+                if (l_comidas[i].Id == comida)
                 {
                     break;
                 }

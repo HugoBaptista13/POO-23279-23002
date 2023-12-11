@@ -145,7 +145,6 @@ namespace DadosDLL
                 }
                 if (l_funcionarios[i].Id == funcionario.Id)
                 {
-                    l_funcionarios[i].Id = funcionario.Id;
                     l_funcionarios[i].Nome = funcionario.Nome;
                     l_funcionarios[i].Idade = funcionario.Idade;
                     l_funcionarios[i].Telefone = funcionario.Telefone;
@@ -161,17 +160,17 @@ namespace DadosDLL
         /// </summary>
         /// <param name="funcionario">Objeto do tipo funcionario</param>
         /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
-        public bool Remover(Funcionario funcionario)
+        public bool Remover(int funcionario)
         {
-            if (funcionario == null || l_funcionarios == null)
+            if (funcionario == -1 || l_funcionarios == null)
                 return false;
             for (int i = 0; i < MAXFUNCIONARIOS; i++)
             {
-                if (l_funcionarios[i] != funcionario)
+                if (l_funcionarios[i].Id != funcionario)
                 {
                     return false;
                 }
-                if (l_funcionarios[i].Id == funcionario.Id)
+                if (l_funcionarios[i].Id == funcionario)
                 {
                     l_funcionarios[i].Id = -1;
                     l_funcionarios[i].Nome = "";
@@ -188,17 +187,17 @@ namespace DadosDLL
         /// </summary>
         /// <param name="funcionario">Objeto do tipo funcionario</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
-        public bool Existe(Funcionario funcionario)
+        public bool Existe(int funcionario)
         {
-            if (funcionario == null || l_funcionarios == null)
+            if (funcionario == -1 || l_funcionarios == null)
                 return false;
             for (int i = 0; i < MAXFUNCIONARIOS; i++)
             {
-                if (l_funcionarios[i] != funcionario)
+                if (l_funcionarios[i].Id != funcionario)
                 {
                     return false;
                 }
-                if (l_funcionarios[i].Id == funcionario.Id)
+                if (l_funcionarios[i].Id == funcionario)
                 {
                     break;
                 }

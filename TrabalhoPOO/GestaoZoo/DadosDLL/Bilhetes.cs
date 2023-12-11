@@ -138,7 +138,6 @@ namespace DadosDLL
                 }
                 if (l_bilhetes[i].Id == bilhete.Id)
                 {
-                    l_bilhetes[i].Id = bilhete.Id;
                     l_bilhetes[i].Tipo = bilhete.Tipo;
                     l_bilhetes[i].Preco = bilhete.Preco;
                     l_bilhetes[i].Desconto = bilhete.Desconto;
@@ -146,17 +145,17 @@ namespace DadosDLL
             }
             return true;
         }
-        public bool Remover(Bilhete bilhete)
+        public bool Remover(int bilhete)
         {
-            if (bilhete == null || l_bilhetes == null)
+            if (bilhete == -1 || l_bilhetes == null)
                 return false;
             for (int i = 0; i < MAXBILHETES; i++)
             {
-                if (l_bilhetes[i] != bilhete)
+                if (l_bilhetes[i].Id != bilhete)
                 {
                     return false;
                 }
-                if (l_bilhetes[i].Id == bilhete.Id)
+                if (l_bilhetes[i].Id == bilhete)
                 {
                     l_bilhetes[i].Id = -1;
                     l_bilhetes[i].Tipo = "";
@@ -171,17 +170,17 @@ namespace DadosDLL
         /// </summary>
         /// <param name="bilhete">Objeto do tipo bilhete</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
-        public bool Existe(Bilhete bilhete)
+        public bool Existe(int bilhete)
         {
-            if (bilhete == null || l_bilhetes == null)
+            if (bilhete == -1 || l_bilhetes == null)
                 return false;
             for (int i = 0; i < MAXBILHETES; i++)
             {
-                if (l_bilhetes[i] != bilhete)
+                if (l_bilhetes[i].Id != bilhete)
                 {
                     return false;
                 }
-                if (l_bilhetes[i].Id == bilhete.Id)
+                if (l_bilhetes[i].Id == bilhete)
                 {
                     break;
                 }

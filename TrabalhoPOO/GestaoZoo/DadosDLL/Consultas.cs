@@ -138,7 +138,6 @@ namespace DadosDLL
                 }
                 if (l_consultas[i].Id == consulta.Id)
                 {
-                    l_consultas[i].Id = consulta.Id;
                     l_consultas[i].Animal = consulta.Animal;
                     l_consultas[i].Funcionario = consulta.Funcionario;
                     l_consultas[i].Data = consulta.Data;
@@ -152,17 +151,17 @@ namespace DadosDLL
         /// </summary>
         /// <param name="consulta">Objeto do tipo consulta</param>
         /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
-        public bool Remover(Consulta consulta)
+        public bool Remover(int consulta)
         {
-            if (consulta == null || l_consultas == null)
+            if (consulta == -1 || l_consultas == null)
                 return false;
             for (int i = 0; i < MAXCONSULTAS; i++)
             {
-                if (l_consultas[i] != consulta)
+                if (l_consultas[i].Id != consulta)
                 {
                     return false;
                 }
-                if (l_consultas[i].Id == consulta.Id)
+                if (l_consultas[i].Id == consulta)
                 {
                     l_consultas[i].Id = -1;
                     l_consultas[i].Animal = -1;

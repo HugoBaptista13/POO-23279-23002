@@ -141,7 +141,6 @@ namespace DadosDLL
                 }
                 if (l_eventos[i].Id == evento.Id)
                 {
-                    l_eventos[i].Id = evento.Id;
                     l_eventos[i].Nome = evento.Nome;
                     l_eventos[i].Lotacao = evento.Lotacao;
                     l_eventos[i].LotacaoTotal = evento.LotacaoTotal;
@@ -158,17 +157,17 @@ namespace DadosDLL
         /// </summary>
         /// <param name="evento">Objeto do tipo evento</param>
         /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
-        public bool Remover(Evento evento)
+        public bool Remover(int evento)
         {
-            if (evento == null || l_eventos == null)
+            if (evento == -1 || l_eventos == null)
                 return false;
             for (int i = 0; i < MAXEVENTOS; i++)
             {
-                if (l_eventos[i] != evento)
+                if (l_eventos[i].Id != evento)
                 {
                     return false;
                 }
-                if (l_eventos[i].Id == evento.Id)
+                if (l_eventos[i].Id == evento)
                 {
                     l_eventos[i].Id = -1;
                     l_eventos[i].Nome = "";
@@ -186,17 +185,17 @@ namespace DadosDLL
         /// </summary>
         /// <param name="evento">Objeto do tipo evento</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
-        public bool Existe(Evento evento)
+        public bool Existe(int evento)
         {
-            if (evento == null || l_eventos == null)
+            if (evento == -1 || l_eventos == null)
                 return false;
             for (int i = 0; i < MAXEVENTOS; i++)
             {
-                if (l_eventos[i] != evento)
+                if (l_eventos[i].Id != evento)
                 {
                     return false;
                 }
-                if (l_eventos[i].Id == evento.Id)
+                if (l_eventos[i].Id == evento)
                 {
                     break;
                 }
