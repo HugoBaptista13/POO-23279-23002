@@ -38,7 +38,8 @@ namespace InterfaceDLL
 
     public interface IAnimal
     {
-        int Id { get; set; }
+        int Id 
+        { get; set; }
         string Nome { get; set; }
         int Idade { get; set; }
         string Sexo { get; set; }
@@ -50,6 +51,14 @@ namespace InterfaceDLL
         DateTime DataProximaConsulta { get; set; }
         string Recinto { get; set; }
         string Descricao { get; set; }
+    }
+    public interface IBilhete
+    {
+        int Id { get; set; }
+        string Tipo { get; set; }
+        double Preco { get; set; }
+        double Desconto { get; set; }
+        string Listar();
     }
     public interface IRecintos
     {

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using InterfaceDLL;
 
 namespace ZooDLL
 {
     /// <summary>
     /// Classe para descrever um bilhete
     /// </summary>
-    public class Bilhete
+    public class Bilhete : IBilhete
     {
         #region ATRIBUTOS
         private int id;
