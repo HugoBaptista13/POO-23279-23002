@@ -35,7 +35,6 @@ namespace InterfaceDLL
         string Listar();
         double CalculaArea();
     }
-
     public interface IAnimal
     {
         int Id 
@@ -118,14 +117,6 @@ namespace InterfaceDLL
         DateTime DataVenda { get; set; }
         string Listar();
         double CalcularValor();
-    }
-    public interface IRecintos
-    {
-        void Listar();
-        bool Inserir();
-        bool Alterar();
-        bool Remover();
-        bool existe();
     }
 
 }
