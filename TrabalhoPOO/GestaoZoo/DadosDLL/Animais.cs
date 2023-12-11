@@ -151,7 +151,6 @@ namespace DadosDLL
                 }
                 if (l_animais[i].Id == animal.Id)
                 {
-                    l_animais[i].Id = animal.Id;
                     l_animais[i].Nome = animal.Nome;
                     l_animais[i].Idade = animal.Idade;
                     l_animais[i].Sexo = animal.Sexo;
@@ -172,17 +171,17 @@ namespace DadosDLL
         /// </summary>
         /// <param name="animal">Objeto do tipo animal</param>
         /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
-        public bool Remover(Animal animal)
+        public bool Remover(int animal)
         {
-            if (animal == null || l_animais == null)
+            if (animal == -1 || l_animais == null)
                 return false;
             for (int i = 0; i < MAXANIMAIS; i++)
             {
-                if (l_animais[i] != animal)
+                if (l_animais[i].Id != animal)
                 {
                     return false;
                 }
-                if (l_animais[i].Id == animal.Id)
+                if (l_animais[i].Id == animal)
                 {
                     l_animais[i].Id = -1;
                     l_animais[i].Nome = "";
@@ -205,17 +204,17 @@ namespace DadosDLL
         /// </summary>
         /// <param name="animal">Objeto do tipo animal</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
-        public bool Existe(Animal animal)
+        public bool Existe(int animal)
         {
-            if (animal == null || l_animais == null)
+            if (animal == -1 || l_animais == null)
                 return false;
             for (int i = 0; i < MAXANIMAIS; i++)
             {
-                if (l_animais[i] != animal)
+                if (l_animais[i].Id != animal)
                 {
                     return false;
                 }
-                if (l_animais[i].Id == animal.Id)
+                if (l_animais[i].Id == animal)
                 {
                     break;
                 }
