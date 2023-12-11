@@ -4,13 +4,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using InterfaceDLL;
 
 namespace ZooDLL
 {
     /// <summary>
     /// Classe para descrever uma consulta
     /// </summary>
-    public class Consulta
+    public class Consulta : IConsulta
     {
         #region ATRIBUTOS
         private int id;

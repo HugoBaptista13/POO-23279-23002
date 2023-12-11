@@ -66,8 +66,15 @@ namespace InterfaceDLL
         string Nome { get; set; }
         string Tipo { get; set; }
         string Dieta { get; set; }
-
         int Stock { get; set; }
+        string Listar();
+    }
+    public interface IConsulta
+    {
+        int Id { get; set; }
+        int Animal { get; set; }
+        int Funcionario { get; set; }
+        DateTime Data { get; set; }
         string Listar();
     }
     public interface IRecintos
