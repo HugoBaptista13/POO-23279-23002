@@ -117,6 +117,7 @@ namespace InterfaceDLL
         double Valor { get; set; }
         DateTime DataVenda { get; set; }
         string Listar();
+        double CalcularValor();
     }
     public interface IRecintos
     {
