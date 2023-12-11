@@ -10,7 +10,7 @@ namespace ZooDLL
     /// <summary>
     /// Classe para descrever um recinto
     /// </summary>
-    public class Recinto
+    public class Recinto : IRecinto
     {
         #region ATRIBUTOS
         private int id;

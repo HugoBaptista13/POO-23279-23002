@@ -4,13 +4,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using InterfaceDLL;
 
 namespace ZooDLL
 {
     /// <summary>
     /// Classe para descrever um animal
     /// </summary>
-    public class Animal
+    public class Animal : IAnimal
     {
         #region ATRIBUTOS
         private int id;
