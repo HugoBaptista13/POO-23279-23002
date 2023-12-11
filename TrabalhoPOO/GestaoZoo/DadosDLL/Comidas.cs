@@ -84,7 +84,7 @@ namespace DadosDLL
         #endregion
         #region OUTROS
         /// <summary>
-        /// Método para listar as vendas todas
+        /// Método para listar as comidas todas
         /// </summary>
         /// <param name="output">Array de strings com as vendas</param>
         public void Listar(out string[] output)

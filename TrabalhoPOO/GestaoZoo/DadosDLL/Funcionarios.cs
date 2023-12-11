@@ -186,7 +186,7 @@ namespace DadosDLL
         /// <summary>
         /// Método para verificar se existe um funcionario
         /// </summary>
-        /// <param name="funcionario">Objeto do tipo animal</param>
+        /// <param name="funcionario">Objeto do tipo funcionario</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
         public bool Existe(Funcionario funcionario)
         {
