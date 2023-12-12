@@ -94,7 +94,7 @@ namespace InterfaceDLL
         bool Inserir();
         bool Alterar();
         bool Remover();
-        bool existe();
+        bool Existe();
     }
 
 }

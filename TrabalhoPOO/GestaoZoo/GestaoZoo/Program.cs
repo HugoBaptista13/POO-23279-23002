@@ -11,8 +11,8 @@ namespace GestaoZoo
     {
         static void Main(string[] args)
         {
-            Animais animais = new Animais();
-            Animais.LAnimais
+            //Animais animais = new Animais();
+            //Animais.LAnimais
         }
     }
 }
