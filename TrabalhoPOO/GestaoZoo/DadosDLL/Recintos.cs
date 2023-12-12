@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZooDLL;
+using InterfaceDLL;
 
 namespace DadosDLL
 {
     /// <summary>
     /// Classe para guardar os recintos
     /// </summary>
-    public class Recintos
+    public class Recintos 
     {
         #region ATRIBUTOS
         private const int MAXRECINTOS = 100;

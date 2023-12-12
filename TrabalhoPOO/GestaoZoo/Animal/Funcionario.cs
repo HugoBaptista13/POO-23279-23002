@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using InterfaceDLL;
 
 namespace ZooDLL
 {
     /// <summary>
     /// Classe para descrever um funcionário
     /// </summary>
-    public class Funcionario
+    public class Funcionario : IFuncionario
     {
         #region ATRIBUTOS
         private int id;

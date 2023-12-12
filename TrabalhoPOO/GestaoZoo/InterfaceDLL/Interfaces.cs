@@ -35,7 +35,6 @@ namespace InterfaceDLL
         string Listar();
         double CalculaArea();
     }
-
     public interface IAnimal
     {
         int Id 
@@ -51,6 +50,7 @@ namespace InterfaceDLL
         DateTime DataProximaConsulta { get; set; }
         string Recinto { get; set; }
         string Descricao { get; set; }
+        string  Listar();
     }
     public interface IBilhete
     {
@@ -59,6 +59,7 @@ namespace InterfaceDLL
         double Preco { get; set; }
         double Desconto { get; set; }
         string Listar();
+        double CalcularPreco();
     }
     public interface IComida
     {
@@ -88,13 +89,34 @@ namespace InterfaceDLL
         DateTime DataFim { get; set; }
         string Listar();
     }
-    public interface IRecintos
+    public interface IFuncionario
     {
-        void Listar();
-        bool Inserir();
-        bool Alterar();
-        bool Remover();
-        bool Existe();
+        int Id { get; set; }
+        string Nome { get; set; }
+        int Idade  { get; set; }
+        int Telefone { get; set; }
+        string Email { get; set; }
+        string Cargo { get; set; }
+
+        string Listar();
+    }
+    public interface ILimpeza
+    {
+        int Id { get; set; }
+        int Funcionario { get; set; }
+        int Recinto { get; set; }
+        DateTime Data { get; set; }
+        string Listar();
+    }
+    public interface IVenda
+    {
+        int Id { get; set; }
+        int Bilhete { get; set; }
+        int NumBilhetes { get; set; }
+        double Valor { get; set; }
+        DateTime DataVenda { get; set; }
+        string Listar();
+        double CalcularValor();
     }
 
 }
