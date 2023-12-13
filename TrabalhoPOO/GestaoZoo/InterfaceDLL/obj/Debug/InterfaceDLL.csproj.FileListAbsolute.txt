@@ -10,3 +10,9 @@ D:\POO\TrabalhoPOO\GestaoZoo\InterfaceDLL\obj\Debug\InterfaceDLL.csproj.Assembly
 D:\POO\TrabalhoPOO\GestaoZoo\InterfaceDLL\obj\Debug\InterfaceDLL.csproj.CoreCompileInputs.cache
 D:\POO\TrabalhoPOO\GestaoZoo\InterfaceDLL\obj\Debug\InterfaceDLL.dll
 D:\POO\TrabalhoPOO\GestaoZoo\InterfaceDLL\obj\Debug\InterfaceDLL.pdb
+C:\Users\Baptista\Desktop\Ficheiros\POO-23279-23002\TrabalhoPOO\GestaoZoo\InterfaceDLL\bin\Debug\InterfaceDLL.dll
+C:\Users\Baptista\Desktop\Ficheiros\POO-23279-23002\TrabalhoPOO\GestaoZoo\InterfaceDLL\bin\Debug\InterfaceDLL.pdb
+C:\Users\Baptista\Desktop\Ficheiros\POO-23279-23002\TrabalhoPOO\GestaoZoo\InterfaceDLL\obj\Debug\InterfaceDLL.csproj.AssemblyReference.cache
+C:\Users\Baptista\Desktop\Ficheiros\POO-23279-23002\TrabalhoPOO\GestaoZoo\InterfaceDLL\obj\Debug\InterfaceDLL.csproj.CoreCompileInputs.cache
+C:\Users\Baptista\Desktop\Ficheiros\POO-23279-23002\TrabalhoPOO\GestaoZoo\InterfaceDLL\obj\Debug\InterfaceDLL.dll
+C:\Users\Baptista\Desktop\Ficheiros\POO-23279-23002\TrabalhoPOO\GestaoZoo\InterfaceDLL\obj\Debug\InterfaceDLL.pdb

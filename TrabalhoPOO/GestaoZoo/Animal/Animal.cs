@@ -22,9 +22,9 @@ namespace ZooDLL
         private string especie;
         private string dieta;
         private int estado;
-        private DateTime data_ultima_consulta;
-        private DateTime data_proxima_consulta;
-        private string recinto;
+        private DateTime dataUltimaConsulta;
+        private DateTime dataProximaConsulta;
+        private int recinto;
         private string descricao;
         #endregion
 
@@ -43,9 +43,9 @@ namespace ZooDLL
             this.especie = string.Empty;
             this.dieta = string.Empty;
             this.estado = -1;
-            this.data_ultima_consulta = DateTime.Now;
-            this.data_proxima_consulta = new DateTime(DateTime.Today.Year+1,DateTime.Today.Month,DateTime.Today.Day);
-            this.recinto = string.Empty;
+            this.dataUltimaConsulta = DateTime.Now;
+            this.dataProximaConsulta = new DateTime(DateTime.Today.Year+1,DateTime.Today.Month,DateTime.Today.Day);
+            this.recinto = -1;
             this.descricao = string.Empty;
         }
         /// <summary>
@@ -59,11 +59,11 @@ namespace ZooDLL
         /// <param name="especie">Espécie do animal</param>
         /// <param name="dieta">Dieta do animal</param>
         /// <param name="estado">Estado do animal</param>
-        /// <param name="data_ultima_consulta">Data da última consulta</param>
-        /// <param name="data_proxima_consulta">Data da próxima consulta</param>
+        /// <param name="dataUltimaConsulta">Data da última consulta</param>
+        /// <param name="dataProximaConsulta">Data da próxima consulta</param>
         /// <param name="recinto">Recinto do animal</param>
         /// <param name="descricao">Descrição do animal</param>
-        public Animal(int id, string nome, int idade, string sexo, string classe, string especie, string dieta, int estado, DateTime data_ultima_consulta, DateTime data_proxima_consulta, string recinto, string descricao)
+        public Animal(int id, string nome, int idade, string sexo, string classe, string especie, string dieta, int estado, DateTime dataUltimaConsulta, DateTime dataProximaConsulta, int recinto, string descricao)
         {
             this.id = id;
             this.nome = nome;
@@ -73,8 +73,8 @@ namespace ZooDLL
             this.especie = especie;
             this.dieta = dieta;
             this.estado = estado;
-            this.data_ultima_consulta = data_ultima_consulta;
-            this.data_proxima_consulta = data_proxima_consulta;
+            this.dataUltimaConsulta = dataUltimaConsulta;
+            this.dataProximaConsulta = dataProximaConsulta;
             this.recinto = recinto;
             this.descricao = descricao;
         }
@@ -122,15 +122,15 @@ namespace ZooDLL
         }
         public DateTime DataUltimaConsulta
         {
-            set { data_ultima_consulta = value; }
-            get { return data_ultima_consulta; }
+            set { dataUltimaConsulta = value; }
+            get { return dataUltimaConsulta; }
         }
         public DateTime DataProximaConsulta
         {
-            set { data_proxima_consulta = value; }
-            get { return data_proxima_consulta; }
+            set { dataProximaConsulta = value; }
+            get { return dataProximaConsulta; }
         }
-        public string Recinto
+        public int Recinto
         {
             set { recinto = value; }
             get { return recinto; }
@@ -173,7 +173,7 @@ namespace ZooDLL
         }
         public override string ToString()
         {
-            return String.Format("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};",this.id.ToString(), this.nome.ToString(), this.idade.ToString(), this.sexo.ToString(), this.classe.ToString(),this.especie.ToString(),this.dieta.ToString(),this.estado.ToString(),this.data_ultima_consulta.ToString(),this.data_proxima_consulta.ToString(),this.recinto.ToString(),this.descricao.ToString());
+            return String.Format("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};",this.id.ToString(), this.nome.ToString(), this.idade.ToString(), this.sexo.ToString(), this.classe.ToString(),this.especie.ToString(),this.dieta.ToString(),this.estado.ToString(),this.dataUltimaConsulta.ToString(),this.dataProximaConsulta.ToString(),this.recinto.ToString(),this.descricao.ToString());
         }
         #endregion
         #region OUTROS

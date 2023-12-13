@@ -8,30 +8,12 @@ namespace InterfaceDLL
 {
     public interface IRecinto
     {
-        int Id
-        { 
-            get; set; 
-        }
-        string Nome 
-        { 
-            get; set; 
-        }
-        string Tipo
-        { 
-            get; set;
-        }
-        double Comprimento 
-        {
-            get; set; 
-        }
-        double Largura 
-        { 
-            get; set;
-        }
-        double Altura
-        { 
-            get; set; 
-        }
+        int Id { get; set; }
+        string Nome { get; set; }
+        string Tipo { get; set; }
+        double Comprimento { get; set; }
+        double Largura { get; set; }
+        double Altura{ get; set; }
         string Listar();
         double CalculaArea();
     }
@@ -48,7 +30,7 @@ namespace InterfaceDLL
         int Estado { get; set; }
         DateTime DataUltimaConsulta { get; set; }
         DateTime DataProximaConsulta { get; set; }
-        string Recinto { get; set; }
+        int Recinto { get; set; }
         string Descricao { get; set; }
         string  Listar();
     }
