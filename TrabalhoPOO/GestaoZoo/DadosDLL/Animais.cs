@@ -15,7 +15,7 @@ namespace DadosDLL
     {
         #region ATRIBUTOS
         private const int MAXANIMAIS = 100;
-        private static Animal[] l_animais;
+        private static Animal[] lAnimais;
         #endregion
 
         #region METODOS
@@ -25,18 +25,18 @@ namespace DadosDLL
         /// </summary>
         public Animais()
         {
-           l_animais = new Animal[MAXANIMAIS];  
+           lAnimais = new Animal[MAXANIMAIS];  
            for (int i = 0; i < MAXANIMAIS; i++) 
            {
-                l_animais[i] = new Animal();     
+                lAnimais[i] = new Animal();     
            }
         }
         #endregion
         #region PROPRIEDADES
         public static Animal[] LAnimais
         {
-            set { l_animais = value; }
-            get { return l_animais; }
+            set { lAnimais = value; }
+            get { return lAnimais; }
         }
         #endregion
         #region OPERADORES
@@ -72,11 +72,11 @@ namespace DadosDLL
         public override string ToString()
         {
             string output = "";
-            if (l_animais == null)
+            if (lAnimais == null)
                 return String.Format(output);
             else
             {
-                foreach (Animal animal in l_animais)
+                foreach (Animal animal in lAnimais)
                 {
                     output += animal.Listar();
                 }
@@ -87,21 +87,26 @@ namespace DadosDLL
         #region OUTROS
         /// <summary>
         /// Método para listar os animais todos
+        /// Retorna um array de strings com os dados de todos os animais
         /// </summary>
-        /// <param name="output">Array de strings com os animais</param>
-        public void Listar(out string[] output)
+        public string[] Listar()
         {
-            output = null;
+            int j = 0;
+            string[] output = new string[100];
             for (int i = 0; i < MAXANIMAIS; i++)
             {
-                if (l_animais[i].Id == -1)
-                    if (l_animais[i + 1].Id == -1)
-                        break;
-                    else
-                        continue;
-                output[i] = l_animais[i].Listar();
-                i++;
+                if (lAnimais[i].Id == -1)
+                    for (int k = i; k < MAXANIMAIS; k++)
+                    {
+                        if (lAnimais[k].Id != -1)
+                            break;
+                        else
+                            continue;
+                    }
+                output[j] = lAnimais[i].Listar();
+                j++;
             }
+            return output;
         }
         /// <summary>
         /// Método para adicionar um animal, recebe um objeto do tipo animal com os dados do animal
@@ -110,7 +115,7 @@ namespace DadosDLL
         /// <returns>Se conseguir adicionar retorna true, senão retorna false</returns>
         public bool Inserir(Animal animal)
         {
-            if (l_animais==null || animal == null)
+            if (lAnimais==null || animal == null)
             {
                 return false;
             }
@@ -120,20 +125,20 @@ namespace DadosDLL
                 {
                     return false;
                 }
-                if (l_animais[i].Id == -1)
+                if (lAnimais[i].Id == -1)
                 {
-                    l_animais[i].Id = animal.Id;
-                    l_animais[i].Nome = animal.Nome;
-                    l_animais[i].Idade = animal.Idade;
-                    l_animais[i].Sexo = animal.Sexo;
-                    l_animais[i].Classe = animal.Classe;
-                    l_animais[i].Especie = animal.Especie;
-                    l_animais[i].Dieta = animal.Dieta;
-                    l_animais[i].Estado = animal.Estado;
-                    l_animais[i].DataUltimaConsulta = animal.DataUltimaConsulta;
-                    l_animais[i].DataProximaConsulta = animal.DataProximaConsulta;
-                    l_animais[i].Recinto = animal.Recinto;
-                    l_animais[i].Descricao = animal.Descricao;
+                    lAnimais[i].Id = animal.Id;
+                    lAnimais[i].Nome = animal.Nome;
+                    lAnimais[i].Idade = animal.Idade;
+                    lAnimais[i].Sexo = animal.Sexo;
+                    lAnimais[i].Classe = animal.Classe;
+                    lAnimais[i].Especie = animal.Especie;
+                    lAnimais[i].Dieta = animal.Dieta;
+                    lAnimais[i].Estado = animal.Estado;
+                    lAnimais[i].DataUltimaConsulta = animal.DataUltimaConsulta;
+                    lAnimais[i].DataProximaConsulta = animal.DataProximaConsulta;
+                    lAnimais[i].Recinto = animal.Recinto;
+                    lAnimais[i].Descricao = animal.Descricao;
                     break;
                 }
             }
@@ -146,7 +151,7 @@ namespace DadosDLL
         /// <returns>Se conseguir alterar retorna true, senão retorna false</returns>
         public bool Alterar(Animal animal)
         {
-            if (animal == null || l_animais == null) 
+            if (animal == null || lAnimais == null) 
                 return false;
             for (int i = 0; i < MAXANIMAIS; i++)
             {
@@ -156,17 +161,17 @@ namespace DadosDLL
                 }
                 if (Existe(animal.Id))
                 {
-                    l_animais[i].Nome = animal.Nome;
-                    l_animais[i].Idade = animal.Idade;
-                    l_animais[i].Sexo = animal.Sexo;
-                    l_animais[i].Classe = animal.Classe;
-                    l_animais[i].Especie = animal.Especie;
-                    l_animais[i].Dieta = animal.Dieta;
-                    l_animais[i].Estado = animal.Estado;
-                    l_animais[i].DataUltimaConsulta = animal.DataUltimaConsulta;
-                    l_animais[i].DataProximaConsulta = animal.DataProximaConsulta;
-                    l_animais[i].Recinto = animal.Recinto;
-                    l_animais[i].Descricao = animal.Descricao;
+                    lAnimais[i].Nome = animal.Nome;
+                    lAnimais[i].Idade = animal.Idade;
+                    lAnimais[i].Sexo = animal.Sexo;
+                    lAnimais[i].Classe = animal.Classe;
+                    lAnimais[i].Especie = animal.Especie;
+                    lAnimais[i].Dieta = animal.Dieta;
+                    lAnimais[i].Estado = animal.Estado;
+                    lAnimais[i].DataUltimaConsulta = animal.DataUltimaConsulta;
+                    lAnimais[i].DataProximaConsulta = animal.DataProximaConsulta;
+                    lAnimais[i].Recinto = animal.Recinto;
+                    lAnimais[i].Descricao = animal.Descricao;
                     break;
                 }
             }
@@ -179,7 +184,7 @@ namespace DadosDLL
         /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
         public bool Remover(int animal)
         {
-            if (animal == -1 || l_animais == null)
+            if (animal == -1 || lAnimais == null)
                 return false;
             for (int i = 0; i < MAXANIMAIS; i++)
             {
@@ -189,18 +194,18 @@ namespace DadosDLL
                 }
                 if (Existe(animal))
                 {
-                    l_animais[i].Id = -1;
-                    l_animais[i].Nome = "";
-                    l_animais[i].Idade = -1;
-                    l_animais[i].Sexo = "";
-                    l_animais[i].Classe = "";
-                    l_animais[i].Especie = "";
-                    l_animais[i].Dieta = "";
-                    l_animais[i].Estado = -1;
-                    l_animais[i].DataUltimaConsulta = DateTime.MinValue;
-                    l_animais[i].DataProximaConsulta = DateTime.MinValue;
-                    l_animais[i].Recinto = "";
-                    l_animais[i].Descricao = "";
+                    lAnimais[i].Id = -1;
+                    lAnimais[i].Nome = "";
+                    lAnimais[i].Idade = -1;
+                    lAnimais[i].Sexo = "";
+                    lAnimais[i].Classe = "";
+                    lAnimais[i].Especie = "";
+                    lAnimais[i].Dieta = "";
+                    lAnimais[i].Estado = -1;
+                    lAnimais[i].DataUltimaConsulta = DateTime.MinValue;
+                    lAnimais[i].DataProximaConsulta = DateTime.MinValue;
+                    lAnimais[i].Recinto = "";
+                    lAnimais[i].Descricao = "";
                     break;
                 }
             }
@@ -213,15 +218,11 @@ namespace DadosDLL
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
         public bool Existe(int animal)
         {
-            if (animal == -1 || l_animais == null)
+            if (animal == -1 || lAnimais == null)
                 return false;
             for (int i = 0; i < MAXANIMAIS; i++)
             {
-                if (l_animais[i].Id != animal)
-                {
-                    continue;
-                }
-                if (l_animais[i].Id == animal)
+                if (lAnimais[i].Id == animal)
                 {
                     return true;
                 }
