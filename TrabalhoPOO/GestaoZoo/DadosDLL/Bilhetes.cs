@@ -116,6 +116,11 @@ namespace DadosDLL
             }
             return output;
         }
+        /// <summary>
+        /// Método para adicionar um bilhete, recebe um objeto do tipo bilhete com os dados do bilhete
+        /// </summary>
+        /// <param name="bilhete">Objeto do tipo bilhete</param>
+        /// <returns>Se conseguir adicionar retorna true, senão retorna false</returns>
         public static bool Inserir(Bilhete bilhete)
         {
             if (lBilhetes == null || bilhete is null || Existe(bilhete.Id))
