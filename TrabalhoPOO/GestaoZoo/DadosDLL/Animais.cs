@@ -111,6 +111,9 @@ namespace DadosDLL
                     output[j] = lAnimais[i].Listar();
                     j++;
                 }
+                if (j == Contar() && lAnimais[i].Id == -1)
+                    break;
+
             }
             return output;
         }
