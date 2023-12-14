@@ -97,7 +97,7 @@ namespace DadosDLL
         }
         /// <summary>
         /// Método para listar as limpezas todas
-        /// Retorna um array de strings com os dados de todos os animais
+        /// Retorna um array de strings com os dados de todos as limpezas
         /// </summary
         public static string[] Listar()
         {
@@ -116,9 +116,9 @@ namespace DadosDLL
             return output;
         }
         /// <summary>
-        /// Método para adicionar um funcionario, recebe um objeto do tipo funcionario com os dados do funcionario
+        /// Método para adicionar uma limpeza, recebe um objeto do tipo limpeza com os dados da limpeza
         /// </summary>
-        /// <param name="funcionario">Objeto do tipo funcionario</param>
+        /// <param name="limpeza">Objeto do tipo limpeza</param>
         /// <returns>Se conseguir adicionar retorna true, senão retorna false</returns>
         public static bool Inserir(Limpeza limpeza)
         {

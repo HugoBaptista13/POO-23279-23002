@@ -15,7 +15,7 @@ namespace DadosDLL
     {
         #region ATRIBUTOS
         private const int MAXRECINTOS = 100;
-        private static Recinto[] l_recintos;
+        private static Recinto[] lRecintos;
         #endregion
 
         #region METODOS
@@ -25,17 +25,18 @@ namespace DadosDLL
         /// </summary>
         public Recintos()
         {
+            lRecintos = new Recinto[MAXRECINTOS];
             for (int i = 0; i < MAXRECINTOS; i++)
             {
-                l_recintos[i] = new Recinto();
+                lRecintos[i] = new Recinto();
             }
         }
         #endregion
         #region PROPRIEDADES
-        public static Recinto[] LRecinto
+        public static Recinto[] LRecintos
         {
-            set { l_recintos = value; }
-            get { return l_recintos; }
+            set { lRecintos = value; }
+            get { return lRecintos; }
         }
         #endregion
         #region OPERADORES
@@ -71,11 +72,11 @@ namespace DadosDLL
         public override string ToString()
         {
             string output = "";
-            if (LRecinto == null)
+            if (LRecintos == null)
                 return String.Format(output);
             else
             {
-                foreach (Recinto recinto in l_recintos)
+                foreach (Recinto recinto in lRecintos)
                 {
                     output += recinto.Listar();
                 }
@@ -84,21 +85,36 @@ namespace DadosDLL
         }
         #endregion
         #region OUTROS
+
+        public static int Contar()
+        {
+            int c = 0;
+            for (int i = 0; i < MAXRECINTOS; i++)
+            {
+                if (lRecintos[i].Id != -1)
+                    c++;
+            }
+            return c;
+        }
         /// <summary>
         /// Método para listar os recintos todos
+        /// Retorna um array de strings com os dados de todos os recintos 
         /// </summary>
-        /// <param name="output">Array de strings com os recintos</param>
-        public void Listar(out string[] output)
+        public static string[] Listar()
         {
-            int i = 0;
-            output = null;
-            foreach (Recinto recinto in l_recintos)
+            int j = 0;
+            string[] output = new string[Contar()];
+            for (int i = 0; i < MAXRECINTOS; i++)
             {
-                if (recinto.Id == -1)
-                    continue;
-                output[i] = recinto.Listar();
-                i++;
+                if (j < Contar() && lRecintos[i].Id != -1)
+                {
+                    output[j] = lRecintos[i].Listar();
+                    j++;
+                }
+                if (j == Contar() && lRecintos[i].Id == -1)
+                    break;
             }
+            return output;
         }
 
         /// <summary>
@@ -106,26 +122,23 @@ namespace DadosDLL
         /// </summary>
         /// <param name="recinto">Objeto do tipo recinto</param>
         /// <returns>Se conseguir adicionar retorna true, senão retorna false</returns>
-        public bool Inserir(Recinto recinto)
+        public static bool Inserir(Recinto recinto)
         {
-            if (l_recintos == null || recinto == null)
+            if (lRecintos == null || recinto is null || Existe(recinto.Id))
             {
                 return false;
             }
             for (int i = 0; i < MAXRECINTOS; i++)
             {
-                if (l_recintos[i] == recinto)
+                if (lRecintos[i].Id == -1)
                 {
-                    return false;
-                }
-                if (l_recintos[i].Id == -1)
-                {
-                    l_recintos[i].Id = recinto.Id;
-                    l_recintos[i].Nome = recinto.Nome;
-                    l_recintos[i].Tipo = recinto.Tipo;
-                    l_recintos[i].Comprimento = recinto.Comprimento;
-                    l_recintos[i].Largura = recinto.Largura;
-                    l_recintos[i].Altura = recinto.Altura;
+                    lRecintos[i].Id = recinto.Id;
+                    lRecintos[i].Nome = recinto.Nome;
+                    lRecintos[i].Tipo = recinto.Tipo;
+                    lRecintos[i].Comprimento = recinto.Comprimento;
+                    lRecintos[i].Largura = recinto.Largura;
+                    lRecintos[i].Altura = recinto.Altura;
+                    break;
                 }
             }
             return true;
@@ -135,23 +148,20 @@ namespace DadosDLL
         /// </summary>
         /// <param name="recinto">Objeto do tipo recinto</param>
         /// <returns>Se conseguir alterar retorna true, senão retorna false</returns>
-        public bool Alterar(Recinto recinto)
+        public static bool Alterar(Recinto recinto)
         {
-            if (recinto == null || l_recintos == null)
+            if (recinto is null || lRecintos == null || !Existe(recinto.Id))
                 return false;
             for (int i = 0; i < MAXRECINTOS; i++)
             {
-                if (l_recintos[i] != recinto)
+                if (lRecintos[i].Id == recinto.Id)
                 {
-                    return false;
-                }
-                if (l_recintos[i].Id == recinto.Id)
-                {
-                    l_recintos[i].Nome = recinto.Nome;
-                    l_recintos[i].Tipo = recinto.Tipo;
-                    l_recintos[i].Comprimento = recinto.Comprimento;
-                    l_recintos[i].Largura = recinto.Largura;
-                    l_recintos[i].Altura = recinto.Altura;
+                    lRecintos[i].Nome = recinto.Nome;
+                    lRecintos[i].Tipo = recinto.Tipo;
+                    lRecintos[i].Comprimento = recinto.Comprimento;
+                    lRecintos[i].Largura = recinto.Largura;
+                    lRecintos[i].Altura = recinto.Altura;
+                    break;
                 }
             }
             return true;
@@ -160,26 +170,23 @@ namespace DadosDLL
         /// <summary>
         /// Método para remover os dados de um recinto
         /// </summary>
-        /// <param name="recinto">Objeto do tipo recinto</param>
+        /// <param name="recinto">Identificador do recinto</param>
         /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
-        public bool Remover(int recinto)
+        public static bool Remover(int recinto)
         {
-            if (recinto == -1 || l_recintos == null)
+            if (recinto == -1 || lRecintos == null || !Existe(recinto))
                 return false;
             for (int i = 0; i < MAXRECINTOS; i++)
             {
-                if (l_recintos[i].Id != recinto)
+                if (lRecintos[i].Id == recinto) 
                 {
-                    return false;
-                }
-                if (l_recintos[i].Id == recinto)
-                {
-                    l_recintos[i].Id = -1;
-                    l_recintos[i].Nome = "";
-                    l_recintos[i].Tipo = "";
-                    l_recintos[i].Comprimento = -1;
-                    l_recintos[i].Largura = -1;
-                    l_recintos[i].Altura = -1;
+                    lRecintos[i].Id = -1;
+                    lRecintos[i].Nome = "";
+                    lRecintos[i].Tipo = "";
+                    lRecintos[i].Comprimento = -1;
+                    lRecintos[i].Largura = -1;
+                    lRecintos[i].Altura = -1;
+                    break;
                 }
             }
             return true;
@@ -187,24 +194,20 @@ namespace DadosDLL
         /// <summary>
         /// Método para verificar se existe um recinto
         /// </summary>
-        /// <param name="recinto">Objeto do tipo recinto</param>
+        /// <param name="recinto">Identificador do recinto</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
-        public bool Existe(int recinto)
+        public static bool Existe(int recinto)
         {
-            if (recinto == -1 || l_recintos == null)
+            if (recinto == -1 || lRecintos == null)
                 return false;
             for (int i = 0; i < MAXRECINTOS; i++)
             {
-                if (l_recintos[i].Id != recinto)
+                if (lRecintos[i].Id == recinto)
                 {
-                    return false;
-                }
-                if (l_recintos[i].Id == recinto)
-                {
-                    break;
+                    return true;
                 }
             }
-            return true;
+            return false;
         }
         #endregion
         #endregion
