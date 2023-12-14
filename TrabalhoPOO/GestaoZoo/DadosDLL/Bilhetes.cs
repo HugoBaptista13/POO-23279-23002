@@ -161,7 +161,7 @@ namespace DadosDLL
         /// <summary>
         /// Método para remover os dados de um bilhete, recebe o identificador do bilhete
         /// </summary>
-        /// <param name="bilhete">Identificar do bilhete</param>
+        /// <param name="bilhete">Identificador do bilhete</param>
         /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
         public static bool Remover(int bilhete)
         {
