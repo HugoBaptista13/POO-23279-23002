@@ -85,26 +85,35 @@ namespace DadosDLL
         }
         #endregion
         #region OUTROS
+
+        public static int Contar()
+        {
+            int c = 0;
+            for (int i = 0; i < MAXFUNCIONARIOS; i++)
+            {
+                if (lFuncionarios[i].Id != -1)
+                    c++;
+            }
+            return c;
+        }
         /// <summary>
         /// Método para listar os funcionários todos
         /// Retorna um array de strings com os dados de todos os funcionários
         /// </summary>
-        public string[] Listar()
+        public static string[] Listar()
         {
             int j = 0;
-            string[] output = new string[100];
+            string[] output = new string[Contar()];
             for (int i = 0; i < MAXFUNCIONARIOS; i++)
             {
-                if (lFuncionarios[i].Id == -1)
-                    for (int k = i; k < MAXFUNCIONARIOS; k++)
-                    {
-                        if (lFuncionarios[k].Id != -1)
-                            break;
-                        else
-                            continue;
-                    }
-                output[j] = lFuncionarios[i].Listar();
-                j++;
+                if (j < Contar() && lFuncionarios[i].Id != -1)
+                {
+                    output[j] = lFuncionarios[i].Listar();
+                    j++;
+                }
+                if (j == Contar() && lFuncionarios[i].Id == -1)
+                    break;
+
             }
             return output;
         }
@@ -113,18 +122,14 @@ namespace DadosDLL
         /// </summary>
         /// <param name="funcionario">Objeto do tipo funcionario</param>
         /// <returns>Se conseguir adicionar retorna true, senão retorna false</returns>
-        public bool Inserir(Funcionario funcionario)
+        public static bool Inserir(Funcionario funcionario)
         {
-            if (lFuncionarios == null || funcionario == null)
+            if (lFuncionarios == null || funcionario is null || Existe(funcionario.Id))
             {
                 return false;
             }
             for (int i = 0; i < MAXFUNCIONARIOS; i++)
             {
-                if (Existe(funcionario.Id))
-                {
-                    return false;
-                }
                 if (lFuncionarios[i].Id == -1)
                 {
                     lFuncionarios[i].Id = funcionario.Id;
@@ -143,17 +148,13 @@ namespace DadosDLL
         /// </summary>
         /// <param name="funcionario">Objeto do tipo funcionario</param>
         /// <returns>Se conseguir alterar retorna true, senão retorna false</returns>
-        public bool Alterar(Funcionario funcionario)
+        public static bool Alterar(Funcionario funcionario)
         {
-            if (funcionario == null || lFuncionarios == null)
+            if (funcionario is null || lFuncionarios == null || !Existe(funcionario.Id))
                 return false;
             for (int i = 0; i < MAXFUNCIONARIOS; i++)
             {
-                if (!Existe(funcionario.Id))
-                {
-                    return false;
-                }
-                if (Existe(funcionario.Id))
+                if (lFuncionarios[i].Id == funcionario.Id)
                 {
                     lFuncionarios[i].Nome = funcionario.Nome;
                     lFuncionarios[i].Idade = funcionario.Idade;
@@ -171,17 +172,13 @@ namespace DadosDLL
         /// </summary>
         /// <param name="funcionario">Identificador do funcionario</param>
         /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
-        public bool Remover(int funcionario)
+        public static bool Remover(int funcionario)
         {
-            if (funcionario == -1 || lFuncionarios == null)
+            if (funcionario == -1 || lFuncionarios == null || !Existe(funcionario))
                 return false;
             for (int i = 0; i < MAXFUNCIONARIOS; i++)
             {
-                if (!Existe(funcionario))
-                {
-                    return false;
-                }
-                if (Existe(funcionario))
+                if (lFuncionarios[i].Id == funcionario)
                 {
                     lFuncionarios[i].Id = -1;
                     lFuncionarios[i].Nome = "";
@@ -199,7 +196,7 @@ namespace DadosDLL
         /// </summary>
         /// <param name="funcionario">Identificador do funcionario</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
-        public bool Existe(int funcionario)
+        public static bool Existe(int funcionario)
         {
             if (funcionario == -1 || lFuncionarios == null)
                 return false;
