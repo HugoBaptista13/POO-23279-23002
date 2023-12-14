@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InterfaceDLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace DadosDLL
     {
         #region ATRIBUTOS
         private const int MAXEVENTOS = 100;
-        private static Evento[] l_eventos;
+        private static Evento[] lEventos;
         #endregion
 
         #region METODOS
@@ -24,17 +25,18 @@ namespace DadosDLL
         /// </summary>
         public Eventos()
         {
+            lEventos = new Evento[MAXEVENTOS];
             for (int i = 0; i < MAXEVENTOS; i++)
             {
-                l_eventos[i] = new Evento();
+                lEventos[i] = new Evento();
             }
         }
         #endregion
         #region PROPRIEDADES
         public static Evento[] LEventos
         {
-            set { l_eventos = value; }
-            get { return l_eventos; }
+            set { lEventos = value; }
+            get { return lEventos; }
         }
         #endregion
         #region OPERADORES
@@ -74,7 +76,7 @@ namespace DadosDLL
                 return String.Format(output);
             else
             {
-                foreach (Evento evento in l_eventos)
+                foreach (Evento evento in lEventos)
                 {
                     output += evento.Listar();
                 }
@@ -83,43 +85,64 @@ namespace DadosDLL
         }
         #endregion
         #region OUTROS
+        public static int Contar()
+        {
+            int c = 0;
+            for (int i = 0; i < MAXEVENTOS; i++)
+            {
+                if (lEventos[i].Id != -1)
+                    c++;
+            }
+            return c;
+        }
         /// <summary>
         /// Método para listar os eventos todos
         /// </summary>
         /// <param name="output">Array de strings com os eventos</param>
-        public void Listar(out string[] output)
+        public static string[] Listar()
         {
-            int i = 0;
-            output = null;
-            foreach (Evento evento in l_eventos)
+            int j = 0;
+            string[] output = new string[Contar()];
+            for (int i = 0; i < MAXEVENTOS; i++)
             {
-                if (evento.Id == -1)
-                    continue;
-                output[i] = evento.Listar();
-                i++;
+                if (j < Contar() && lEventos[i].Id != -1)
+                {
+                    output[j] = lEventos[i].Listar();
+                    j++;
+                }
+                if (j == Contar() && lEventos[i].Id == -1)
+                    break;
+
             }
+            return output;
         }
-        public bool Inserir(Evento evento)
+        /// <summary>
+        /// Método para adicionar um evento, recebe um objeto do tipo evento com os dados do evento
+        /// </summary>
+        /// <param name="evento">Objeto do tipo evento</param>
+        /// <returns>Se conseguir adicionar retorna true, senão retorna false</returns>
+        public static bool Inserir(Evento evento)
         {
-            if (l_eventos == null || evento == null)
+            if (lEventos == null || evento is null || Existe(evento.Id))
             {
                 return false;
             }
             for (int i = 0; i < MAXEVENTOS; i++)
             {
-                if (l_eventos[i] == evento)
+                if (lEventos[i] == evento)
                 {
                     return false;
                 }
-                if (l_eventos[i].Id == -1)
+                if (lEventos[i].Id == -1)
                 {
-                    l_eventos[i].Id = evento.Id;
-                    l_eventos[i].Nome = evento.Nome;
-                    l_eventos[i].Lotacao = evento.Lotacao;
-                    l_eventos[i].LotacaoTotal = evento.LotacaoTotal;
-                    l_eventos[i].Local = evento.Local;
-                    l_eventos[i].DataInicio = evento.DataInicio;
-                    l_eventos[i].DataFim = evento.DataFim;
+                    lEventos[i].Id = evento.Id;
+                    lEventos[i].Nome = evento.Nome;
+                    lEventos[i].Lotacao = evento.Lotacao;
+                    lEventos[i].LotacaoTotal = evento.LotacaoTotal;
+                    lEventos[i].Local = evento.Local;
+                    lEventos[i].DataInicio = evento.DataInicio;
+                    lEventos[i].DataFim = evento.DataFim;
+                    break;
                 }
             }
             return true;
@@ -129,53 +152,47 @@ namespace DadosDLL
         /// </summary>
         /// <param name="evento">Objeto do tipo evento</param>
         /// <returns>Se conseguir alterar retorna true, senão retorna false</returns>
-        public bool Alterar(Evento evento)
+        public static bool Alterar(Evento evento)
         {
-            if (evento == null || l_eventos == null)
+            if (evento is null || lEventos == null || !Existe(evento.Id))
                 return false;
             for (int i = 0; i < MAXEVENTOS; i++)
             {
-                if (l_eventos[i] != evento)
+                if (lEventos[i].Id == evento.Id)
                 {
-                    return false;
-                }
-                if (l_eventos[i].Id == evento.Id)
-                {
-                    l_eventos[i].Nome = evento.Nome;
-                    l_eventos[i].Lotacao = evento.Lotacao;
-                    l_eventos[i].LotacaoTotal = evento.LotacaoTotal;
-                    l_eventos[i].Local = evento.Local;
-                    l_eventos[i].DataInicio = evento.DataInicio;
-                    l_eventos[i].DataFim = evento.DataFim;
+                    lEventos[i].Nome = evento.Nome;
+                    lEventos[i].Lotacao = evento.Lotacao;
+                    lEventos[i].LotacaoTotal = evento.LotacaoTotal;
+                    lEventos[i].Local = evento.Local;
+                    lEventos[i].DataInicio = evento.DataInicio;
+                    lEventos[i].DataFim = evento.DataFim;
+                    break;
                 }
             }
             return true;
         }
 
         /// <summary>
-        /// Método para remover os dados de um evento
+        /// Método para remover os dados de um evento, recebe o identificador do evento
         /// </summary>
-        /// <param name="evento">Objeto do tipo evento</param>
+        /// <param name="evento">Identificador do evento</param>
         /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
-        public bool Remover(int evento)
+        public static bool Remover(int evento)
         {
-            if (evento == -1 || l_eventos == null)
+            if (evento == -1 || lEventos == null || !Existe(evento))
                 return false;
             for (int i = 0; i < MAXEVENTOS; i++)
             {
-                if (l_eventos[i].Id != evento)
+                if (lEventos[i].Id == evento)
                 {
-                    return false;
-                }
-                if (l_eventos[i].Id == evento)
-                {
-                    l_eventos[i].Id = -1;
-                    l_eventos[i].Nome = "";
-                    l_eventos[i].Lotacao = -1;
-                    l_eventos[i].LotacaoTotal = -1;
-                    l_eventos[i].Local = "";
-                    l_eventos[i].DataInicio = DateTime.MinValue;
-                    l_eventos[i].DataFim = DateTime.MinValue;
+                    lEventos[i].Id = -1;
+                    lEventos[i].Nome = "";
+                    lEventos[i].Lotacao = -1;
+                    lEventos[i].LotacaoTotal = -1;
+                    lEventos[i].Local = "";
+                    lEventos[i].DataInicio = DateTime.MinValue;
+                    lEventos[i].DataFim = DateTime.MinValue;
+                    break;
                 }
             }
             return true;
@@ -183,24 +200,20 @@ namespace DadosDLL
         /// <summary>
         /// Método para verificar se existe um evento
         /// </summary>
-        /// <param name="evento">Objeto do tipo evento</param>
+        /// <param name="evento">identificador do evento</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
-        public bool Existe(int evento)
+        public static bool Existe(int evento)
         {
-            if (evento == -1 || l_eventos == null)
+            if (evento == -1 || lEventos == null)
                 return false;
             for (int i = 0; i < MAXEVENTOS; i++)
             {
-                if (l_eventos[i].Id != evento)
+                if (lEventos[i].Id == evento)
                 {
-                    return false;
-                }
-                if (l_eventos[i].Id == evento)
-                {
-                    break;
+                    return true;
                 }
             }
-            return true;
+            return false;
         }
         #endregion
         #endregion

@@ -134,6 +134,7 @@ namespace DadosDLL
                     lConsultas[i].Animal = consulta.Animal;
                     lConsultas[i].Funcionario = consulta.Funcionario;
                     lConsultas[i].Data = consulta.Data;
+                    break;
                 }
             }
             return true;
@@ -158,6 +159,7 @@ namespace DadosDLL
                     lConsultas[i].Animal = consulta.Animal;
                     lConsultas[i].Funcionario = consulta.Funcionario;
                     lConsultas[i].Data = consulta.Data;
+                    break;
                 }
             }
             return true;
@@ -180,6 +182,7 @@ namespace DadosDLL
                     lConsultas[i].Animal = -1;
                     lConsultas[i].Funcionario = -1;
                     lConsultas[i].Data = DateTime.MinValue;
+                    break;
                 }
             }
             return true;
