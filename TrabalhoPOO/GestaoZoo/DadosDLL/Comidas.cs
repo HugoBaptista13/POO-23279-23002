@@ -189,6 +189,7 @@ namespace DadosDLL
                     lComidas[i].Dieta = "";
                     lComidas[i].Stock = -1;
                     lComidas[i].DataValidade = DateTime.MinValue;
+
                 }
             }
             return true;
