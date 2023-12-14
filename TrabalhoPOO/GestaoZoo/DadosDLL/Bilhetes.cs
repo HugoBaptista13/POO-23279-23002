@@ -14,7 +14,7 @@ namespace DadosDLL
     {
         #region ATRIBUTOS
         private const int MAXBILHETES = 100;
-        private static Bilhete[] l_bilhetes;
+        private static Bilhete[] lBilhetes;
         #endregion
 
         #region METODOS
@@ -24,17 +24,18 @@ namespace DadosDLL
         /// </summary>
         public Bilhetes()
         {
+            lBilhetes = new Bilhete[MAXBILHETES];
             for (int i = 0; i < MAXBILHETES; i++)
             {
-                l_bilhetes[i] = new Bilhete();
+                lBilhetes[i] = new Bilhete();
             }
         }
         #endregion
         #region PROPRIEDADES
         public static Bilhete[] LBilhetes
         {
-            set { l_bilhetes = value; }
-            get { return l_bilhetes; }
+            set { lBilhetes = value; }
+            get { return lBilhetes; }
         }
         #endregion
         #region OPERADORES
@@ -74,7 +75,7 @@ namespace DadosDLL
                 return String.Format(output);
             else
             {
-                foreach (Bilhete bilhete in l_bilhetes)
+                foreach (Bilhete bilhete in lBilhetes)
                 {
                     output += bilhete.Listar();
                 }
@@ -83,40 +84,53 @@ namespace DadosDLL
         }
         #endregion
         #region OUTROS
+        public static int Contar()
+        {
+            int c = 0;
+            for (int i = 0; i < MAXBILHETES; i++)
+            {
+                if (lBilhetes[i].Id != -1)
+                    c++;
+            }
+            return c;
+        }
+
         /// <summary>
         /// Método para listar os bilhetes todos
         /// </summary>
         /// <param name="output">Array de strings com os bilhetes</param>
-        public void Listar(out string[] output)
+        public static string[] Listar()
         {
-            int i = 0;
-            output = null;
-            foreach (Bilhete bilhete in l_bilhetes)
+            int j = 0;
+            string[] output = new string[Contar()];
+            for (int i = 0; i < MAXBILHETES; i++)
             {
-                if (bilhete.Id == -1)
-                    continue;
-                output[i] = bilhete.Listar();
-                i++;
+                if (j < Contar() && lBilhetes[i].Id != -1)
+                {
+                    output[j] = lBilhetes[i].Listar();
+                    j++;
+                }
+                if (j == Contar() && lBilhetes[i].Id == -1)
+                    break;
+
             }
+            return output;
         }
-        public bool Inserir(Bilhete bilhete)
+        public static bool Inserir(Bilhete bilhete)
         {
-            if (l_bilhetes == null || bilhete == null)
+            if (lBilhetes == null || bilhete is null || Existe(bilhete.Id))
             {
                 return false;
             }
             for (int i = 0; i < MAXBILHETES; i++)
             {
-                if (l_bilhetes[i] == bilhete)
+                if (lBilhetes[i].Id == -1)
                 {
-                    return false;
-                }
-                if (l_bilhetes[i].Id == -1)
-                {
-                    l_bilhetes[i].Id = bilhete.Id;
-                    l_bilhetes[i].Tipo = bilhete.Tipo;
-                    l_bilhetes[i].Preco = bilhete.Preco;
-                    l_bilhetes[i].Desconto = bilhete.Desconto;
+                    lBilhetes[i].Id = bilhete.Id;
+                    lBilhetes[i].Tipo = bilhete.Tipo;
+                    lBilhetes[i].Preco = bilhete.Preco;
+                    lBilhetes[i].Desconto = bilhete.Desconto;
+                    break;
                 }
             }
             return true;
@@ -126,41 +140,36 @@ namespace DadosDLL
         /// </summary>
         /// <param name="bilhete">Objeto do tipo bilhete</param>
         /// <returns>Se conseguir alterar retorna true, senão retorna false</returns>
-        public bool Alterar(Bilhete bilhete)
+        public static bool Alterar(Bilhete bilhete)
         {
-            if (bilhete == null || l_bilhetes == null)
+            if (bilhete is null || lBilhetes == null || !Existe(bilhete.Id))
                 return false;
             for (int i = 0; i < MAXBILHETES; i++)
             {
-                if (l_bilhetes[i] != bilhete)
+                if (lBilhetes[i].Id == bilhete.Id)
                 {
-                    return false;
-                }
-                if (l_bilhetes[i].Id == bilhete.Id)
-                {
-                    l_bilhetes[i].Tipo = bilhete.Tipo;
-                    l_bilhetes[i].Preco = bilhete.Preco;
-                    l_bilhetes[i].Desconto = bilhete.Desconto;
+                    lBilhetes[i].Id = bilhete.Id;
+                    lBilhetes[i].Tipo = bilhete.Tipo;
+                    lBilhetes[i].Preco = bilhete.Preco;
+                    lBilhetes[i].Desconto = bilhete.Desconto;
+                    break;
                 }
             }
             return true;
         }
-        public bool Remover(int bilhete)
+        public static bool Remover(int bilhete)
         {
-            if (bilhete == -1 || l_bilhetes == null)
+            if (bilhete == -1 || lBilhetes == null || !Existe(bilhete))
                 return false;
             for (int i = 0; i < MAXBILHETES; i++)
             {
-                if (l_bilhetes[i].Id != bilhete)
+                if (lBilhetes[i].Id == bilhete)
                 {
-                    return false;
-                }
-                if (l_bilhetes[i].Id == bilhete)
-                {
-                    l_bilhetes[i].Id = -1;
-                    l_bilhetes[i].Tipo = "";
-                    l_bilhetes[i].Preco = -1;
-                    l_bilhetes[i].Desconto = -1;
+                    lBilhetes[i].Id = -1;
+                    lBilhetes[i].Tipo = "";
+                    lBilhetes[i].Preco = -1;
+                    lBilhetes[i].Desconto = -1;
+                    break;
                 }
             }
             return true;
@@ -168,24 +177,20 @@ namespace DadosDLL
         /// <summary>
         /// Método para verificar se existe um bilhete
         /// </summary>
-        /// <param name="bilhete">Objeto do tipo bilhete</param>
+        /// <param name="bilhete">identificador do bilhete</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
-        public bool Existe(int bilhete)
+        public static bool Existe(int bilhete)
         {
-            if (bilhete == -1 || l_bilhetes == null)
+            if (bilhete == -1 || lBilhetes == null)
                 return false;
             for (int i = 0; i < MAXBILHETES; i++)
             {
-                if (l_bilhetes[i].Id != bilhete)
+                if (lBilhetes[i].Id == bilhete)
                 {
-                    return false;
-                }
-                if (l_bilhetes[i].Id == bilhete)
-                {
-                    break;
+                    return true;
                 }
             }
-            return true;
+            return false;
         }
         #endregion
         #endregion
