@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InterfaceDLL;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace DadosDLL
     {
         #region ATRIBUTOS
         private const int MAXVENDAS = 100;
-        private static Venda[] l_vendas;
+        private static Venda[] lVendas;
         #endregion
 
         #region METODOS
@@ -25,17 +26,18 @@ namespace DadosDLL
         /// </summary>
         public Vendas()
         {
+            lVendas = new Venda[MAXVENDAS];
             for (int i = 0; i < MAXVENDAS; i++)
             {
-                l_vendas[i] = new Venda();
+                lVendas[i] = new Venda();
             }
         }
         #endregion
         #region PROPRIEDADES
         public static Venda[] LVendas
         {
-            set { l_vendas = value; }
-            get { return l_vendas; }
+            set { lVendas = value; }
+            get { return lVendas; }
         }
         #endregion
         #region OPERADORES
@@ -75,7 +77,7 @@ namespace DadosDLL
                 return String.Format(output);
             else
             {
-                foreach (Venda venda in l_vendas)
+                foreach (Venda venda in lVendas)
                 {
                     output += venda.Listar();
                 }
@@ -84,21 +86,36 @@ namespace DadosDLL
         }
         #endregion
         #region OUTROS
+
+        public static int Contar()
+        {
+            int c = 0;
+            for (int i = 0; i < MAXVENDAS; i++)
+            {
+                if (lVendas[i].Id != -1)
+                    c++;
+            }
+            return c;
+        }
         /// <summary>
         /// Método para listar as vendas todas
+        /// Retorna um array de strings com os dados de todos as vendas
         /// </summary>
-        /// <param name="output">Array de strings com as vendas</param>
-        public void Listar(out string[] output)
+        public static string[] Listar()
         {
-            int i = 0;
-            output = null;
-            foreach (Venda venda in l_vendas)
+            int j = 0;
+            string[] output = new string[Contar()];
+            for (int i = 0; i < MAXVENDAS; i++)
             {
-                if (venda.Id == -1)
-                    continue;
-                output[i] = venda.Listar();
-                i++;
+                if (j < Contar() && lVendas[i].Id != -1)
+                {
+                    output[j] = lVendas[i].Listar();
+                    j++;
+                }
+                if (j == Contar() && lVendas[i].Id == -1)
+                    break;
             }
+            return output;
         }
 
         /// <summary>
@@ -106,25 +123,22 @@ namespace DadosDLL
         /// </summary>
         /// <param name="venda">Objeto do tipo venda</param>
         /// <returns>Se conseguir adicionar retorna true, senão retorna false</returns>
-        public bool Inserir(Venda venda)
+        public static bool Inserir(Venda venda)
         {
-            if (l_vendas == null || venda == null)
+            if (lVendas == null || venda is null || Existe(venda.Id))
             {
                 return false;
             }
             for (int i = 0; i < MAXVENDAS; i++)
             {
-                if (l_vendas[i] == venda)
+                if (lVendas[i].Id == -1)
                 {
-                    return false;
-                }
-                if (l_vendas[i].Id == -1)
-                {
-                    l_vendas[i].Id = venda.Id;
-                    l_vendas[i].Bilhete = venda.Bilhete;
-                    l_vendas[i].NumBilhetes = venda.NumBilhetes;
-                    l_vendas[i].Valor = venda.Valor;
-                    l_vendas[i].DataVenda = venda.DataVenda;
+                    lVendas[i].Id = venda.Id;
+                    lVendas[i].Bilhete = venda.Bilhete;
+                    lVendas[i].NumBilhetes = venda.NumBilhetes;
+                    lVendas[i].Valor = venda.Valor;
+                    lVendas[i].DataVenda = venda.DataVenda;
+                    break;
                 }
             }
             return true;
@@ -134,22 +148,19 @@ namespace DadosDLL
         /// </summary>
         /// <param name="venda">Objeto do tipo venda</param>
         /// <returns>Se conseguir alterar retorna true, senão retorna false</returns>
-        public bool Alterar(Venda venda)
+        public static bool Alterar(Venda venda)
         {
-            if (venda == null || l_vendas == null)
+            if (venda is null || lVendas == null || !Existe(venda.Id))
                 return false;
             for (int i = 0; i < MAXVENDAS; i++)
             {
-                if (l_vendas[i] != venda)
+                if (lVendas[i].Id == venda.Id)
                 {
-                    return false;
-                }
-                if (l_vendas[i].Id == venda.Id)
-                {
-                    l_vendas[i].Bilhete = venda.Bilhete;
-                    l_vendas[i].NumBilhetes = venda.NumBilhetes;
-                    l_vendas[i].Valor = venda.Valor;
-                    l_vendas[i].DataVenda = venda.DataVenda;
+                    lVendas[i].Bilhete = venda.Bilhete;
+                    lVendas[i].NumBilhetes = venda.NumBilhetes;
+                    lVendas[i].Valor = venda.Valor;
+                    lVendas[i].DataVenda = venda.DataVenda;
+                    break;
                 }
             }
             return true;
@@ -158,25 +169,22 @@ namespace DadosDLL
         /// <summary>
         /// Método para remover os dados de uma venda
         /// </summary>
-        /// <param name="venda">Objeto do tipo venda</param>
+        /// <param name="venda">Identificador da venda</param>
         /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
-        public bool Remover(int venda)
+        public static bool Remover(int venda)
         {
-            if (venda == -1 || l_vendas == null)
+            if (venda == -1 || lVendas == null || !Existe(venda))
                 return false;
             for (int i = 0; i < MAXVENDAS; i++)
             {
-                if (l_vendas[i].Id != venda)
+                if (lVendas[i].Id == venda)
                 {
-                    return false;
-                }
-                if (l_vendas[i].Id == venda)
-                {
-                    l_vendas[i].Id = -1;
-                    l_vendas[i].Bilhete = -1;
-                    l_vendas[i].NumBilhetes = -1;
-                    l_vendas[i].Valor = -1;
-                    l_vendas[i].DataVenda = DateTime.MinValue;
+                    lVendas[i].Id = -1;
+                    lVendas[i].Bilhete = -1;
+                    lVendas[i].NumBilhetes = -1;
+                    lVendas[i].Valor = -1;
+                    lVendas[i].DataVenda = DateTime.MinValue;
+                    break;
                 }
             }
             return true;
@@ -184,24 +192,20 @@ namespace DadosDLL
         /// <summary>
         /// Método para verificar se existe uma venda
         /// </summary>
-        /// <param name="venda">Objeto do tipo venda</param>
+        /// <param name="venda">Identificador da venda</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
-        public bool Existe(int venda)
+        public static bool Existe(int venda)
         {
-            if (venda == -1 || l_vendas == null)
+            if (venda == -1 || lVendas == null)
                 return false;
             for (int i = 0; i < MAXVENDAS; i++)
             {
-                if (l_vendas[i].Id != venda)
+                if (lVendas[i].Id == venda)
                 {
-                    return false;
-                }
-                if (l_vendas[i].Id == venda)
-                {
-                    break;
+                    return true;
                 }
             }
-            return true;
+            return false;
         }
         #endregion
         #endregion
