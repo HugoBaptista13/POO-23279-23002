@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ZooDLL;
 
 namespace DadosDLL
@@ -10,7 +11,7 @@ namespace DadosDLL
     {
         #region ATRIBUTOS
         private const int MAXANIMAIS = 100;
-        private static Animal[] lAnimais;
+        private static List<Animal> lAnimais;   
         #endregion
 
         #region METODOS
@@ -20,15 +21,15 @@ namespace DadosDLL
         /// </summary>
         public Animais()
         {
-           lAnimais = new Animal[MAXANIMAIS];  
+           lAnimais = new List<Animal>();
            for (int i = 0; i < MAXANIMAIS; i++) 
            {
-                lAnimais[i] = new Animal();     
+                lAnimais.Add(new Animal());     
            }
         }
         #endregion
         #region PROPRIEDADES
-        public static Animal[] LAnimais
+        public static List<Animal> LAnimais
         {
             set { lAnimais = value; }
             get { return lAnimais; }
@@ -80,7 +81,10 @@ namespace DadosDLL
         }
         #endregion
         #region OUTROS
-
+        /// <summary>
+        /// Método para contar os animais que existem
+        /// </summary>
+        /// <returns>Retorna o número de animais existentes</returns>
         public static int Contar()
         {
             int c = 0;
@@ -93,8 +97,8 @@ namespace DadosDLL
         }
         /// <summary>
         /// Método para listar os animais todos
-        /// Retorna um array de strings com os dados de todos os animais
         /// </summary>
+        /// <returns>Retorna um array de strings com os dados de todos os animais</returns>
         public static string[] Listar()
         {
             int j = 0;
@@ -216,6 +220,27 @@ namespace DadosDLL
             {
                 if (lAnimais[i].Id == animal)
                 {
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// Método para procurar um animal, recebe o identificador do animal e um objeto do tipo animal
+        /// </summary>
+        /// <param name="animal">Identificador do animal</param>
+        /// <param name="output">Objeto do tipo animal</param>
+        /// <returns>Retorna true quando retorna a procurar, se não conseguir retorna false</returns>
+        public static bool Procurar(int animal, out Animal output)
+        {
+            output = new Animal();
+            if (animal == -1 || lAnimais == null || !Existe(animal))
+                return false;
+            for (int i = 0; i < MAXANIMAIS; i++)
+            {
+                if (lAnimais[i].Id == animal)
+                {
+                    output = new Animal(LAnimais[i]);
                     return true;
                 }
             }

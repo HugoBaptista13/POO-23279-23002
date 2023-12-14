@@ -78,6 +78,25 @@ namespace ZooDLL
             this.recinto = recinto;
             this.descricao = descricao;
         }
+        /// <summary>
+        /// Construtor com argumentos
+        /// </summary>
+        /// <param name="animal">Objeto do tipo Animal</param>
+        public Animal(Animal animal)
+        {
+            this.id = animal.id;
+            this.nome = animal.nome;
+            this.idade = animal.idade;
+            this.sexo = animal.sexo;
+            this.classe = animal.classe;
+            this.especie = animal.especie;
+            this.dieta = animal.dieta;
+            this.estado = animal.estado;
+            this.dataUltimaConsulta = animal.dataUltimaConsulta;
+            this.dataProximaConsulta = animal.dataProximaConsulta;
+            this.recinto = animal.recinto;
+            this.descricao = animal.descricao;
+        }
         #endregion
         #region PROPRIEDADES
         public int Id
