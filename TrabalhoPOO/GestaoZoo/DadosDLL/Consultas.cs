@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InterfaceDLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace DadosDLL
     {
         #region ATRIBUTOS
         private const int MAXCONSULTAS = 100;
-        private static Consulta[] l_consultas;
+        private static Consulta[] lConsultas;
         #endregion
 
         #region METODOS
@@ -26,15 +27,15 @@ namespace DadosDLL
         {
             for (int i = 0; i < MAXCONSULTAS; i++)
             {
-                l_consultas[i] = new Consulta();
+                lConsultas[i] = new Consulta();
             }
         }
         #endregion
         #region PROPRIEDADES
         public static Consulta[] LConsultas
         {
-            set { l_consultas = value; }
-            get { return l_consultas; }
+            set { lConsultas = value; }
+            get { return lConsultas; }
         }
         #endregion
         #region OPERADORES
@@ -74,7 +75,7 @@ namespace DadosDLL
                 return String.Format(output);
             else
             {
-                foreach (Consulta consulta in l_consultas)
+                foreach (Consulta consulta in lConsultas)
                 {
                     output += consulta.Listar();
                 }
@@ -83,40 +84,56 @@ namespace DadosDLL
         }
         #endregion
         #region OUTROS
+        public static int Contar()
+        {
+            int c = 0;
+            for (int i = 0; i < MAXCONSULTAS; i++)
+            {
+                if (lConsultas[i].Id != -1)
+                    c++;
+            }
+            return c;
+        }
         /// <summary>
         /// Método para listar as consultas todas
         /// </summary>
         /// <param name="output">Array de strings com as consultas</param>
-        public void Listar(out string[] output)
+        public static string[] Listar()
         {
-            int i = 0;
-            output = null;
-            foreach (Consulta consulta in l_consultas)
+            int j = 0;
+            string[] output = new string[Contar()];
+            for (int i = 0; i < MAXCONSULTAS; i++)
             {
-                if (consulta.Id == -1)
-                    continue;
-                output[i] = consulta.Listar();
-                i++;
+                if (j < Contar() && lConsultas[i].Id != -1)
+                {
+                    output[j] = lConsultas[i].Listar();
+                    j++;
+                }
+                if (j == Contar() && lConsultas[i].Id == -1)
+                    break;
+
             }
+            return output;
         }
-        public bool Inserir(Consulta consulta)
+        /// <summary>
+        /// Método para adicionar uma consulta, recebe um objeto do tipo consulta com os dados da consulta
+        /// </summary>
+        /// <param name="consulta">Objeto do tipo consulta</param>
+        /// <returns>Se conseguir adicionar retorna true, senão retorna false</returns>
+        public static bool Inserir(Consulta consulta)
         {
-            if (l_consultas == null || consulta == null)
+            if (lConsultas == null || consulta is null || Existe(consulta.Id))
             {
                 return false;
             }
             for (int i = 0; i < MAXCONSULTAS; i++)
             {
-                if (l_consultas[i] == consulta)
+                if (lConsultas[i].Id == -1)
                 {
-                    return false;
-                }
-                if (l_consultas[i].Id == -1)
-                {
-                    l_consultas[i].Id = consulta.Id;
-                    l_consultas[i].Animal = consulta.Animal;
-                    l_consultas[i].Funcionario = consulta.Funcionario;
-                    l_consultas[i].Data = consulta.Data;
+                    lConsultas[i].Id = consulta.Id;
+                    lConsultas[i].Animal = consulta.Animal;
+                    lConsultas[i].Funcionario = consulta.Funcionario;
+                    lConsultas[i].Data = consulta.Data;
                 }
             }
             return true;
@@ -126,47 +143,43 @@ namespace DadosDLL
         /// </summary>
         /// <param name="consulta">Objeto do tipo consulta</param>
         /// <returns>Se conseguir alterar retorna true, senão retorna false</returns>
-        public bool Alterar(Consulta consulta)
+        public static bool Alterar(Consulta consulta)
         {
-            if (consulta == null || l_consultas == null)
+            if (consulta is null || lConsultas == null || !Existe(consulta.Id))
                 return false;
             for (int i = 0; i < MAXCONSULTAS; i++)
             {
-                if (l_consultas[i] != consulta)
+                if (lConsultas[i].Id == consulta.Id)
                 {
                     return false;
                 }
-                if (l_consultas[i].Id == consulta.Id)
+                if (lConsultas[i].Id == consulta.Id)
                 {
-                    l_consultas[i].Animal = consulta.Animal;
-                    l_consultas[i].Funcionario = consulta.Funcionario;
-                    l_consultas[i].Data = consulta.Data;
+                    lConsultas[i].Animal = consulta.Animal;
+                    lConsultas[i].Funcionario = consulta.Funcionario;
+                    lConsultas[i].Data = consulta.Data;
                 }
             }
             return true;
         }
 
         /// <summary>
-        /// Método para remover os dados de uma consulta
+        /// Método para remover os dados de uma consulta, recebe o identificador da consulta
         /// </summary>
-        /// <param name="consulta">Objeto do tipo consulta</param>
+        /// <param name="consulta">Identificador da consulta</param>
         /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
-        public bool Remover(int consulta)
+        public static bool Remover(int consulta)
         {
-            if (consulta == -1 || l_consultas == null)
+            if (consulta == -1 || lConsultas == null || !Existe(consulta))
                 return false;
             for (int i = 0; i < MAXCONSULTAS; i++)
             {
-                if (l_consultas[i].Id != consulta)
+                if (lConsultas[i].Id == consulta)
                 {
-                    return false;
-                }
-                if (l_consultas[i].Id == consulta)
-                {
-                    l_consultas[i].Id = -1;
-                    l_consultas[i].Animal = -1;
-                    l_consultas[i].Funcionario = -1;
-                    l_consultas[i].Data = DateTime.MinValue;
+                    lConsultas[i].Id = -1;
+                    lConsultas[i].Animal = -1;
+                    lConsultas[i].Funcionario = -1;
+                    lConsultas[i].Data = DateTime.MinValue;
                 }
             }
             return true;
@@ -174,24 +187,20 @@ namespace DadosDLL
         /// <summary>
         /// Método para verificar se existe uma consulta
         /// </summary>
-        /// <param name="consulta">Objeto do tipo consulta</param>
+        /// <param name="consulta">identificador da consulta</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
-        public bool Existe(int consulta)
+        public static bool Existe(int consulta)
         {
-            if (consulta == -1 || l_consultas == null)
+            if (consulta == -1 || lConsultas == null)
                 return false;
             for (int i = 0; i < MAXCONSULTAS; i++)
             {
-                if (l_consultas[i].Id != consulta)
+                if (lConsultas[i].Id == consulta)
                 {
-                    return false;
-                }
-                if (l_consultas[i].Id == consulta)
-                {
-                    break;
+                    return true;
                 }
             }
-            return true;
+            return false;
         }
         #endregion
         #endregion
