@@ -116,6 +116,11 @@ namespace DadosDLL
             }
             return output;
         }
+        /// <summary>
+        /// Método para adicionar uma comida, recebe um objeto do tipo comida com os dados da comida
+        /// </summary>
+        /// <param name="comida">Objeto do tipo comida</param>
+        /// <returns>Se conseguir adicionar retorna true, senão retorna false</returns>
         public static bool Inserir(Comida comida)
         {
             if (lComidas == null || comida is null || Existe(comida.Id))
