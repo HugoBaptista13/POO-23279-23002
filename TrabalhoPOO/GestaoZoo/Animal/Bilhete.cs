@@ -34,10 +34,10 @@ namespace ZooDLL
         /// <summary>
         /// Construtor com argumentos
         /// </summary>
-        /// <param name="id">Id do evento</param>
-        /// <param name="tipo">Nome do evento</param>
-        /// <param name="preco">Lotação do evento</param>
-        /// <param name="desconto">Lotação total do evento</param>
+        /// <param name="id">Id do bilhete</param>
+        /// <param name="tipo">Tipo do bilhete</param>
+        /// <param name="preco">Preço do bilhete</param>
+        /// <param name="desconto">Desconto do bilhete</param>
         public Bilhete(int id, string tipo, double preco, double desconto)
         {
             this.id = id;

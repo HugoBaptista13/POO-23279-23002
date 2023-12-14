@@ -15,9 +15,9 @@ namespace ZooDLL
         #region ATRIBUTOS
         private int id;
         private int bilhete;
-        private int num_bilhetes;
+        private int numBilhetes;
         private double valor;
-        private DateTime data_venda;
+        private DateTime dataVenda;
         #endregion
 
         #region METODOS
@@ -29,25 +29,25 @@ namespace ZooDLL
         {
             this.id = -1;
             this.bilhete = -1;
-            this.num_bilhetes = -1;
+            this.numBilhetes = -1;
             this.valor = -1;
-            this.data_venda = DateTime.Today;
+            this.dataVenda = DateTime.Today;
         }
         /// <summary>
         /// Construtor com argumentos
         /// </summary>
         /// <param name="id">Id da venda</param>
         /// <param name="bilhete">Bilhete da venda</param>
-        /// <param name="num_bilhetes">Número de bilhetes da venda</param>
+        /// <param name="numBilhetes">Número de bilhetes da venda</param>
         /// <param name="valor">Valor da venda</param>
-        /// <param name="data_venda">Data da venda</param>
-        public Venda(int id, int bilhete, int num_bilhetes, double valor, DateTime data_venda)
+        /// <param name="dataVenda">Data da venda</param>
+        public Venda(int id, int bilhete, int numBilhetes, double valor, DateTime dataVenda)
         {
             this.id = id;
             this.bilhete = bilhete;
-            this.num_bilhetes = num_bilhetes;
+            this.numBilhetes = numBilhetes;
             this.valor = valor;
-            this.data_venda = data_venda;
+            this.dataVenda = dataVenda;
         }
         #endregion
         #region PROPRIEDADES
@@ -63,8 +63,8 @@ namespace ZooDLL
         }
         public int NumBilhetes
         {
-            set { num_bilhetes = value; }
-            get { return num_bilhetes; }
+            set { numBilhetes = value; }
+            get { return numBilhetes; }
         }
         public double Valor
         {
@@ -73,8 +73,8 @@ namespace ZooDLL
         }
         public DateTime DataVenda
         {
-            set { data_venda = value; }
-            get { return data_venda; }
+            set { dataVenda = value; }
+            get { return dataVenda; }
         }
         #endregion
         #region OPERADORES
@@ -109,7 +109,7 @@ namespace ZooDLL
         }
         public override string ToString()
         {
-            return String.Format("{0};{1};{2};{3};{4};", this.id.ToString(), this.bilhete.ToString(), this.num_bilhetes.ToString(), this.valor.ToString(), this.data_venda.ToString());
+            return String.Format("{0};{1};{2};{3};{4};", this.id.ToString(), this.bilhete.ToString(), this.numBilhetes.ToString(), this.valor.ToString(), this.dataVenda.ToString());
         }
         #endregion
         #region OUTROS

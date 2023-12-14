@@ -18,7 +18,7 @@ namespace ZooDLL
         private string tipo;
         private string dieta;
         private int stock;
-        private DateTime data_validade;
+        private DateTime dataValidade;
         #endregion
 
         #region METODOS
@@ -33,7 +33,7 @@ namespace ZooDLL
             this.tipo = string.Empty;
             this.dieta = string.Empty;
             this.stock = -1;
-            this.data_validade = new DateTime(DateTime.Today.Year,DateTime.Now.Month+1,DateTime.Now.Day);
+            this.dataValidade = new DateTime(DateTime.Today.Year,DateTime.Now.Month+1,DateTime.Now.Day);
         }
         /// <summary>
         /// Construtor com argumentos
@@ -43,15 +43,15 @@ namespace ZooDLL
         /// <param name="tipo">Tipo da comida</param>
         /// <param name="dieta">Dieta da comida</param>
         /// <param name="stock">Stock da comida</param>
-        /// <param name="data_validade">Data de validade da comida</param>
-        public Comida(int id, string nome, string tipo, string dieta, int stock, DateTime data_validade)
+        /// <param name="dataValidade">Data de validade da comida</param>
+        public Comida(int id, string nome, string tipo, string dieta, int stock, DateTime dataValidade)
         {
             this.id = id;
             this.nome = nome;
             this.tipo = tipo;
             this.dieta = dieta;
             this.stock = stock;
-            this.data_validade = data_validade;
+            this.dataValidade = dataValidade;
         }
         #endregion
         #region PROPRIEDADES
@@ -82,8 +82,8 @@ namespace ZooDLL
         }
         public DateTime DataValidade
         {
-            set { data_validade = value; }
-            get { return data_validade; }
+            set { dataValidade = value; }
+            get { return dataValidade; }
         }
         #endregion
         #region OPERADORES
@@ -118,7 +118,7 @@ namespace ZooDLL
         }
         public override string ToString()
         {
-            return String.Format("{0};{1};{2};{3};{4};{5};", this.id.ToString(), this.nome.ToString(), this.tipo.ToString(), this.dieta.ToString(), this.stock.ToString(), this.data_validade.ToString());
+            return String.Format("{0};{1};{2};{3};{4};{5};", this.id.ToString(), this.nome.ToString(), this.tipo.ToString(), this.dieta.ToString(), this.stock.ToString(), this.dataValidade.ToString());
         }
         #endregion
         #region OUTROS
