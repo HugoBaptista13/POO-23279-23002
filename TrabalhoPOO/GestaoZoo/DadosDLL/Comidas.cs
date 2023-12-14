@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InterfaceDLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace DadosDLL
     {
         #region ATRIBUTOS
         private const int MAXCOMIDA = 100;
-        private static Comida[] l_comidas;
+        private static Comida[] lComidas;
         #endregion
 
         #region METODOS
@@ -24,17 +25,18 @@ namespace DadosDLL
         /// </summary>
         public Comidas()
         {
+            lComidas = new Comida[MAXCOMIDA];
             for (int i = 0; i < MAXCOMIDA; i++)
             {
-                l_comidas[i] = new Comida();
+                lComidas[i] = new Comida();
             }
         }
         #endregion
         #region PROPRIEDADES
         public static Comida[] LComidas
         {
-            set { l_comidas = value; }
-            get { return l_comidas; }
+            set { lComidas = value; }
+            get { return lComidas; }
         }
         #endregion
         #region OPERADORES
@@ -74,7 +76,7 @@ namespace DadosDLL
                 return String.Format(output);
             else
             {
-                foreach (Comida comida in l_comidas)
+                foreach (Comida comida in lComidas)
                 {
                     output += comida.Listar();
                 }
@@ -83,42 +85,54 @@ namespace DadosDLL
         }
         #endregion
         #region OUTROS
+        public static int Contar()
+        {
+            int c = 0;
+            for (int i = 0; i < MAXCOMIDA; i++)
+            {
+                if (lComidas[i].Id != -1)
+                    c++;
+            }
+            return c;
+        }
         /// <summary>
         /// Método para listar as comidas todas
         /// </summary>
         /// <param name="output">Array de strings com as vendas</param>
-        public void Listar(out string[] output)
+        public static string[] Listar()
         {
-            int i = 0;
-            output = null;
-            foreach (Comida comida in l_comidas)
+            int j = 0;
+            string[] output = new string[Contar()];
+            for (int i = 0; i < MAXCOMIDA; i++)
             {
-                if (comida.Id == -1)
-                    continue;
-                output[i] = comida.Listar();
-                i++;
+                if (j < Contar() && lComidas[i].Id != -1)
+                {
+                    output[j] = lComidas[i].Listar();
+                    j++;
+                }
+                if (j == Contar() && lComidas[i].Id == -1)
+                    break;
+
             }
+            return output;
         }
-        public bool Inserir(Comida comida)
+        public static bool Inserir(Comida comida)
         {
-            if (l_comidas == null || comida == null)
+            if (lComidas == null || comida is null || Existe(comida.Id))
             {
                 return false;
             }
             for (int i = 0; i < MAXCOMIDA; i++)
             {
-                if (l_comidas[i] == comida)
+                if (lComidas[i].Id == -1)
                 {
-                    return false;
-                }
-                if (l_comidas[i].Id == -1)
-                {
-                    l_comidas[i].Id = comida.Id;
-                    l_comidas[i].Nome = comida.Nome;
-                    l_comidas[i].Tipo = comida.Tipo;
-                    l_comidas[i].Dieta = comida.Dieta;
-                    l_comidas[i].Stock = comida.Stock;
-                    l_comidas[i].DataValidade = comida.DataValidade;
+                    lComidas[i].Id = comida.Id;
+                    lComidas[i].Nome = comida.Nome;
+                    lComidas[i].Tipo = comida.Tipo;
+                    lComidas[i].Dieta = comida.Dieta;
+                    lComidas[i].Stock = comida.Stock;
+                    lComidas[i].DataValidade = comida.DataValidade;
+                    break;
                 }
             }
             return true;
@@ -128,45 +142,48 @@ namespace DadosDLL
         /// </summary>
         /// <param name="comida">Objeto do tipo comida</param>
         /// <returns>Se conseguir alterar retorna true, senão retorna false</returns>
-        public bool Alterar(Comida comida)
+        public static bool Alterar(Comida comida)
         {
-            if (comida == null || l_comidas == null)
+            if (comida is null || lComidas == null || !Existe(comida.Id))
                 return false;
             for (int i = 0; i < MAXCOMIDA; i++)
             {
-                if (l_comidas[i] != comida)
+                if (lComidas[i].Id == comida.Id)
                 {
-                    return false;
-                }
-                if (l_comidas[i].Id == comida.Id)
-                {
-                    l_comidas[i].Nome = comida.Nome;
-                    l_comidas[i].Tipo = comida.Tipo;
-                    l_comidas[i].Dieta = comida.Dieta;
-                    l_comidas[i].Stock = comida.Stock;
-                    l_comidas[i].DataValidade = comida.DataValidade;
+                    lComidas[i].Id = comida.Id;
+                    lComidas[i].Nome = comida.Nome;
+                    lComidas[i].Tipo = comida.Tipo;
+                    lComidas[i].Dieta = comida.Dieta;
+                    lComidas[i].Stock = comida.Stock;
+                    lComidas[i].DataValidade = comida.DataValidade;
+                    break;
                 }
             }
             return true;
         }
-        public bool Remover(int comida)
+        /// <summary>
+        /// Método para remover os dados de uma comida, recebe o identificador da comida
+        /// </summary>
+        /// <param name="comida">Identificador da comida</param>
+        /// <returns>Se conseguir remover retorna true, senão retorna false</returns>
+        public static bool Remover(int comida)
         {
-            if (comida == -1 || l_comidas == null)
+            if (comida == -1 || lComidas == null || !Existe(comida))
                 return false;
             for (int i = 0; i < MAXCOMIDA; i++)
             {
-                if (l_comidas[i].Id != comida)
+                if (lComidas[i].Id == comida)
                 {
                     return false;
                 }
-                if (l_comidas[i].Id == comida)
+                if (lComidas[i].Id == comida)
                 {
-                    l_comidas[i].Id = -1;
-                    l_comidas[i].Nome = "";
-                    l_comidas[i].Tipo = "";
-                    l_comidas[i].Dieta = "";
-                    l_comidas[i].Stock = -1;
-                    l_comidas[i].DataValidade = DateTime.MinValue;
+                    lComidas[i].Id = -1;
+                    lComidas[i].Nome = "";
+                    lComidas[i].Tipo = "";
+                    lComidas[i].Dieta = "";
+                    lComidas[i].Stock = -1;
+                    lComidas[i].DataValidade = DateTime.MinValue;
                 }
             }
             return true;
@@ -174,24 +191,20 @@ namespace DadosDLL
         /// <summary>
         /// Método para verificar se existe uma comida
         /// </summary>
-        /// <param name="comida">Objeto do tipo comida</param>
+        /// <param name="comida">identificador da comida</param>
         /// <returns>Se verificar que existe retorna true, senão retorna false</returns>
-        public bool Existe(int comida)
+        public static bool Existe(int comida)
         {
-            if (comida == -1 || l_comidas == null)
+            if (comida == -1 || lComidas == null)
                 return false;
             for (int i = 0; i < MAXCOMIDA; i++)
             {
-                if (l_comidas[i].Id != comida)
+                if (lComidas[i].Id == comida)
                 {
-                    return false;
-                }
-                if (l_comidas[i].Id == comida)
-                {
-                    break;
+                    return true;
                 }
             }
-            return true;
+            return false;
         }
         #endregion
         #endregion
