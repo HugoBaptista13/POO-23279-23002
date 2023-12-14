@@ -13,3 +13,12 @@ C:\Users\Baptista\Desktop\Ficheiros\POO-23279-23002\TrabalhoPOO\GestaoZoo\Animal
 C:\Users\Baptista\Desktop\Ficheiros\POO-23279-23002\TrabalhoPOO\GestaoZoo\Animal\bin\Debug\InterfaceDLL.dll
 C:\Users\Baptista\Desktop\Ficheiros\POO-23279-23002\TrabalhoPOO\GestaoZoo\Animal\bin\Debug\InterfaceDLL.pdb
 C:\Users\Baptista\Desktop\Ficheiros\POO-23279-23002\TrabalhoPOO\GestaoZoo\Animal\obj\Debug\ZooDLL.csproj.CopyComplete
+D:\POO\TrabalhoPOO\GestaoZoo\Animal\bin\Debug\ZooDLL.dll
+D:\POO\TrabalhoPOO\GestaoZoo\Animal\bin\Debug\ZooDLL.pdb
+D:\POO\TrabalhoPOO\GestaoZoo\Animal\bin\Debug\InterfaceDLL.dll
+D:\POO\TrabalhoPOO\GestaoZoo\Animal\bin\Debug\InterfaceDLL.pdb
+D:\POO\TrabalhoPOO\GestaoZoo\Animal\obj\Debug\ZooDLL.csproj.AssemblyReference.cache
+D:\POO\TrabalhoPOO\GestaoZoo\Animal\obj\Debug\ZooDLL.csproj.CoreCompileInputs.cache
+D:\POO\TrabalhoPOO\GestaoZoo\Animal\obj\Debug\ZooDLL.csproj.CopyComplete
+D:\POO\TrabalhoPOO\GestaoZoo\Animal\obj\Debug\ZooDLL.dll
+D:\POO\TrabalhoPOO\GestaoZoo\Animal\obj\Debug\ZooDLL.pdb
