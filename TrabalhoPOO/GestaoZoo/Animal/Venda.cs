@@ -6,6 +6,7 @@ namespace ZooDLL
     /// <summary>
     /// Classe para descrever uma venda
     /// </summary>
+    [Serializable]
     public class Venda : IVenda
     {
         #region ATRIBUTOS

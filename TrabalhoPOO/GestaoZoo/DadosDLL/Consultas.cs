@@ -7,11 +7,13 @@ namespace DadosDLL
     /// <summary>
     /// Classe para guardar as consultas
     /// </summary>
+    [Serializable]
     public class Consultas
     {
         #region ATRIBUTOS
-        private const int MAXCONSULTAS = 100;
         private static List<Consulta> lConsultas;
+        [NonSerialized] 
+        private const int MAXCONSULTAS = 100;
         #endregion
 
         #region METODOS

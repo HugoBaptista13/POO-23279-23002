@@ -7,11 +7,13 @@ namespace DadosDLL
     /// <summary>
     /// Classe para guardar os funcionários
     /// </summary>
+    [Serializable]
     public class Funcionarios
     {
         #region ATRIBUTOS
-        private const int MAXFUNCIONARIOS = 100;
         private static List<Funcionario> lFuncionarios;
+        [NonSerialized] 
+        private const int MAXFUNCIONARIOS = 100;
         #endregion
 
         #region METODOS

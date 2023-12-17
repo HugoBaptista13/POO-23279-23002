@@ -48,6 +48,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileAnimal.cs" />
+    <Compile Include="FileBilhete.cs" />
+    <Compile Include="FileComida.cs" />
+    <Compile Include="FileConsulta.cs" />
+    <Compile Include="FileEvento.cs" />
+    <Compile Include="FileFuncionario.cs" />
+    <Compile Include="FileLimpeza.cs" />
+    <Compile Include="FileRecinto.cs" />
+    <Compile Include="FileVenda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

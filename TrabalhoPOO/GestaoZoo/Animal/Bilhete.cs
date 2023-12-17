@@ -6,6 +6,7 @@ namespace ZooDLL
     /// <summary>
     /// Classe para descrever um bilhete
     /// </summary>
+    [Serializable]
     public class Bilhete : IBilhete
     {
         #region ATRIBUTOS

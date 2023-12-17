@@ -6,6 +6,7 @@ namespace ZooDLL
     /// <summary>
     /// Classe para descrever a comida dos animais
     /// </summary>
+    [Serializable]
     public class Comida : IComida
     {
         #region ATRIBUTOS

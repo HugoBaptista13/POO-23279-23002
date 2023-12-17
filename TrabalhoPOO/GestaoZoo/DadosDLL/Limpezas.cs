@@ -7,11 +7,13 @@ namespace DadosDLL
     /// <summary>
     /// Classe para guardar as limpezas
     /// </summary>
+    [Serializable]
     public class Limpezas
     {
         #region ATRIBUTOS
-        private const int MAXLIMPEZAS = 100;
         private static List<Limpeza> lLimpezas;
+        [NonSerialized] 
+        private const int MAXLIMPEZAS = 100;
         #endregion
 
         #region METODOS

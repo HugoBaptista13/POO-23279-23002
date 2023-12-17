@@ -6,6 +6,7 @@ namespace ZooDLL
     /// <summary>
     /// Classe para descrever um funcionário
     /// </summary>
+    [Serializable]
     public class Funcionario : IFuncionario
     {
         #region ATRIBUTOS

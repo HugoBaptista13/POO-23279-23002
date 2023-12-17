@@ -7,11 +7,13 @@ namespace DadosDLL
     /// <summary>
     /// Classe para guardar os recintos
     /// </summary>
+    [Serializable]
     public class Recintos 
     {
         #region ATRIBUTOS
-        private const int MAXRECINTOS = 100;
         private static List<Recinto> lRecintos;
+        [NonSerialized]
+        private const int MAXRECINTOS = 100;
         #endregion
 
         #region METODOS

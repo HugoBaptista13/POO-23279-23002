@@ -7,11 +7,13 @@ namespace DadosDLL
     /// <summary>
     /// Classe para guardar os eventos
     /// </summary>
+    [Serializable]
     public class Eventos
     {
         #region ATRIBUTOS
-        private const int MAXEVENTOS = 100;
         private static List<Evento> lEventos;
+        [NonSerialized] 
+        private const int MAXEVENTOS = 100;
         #endregion
 
         #region METODOS

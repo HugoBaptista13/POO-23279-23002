@@ -7,11 +7,13 @@ namespace DadosDLL
     /// <summary>
     /// Classe para guardar os bilhetes
     /// </summary>
+    [Serializable]
     public class Bilhetes
     {
         #region ATRIBUTOS
-        private const int MAXBILHETES = 100;
         private static List<Bilhete> lBilhetes;
+        [NonSerialized] 
+        private const int MAXBILHETES = 100;
         #endregion
 
         #region METODOS

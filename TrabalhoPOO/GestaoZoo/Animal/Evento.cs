@@ -6,6 +6,7 @@ namespace ZooDLL
     /// <summary>
     /// Classe para descrever um evento
     /// </summary>
+    [Serializable]
     public class Evento : IEvento
     {
         #region ATRIBUTOS

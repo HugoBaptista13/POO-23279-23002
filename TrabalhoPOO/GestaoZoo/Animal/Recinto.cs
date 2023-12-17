@@ -6,6 +6,7 @@ namespace ZooDLL
     /// <summary>
     /// Classe para descrever um recinto
     /// </summary>
+    [Serializable]
     public class Recinto : IRecinto
     {
         #region ATRIBUTOS

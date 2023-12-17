@@ -8,11 +8,13 @@ namespace DadosDLL
     /// <summary>
     /// Classe para guardar as vendas
     /// </summary>
+    [Serializable]
     public class Vendas
     {
         #region ATRIBUTOS
-        private const int MAXVENDAS = 100;
         private static List<Venda> lVendas;
+        [NonSerialized]
+        private const int MAXVENDAS = 100;
         #endregion
 
         #region METODOS

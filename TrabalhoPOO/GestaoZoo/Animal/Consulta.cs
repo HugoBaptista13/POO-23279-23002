@@ -6,6 +6,7 @@ namespace ZooDLL
     /// <summary>
     /// Classe para descrever uma consulta
     /// </summary>
+    [Serializable]
     public class Consulta : IConsulta
     {
         #region ATRIBUTOS

@@ -6,6 +6,7 @@ namespace ZooDLL
     /// <summary>
     /// Classe para descrever uma limpeza
     /// </summary>
+    [Serializable]
     public class Limpeza : ILimpeza
     {
         #region ATRIBUTOS

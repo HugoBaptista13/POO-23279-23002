@@ -7,11 +7,13 @@ namespace DadosDLL
     /// <summary>
     /// Classe para guardar as comidas
     /// </summary>
+    [Serializable]
     public class Comidas
     {
         #region ATRIBUTOS
-        private const int MAXCOMIDA = 100;
         private static List<Comida> lComidas;
+        [NonSerialized] 
+        private const int MAXCOMIDA = 100;
         #endregion
 
         #region METODOS
