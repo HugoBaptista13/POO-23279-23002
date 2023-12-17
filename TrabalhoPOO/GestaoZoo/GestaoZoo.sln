@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DadosDLL", "DadosDLL\DadosD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilesDLL", "FilesDLL\FilesDLL.csproj", "{10C9673A-AD31-479E-95B4-5194C1FB228C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegrasDLL", "RegrasDLL\RegrasDLL.csproj", "{6608C6C6-7F96-4EE9-BC11-3CFFAE55647B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{10C9673A-AD31-479E-95B4-5194C1FB228C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10C9673A-AD31-479E-95B4-5194C1FB228C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10C9673A-AD31-479E-95B4-5194C1FB228C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6608C6C6-7F96-4EE9-BC11-3CFFAE55647B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6608C6C6-7F96-4EE9-BC11-3CFFAE55647B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6608C6C6-7F96-4EE9-BC11-3CFFAE55647B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6608C6C6-7F96-4EE9-BC11-3CFFAE55647B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
