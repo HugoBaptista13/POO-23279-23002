@@ -41,6 +41,17 @@ namespace ZooDLL
             this.funcionario = funcionario;
             this.data = data;
         }
+        /// <summary>
+        /// Construtor com argumentos
+        /// </summary>
+        /// <param name="consulta">Objeto do tipo consulta</param>
+        public Consulta(Consulta consulta)
+        {
+            this.id = consulta.id;
+            this.animal = consulta.animal;
+            this.funcionario = consulta.funcionario;
+            this.data = consulta.data;
+        }
         #endregion
         #region PROPRIEDADES
         public int Id

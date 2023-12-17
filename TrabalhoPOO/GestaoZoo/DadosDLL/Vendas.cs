@@ -1,10 +1,6 @@
 ﻿using InterfaceDLL;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooDLL;
 
 namespace DadosDLL
@@ -16,7 +12,7 @@ namespace DadosDLL
     {
         #region ATRIBUTOS
         private const int MAXVENDAS = 100;
-        private static Venda[] lVendas;
+        private static List<Venda> lVendas;
         #endregion
 
         #region METODOS
@@ -26,15 +22,15 @@ namespace DadosDLL
         /// </summary>
         public Vendas()
         {
-            lVendas = new Venda[MAXVENDAS];
+            lVendas = new List<Venda>();
             for (int i = 0; i < MAXVENDAS; i++)
             {
-                lVendas[i] = new Venda();
+                lVendas.Add(new Venda());
             }
         }
         #endregion
         #region PROPRIEDADES
-        public static Venda[] LVendas
+        public static List<Venda> LVendas
         {
             set { lVendas = value; }
             get { return lVendas; }
@@ -86,7 +82,10 @@ namespace DadosDLL
         }
         #endregion
         #region OUTROS
-
+        /// <summary>
+        /// Método para contar as vendas que existem
+        /// </summary>
+        /// <returns>Retorna o número de vendas existentes</returns>
         public static int Contar()
         {
             int c = 0;
@@ -98,18 +97,18 @@ namespace DadosDLL
             return c;
         }
         /// <summary>
-        /// Método para listar as vendas todas
-        /// Retorna um array de strings com os dados de todos as vendas
+        /// Método para listar as vendas todos
+        /// Retorna uma lista com os dados das vendas
         /// </summary>
-        public static string[] Listar()
+        public static List<Venda> Listar()
         {
             int j = 0;
-            string[] output = new string[Contar()];
+            List<Venda> output = new List<Venda>();
             for (int i = 0; i < MAXVENDAS; i++)
             {
                 if (j < Contar() && lVendas[i].Id != -1)
                 {
-                    output[j] = lVendas[i].Listar();
+                    output.Add(lVendas[i]);
                     j++;
                 }
                 if (j == Contar() && lVendas[i].Id == -1)
@@ -202,6 +201,27 @@ namespace DadosDLL
             {
                 if (lVendas[i].Id == venda)
                 {
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// Método para procurar uma venda, recebe o identificador da venda
+        /// </summary>
+        /// <param name="venda">Identificador da venda</param>
+        /// <param name="output">Objeto do tipo venda</param>
+        /// <returns>Retorna true quando retorna encontra o objeto a procurar, se não conseguir retorna false</returns>
+        public static bool Procurar(int venda, out Venda output)
+        {
+            output = new Venda();
+            if (venda == -1 || lVendas == null || !Existe(venda))
+                return false;
+            for (int i = 0; i < MAXVENDAS; i++)
+            {
+                if (lVendas[i].Id == venda)
+                {
+                    output = new Venda(lVendas[i]);
                     return true;
                 }
             }

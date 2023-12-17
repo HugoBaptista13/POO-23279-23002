@@ -1,9 +1,5 @@
-﻿using InterfaceDLL;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooDLL;
 
 namespace DadosDLL
@@ -15,7 +11,7 @@ namespace DadosDLL
     {
         #region ATRIBUTOS
         private const int MAXEVENTOS = 100;
-        private static Evento[] lEventos;
+        private static List<Evento> lEventos;
         #endregion
 
         #region METODOS
@@ -25,15 +21,15 @@ namespace DadosDLL
         /// </summary>
         public Eventos()
         {
-            lEventos = new Evento[MAXEVENTOS];
+            lEventos = new List<Evento>();
             for (int i = 0; i < MAXEVENTOS; i++)
             {
-                lEventos[i] = new Evento();
+                lEventos.Add(new Evento());
             }
         }
         #endregion
         #region PROPRIEDADES
-        public static Evento[] LEventos
+        public static List<Evento> LEventos
         {
             set { lEventos = value; }
             get { return lEventos; }
@@ -85,6 +81,10 @@ namespace DadosDLL
         }
         #endregion
         #region OUTROS
+        /// <summary>
+        /// Método para contar os eventos que existem
+        /// </summary>
+        /// <returns>Retorna o número de eventos existentes</returns>
         public static int Contar()
         {
             int c = 0;
@@ -97,17 +97,17 @@ namespace DadosDLL
         }
         /// <summary>
         /// Método para listar os eventos todos
+        /// Retorna uma lista com os dados dos eventos
         /// </summary>
-        /// <param name="output">Array de strings com os eventos</param>
-        public static string[] Listar()
+        public static List<Evento> Listar()
         {
             int j = 0;
-            string[] output = new string[Contar()];
+            List<Evento> output = new List<Evento>();
             for (int i = 0; i < MAXEVENTOS; i++)
             {
                 if (j < Contar() && lEventos[i].Id != -1)
                 {
-                    output[j] = lEventos[i].Listar();
+                    output.Add(lEventos[i]);
                     j++;
                 }
                 if (j == Contar() && lEventos[i].Id == -1)
@@ -210,6 +210,27 @@ namespace DadosDLL
             {
                 if (lEventos[i].Id == evento)
                 {
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// Método para procurar um evento, recebe o identificador do evento
+        /// </summary>
+        /// <param name="evento">Identificador do evento</param>
+        /// <param name="output">Objeto do tipo evento</param>
+        /// <returns>Retorna true quando retorna encontra o objeto a procurar, se não conseguir retorna false</returns>
+        public static bool Procurar(int evento, out Evento output)
+        {
+            output = new Evento();
+            if (evento == -1 || lEventos == null || !Existe(evento))
+                return false;
+            for (int i = 0; i < MAXEVENTOS; i++)
+            {
+                if (lEventos[i].Id == evento)
+                {
+                    output = new Evento(lEventos[i]);
                     return true;
                 }
             }

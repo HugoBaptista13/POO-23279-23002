@@ -1,9 +1,5 @@
-﻿using InterfaceDLL;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooDLL;
 
 namespace DadosDLL
@@ -15,7 +11,7 @@ namespace DadosDLL
     {
         #region ATRIBUTOS
         private const int MAXCONSULTAS = 100;
-        private static Consulta[] lConsultas;
+        private static List<Consulta> lConsultas;
         #endregion
 
         #region METODOS
@@ -25,14 +21,15 @@ namespace DadosDLL
         /// </summary>
         public Consultas()
         {
+            lConsultas = new List<Consulta>();
             for (int i = 0; i < MAXCONSULTAS; i++)
             {
-                lConsultas[i] = new Consulta();
+                lConsultas.Add(new Consulta());
             }
         }
         #endregion
         #region PROPRIEDADES
-        public static Consulta[] LConsultas
+        public static List<Consulta> LConsultas
         {
             set { lConsultas = value; }
             get { return lConsultas; }
@@ -84,6 +81,10 @@ namespace DadosDLL
         }
         #endregion
         #region OUTROS
+        /// <summary>
+        /// Método para contar as consultas que existem
+        /// </summary>
+        /// <returns>Retorna o número de consultas existentes</returns>
         public static int Contar()
         {
             int c = 0;
@@ -95,18 +96,18 @@ namespace DadosDLL
             return c;
         }
         /// <summary>
-        /// Método para listar as consultas todas
+        /// Método para listar as consultas todos
+        /// Retorna uma lista com os dados das consultas
         /// </summary>
-        /// <param name="output">Array de strings com as consultas</param>
-        public static string[] Listar()
+        public static List<Consulta> Listar()
         {
             int j = 0;
-            string[] output = new string[Contar()];
+            List<Consulta> output = new List<Consulta>();
             for (int i = 0; i < MAXCONSULTAS; i++)
             {
                 if (j < Contar() && lConsultas[i].Id != -1)
                 {
-                    output[j] = lConsultas[i].Listar();
+                    output.Add(lConsultas[i]);
                     j++;
                 }
                 if (j == Contar() && lConsultas[i].Id == -1)
@@ -200,6 +201,27 @@ namespace DadosDLL
             {
                 if (lConsultas[i].Id == consulta)
                 {
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// Método para procurar uma consulta, recebe o identificador da consulta
+        /// </summary>
+        /// <param name="consulta">Identificador da consulta</param>
+        /// <param name="output">Objeto do tipo consulta</param>
+        /// <returns>Retorna true quando retorna encontra o objeto a procurar, se não conseguir retorna false</returns>
+        public static bool Procurar(int consulta, out Consulta output)
+        {
+            output = new Consulta();
+            if (consulta == -1 || lConsultas == null || !Existe(consulta))
+                return false;
+            for (int i = 0; i < MAXCONSULTAS; i++)
+            {
+                if (lConsultas[i].Id == consulta)
+                {
+                    output = new Consulta(lConsultas[i]);
                     return true;
                 }
             }

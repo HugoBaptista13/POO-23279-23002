@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooDLL;
 
 namespace DadosDLL
@@ -14,7 +11,7 @@ namespace DadosDLL
     {
         #region ATRIBUTOS
         private const int MAXLIMPEZAS = 100;
-        private static Limpeza[] lLimpezas;
+        private static List<Limpeza> lLimpezas;
         #endregion
 
         #region METODOS
@@ -24,15 +21,15 @@ namespace DadosDLL
         /// </summary>
         public Limpezas()
         {
-            lLimpezas = new Limpeza[MAXLIMPEZAS];
+            lLimpezas = new List<Limpeza>();
             for (int i = 0; i < MAXLIMPEZAS; i++)
             {
-                lLimpezas[i] = new Limpeza();
+                lLimpezas.Add(new Limpeza());
             }
         }
         #endregion
         #region PROPRIEDADES
-        public static Limpeza[] LLimpezas
+        public static List<Limpeza> LLimpezas
         {
             set { lLimpezas = value; }
             get { return lLimpezas; }
@@ -84,7 +81,10 @@ namespace DadosDLL
         }
         #endregion
         #region OUTROS
-
+        /// <summary>
+        /// Método para contar as limpezas que existem
+        /// </summary>
+        /// <returns>Retorna o número de limpezas existentes</returns>
         public static int Contar()
         {
             int c = 0;
@@ -96,18 +96,18 @@ namespace DadosDLL
             return c;
         }
         /// <summary>
-        /// Método para listar as limpezas todas
-        /// Retorna um array de strings com os dados de todos as limpezas
-        /// </summary
-        public static string[] Listar()
+        /// Método para listar as limpezas todos
+        /// Retorna uma lista com os dados das limpezas
+        /// </summary>
+        public static List<Limpeza> Listar()
         {
             int j = 0;
-            string[] output = new string[Contar()];
+            List<Limpeza> output = new List<Limpeza>();
             for (int i = 0; i < MAXLIMPEZAS; i++)
             {
                 if (j < Contar() && lLimpezas[i].Id != -1)
                 {
-                    output[j] = lLimpezas[i].Listar();
+                    output.Add(lLimpezas[i]);
                     j++;
                 }
                 if (j == Contar() && lLimpezas[i].Id == -1)
@@ -196,6 +196,27 @@ namespace DadosDLL
             {
                 if (lLimpezas[i].Id == limpeza)
                 {
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// Método para procurar uma limpeza, recebe o identificador da limpeza
+        /// </summary>
+        /// <param name="limpeza">Identificador da limpeza</param>
+        /// <param name="output">Objeto do tipo limpeza</param>
+        /// <returns>Retorna true quando retorna encontra o objeto a procurar, se não conseguir retorna false</returns>
+        public static bool Procurar(int limpeza, out Limpeza output)
+        {
+            output = new Limpeza();
+            if (limpeza == -1 || lLimpezas == null || !Existe(limpeza))
+                return false;
+            for (int i = 0; i < MAXLIMPEZAS; i++)
+            {
+                if (lLimpezas[i].Id == limpeza)
+                {
+                    output = new Limpeza(lLimpezas[i]);
                     return true;
                 }
             }

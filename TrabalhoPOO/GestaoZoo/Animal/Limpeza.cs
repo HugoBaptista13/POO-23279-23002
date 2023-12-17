@@ -1,10 +1,5 @@
 ﻿using InterfaceDLL;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ZooDLL
 {
@@ -45,6 +40,17 @@ namespace ZooDLL
             this.recinto = recinto;
             this.funcionario = funcionario;
             this.data = data;
+        }
+        /// <summary>
+        /// Construtor com argumentos
+        /// </summary>
+        /// <param name="limpeza">Objeto do tipo limpeza</param>
+        public Limpeza(Limpeza limpeza)
+        {
+            this.id = limpeza.id;
+            this.recinto = limpeza.recinto;
+            this.funcionario = limpeza.funcionario;
+            this.data = limpeza.data;
         }
         #endregion
         #region PROPRIEDADES

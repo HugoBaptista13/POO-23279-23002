@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
-using InterfaceDLL;
+﻿using InterfaceDLL;
+using System;
 
 namespace ZooDLL
 {
@@ -57,6 +52,20 @@ namespace ZooDLL
             this.local = local;
             this.dataInicio = dataInicio;
             this.dataFim = dataFim;
+        }
+        /// <summary>
+        /// Construtor com argumentos
+        /// </summary>
+        /// <param name="evento">Objeto do tipo evento</param>
+        public Evento(Evento evento)
+        {
+            this.id = evento.id;
+            this.nome = evento.nome;
+            this.lotacao = evento.lotacao;
+            this.lotacaoTotal = evento.lotacaoTotal;
+            this.local = evento.local;
+            this.dataInicio = evento.dataInicio;
+            this.dataFim = evento.dataFim;
         }
         #endregion
         #region PROPRIEDADES

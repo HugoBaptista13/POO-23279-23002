@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using InterfaceDLL;
+﻿using InterfaceDLL;
+using System;
 
 namespace ZooDLL
 {
@@ -52,6 +48,19 @@ namespace ZooDLL
             this.dieta = dieta;
             this.stock = stock;
             this.dataValidade = dataValidade;
+        }
+        /// <summary>
+        /// Construtor com argumentos
+        /// </summary>
+        /// <param name="comida">Objeto do tipo comida</param>
+        public Comida(Comida comida)
+        {
+            this.id = comida.id;
+            this.nome = comida.nome;
+            this.tipo = comida.tipo;
+            this.dieta = comida.dieta;
+            this.stock = comida.stock;
+            this.dataValidade = comida.dataValidade;
         }
         #endregion
         #region PROPRIEDADES

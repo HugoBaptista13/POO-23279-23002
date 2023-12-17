@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using InterfaceDLL;
+﻿using InterfaceDLL;
+using System;
 
 namespace ZooDLL
 {
@@ -48,6 +44,18 @@ namespace ZooDLL
             this.numBilhetes = numBilhetes;
             this.valor = valor;
             this.dataVenda = dataVenda;
+        }
+        /// <summary>
+        /// Construtor com argumentos
+        /// </summary>
+        /// <param name="venda">Objeto do tipo venda</param>
+        public Venda(Venda venda)
+        {
+            this.id = venda.id;
+            this.bilhete = venda.bilhete;
+            this.numBilhetes = venda.numBilhetes;
+            this.valor = venda.valor;
+            this.dataVenda = venda.dataVenda;
         }
         #endregion
         #region PROPRIEDADES

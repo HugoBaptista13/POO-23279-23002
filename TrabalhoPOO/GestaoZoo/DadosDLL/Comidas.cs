@@ -1,9 +1,5 @@
-﻿using InterfaceDLL;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooDLL;
 
 namespace DadosDLL
@@ -15,7 +11,7 @@ namespace DadosDLL
     {
         #region ATRIBUTOS
         private const int MAXCOMIDA = 100;
-        private static Comida[] lComidas;
+        private static List<Comida> lComidas;
         #endregion
 
         #region METODOS
@@ -25,15 +21,15 @@ namespace DadosDLL
         /// </summary>
         public Comidas()
         {
-            lComidas = new Comida[MAXCOMIDA];
+            lComidas = new List<Comida>();
             for (int i = 0; i < MAXCOMIDA; i++)
             {
-                lComidas[i] = new Comida();
+                lComidas.Add(new Comida());
             }
         }
         #endregion
         #region PROPRIEDADES
-        public static Comida[] LComidas
+        public static List<Comida> LComidas
         {
             set { lComidas = value; }
             get { return lComidas; }
@@ -85,6 +81,10 @@ namespace DadosDLL
         }
         #endregion
         #region OUTROS
+        /// <summary>
+        /// Método para contar as comidas que existem
+        /// </summary>
+        /// <returns>Retorna o número de comidas existentes</returns>
         public static int Contar()
         {
             int c = 0;
@@ -96,18 +96,18 @@ namespace DadosDLL
             return c;
         }
         /// <summary>
-        /// Método para listar as comidas todas
+        /// Método para listar as comidas todos
+        /// Retorna uma lista com os dados das comidas
         /// </summary>
-        /// <param name="output">Array de strings com as vendas</param>
-        public static string[] Listar()
+        public static List<Comida> Listar()
         {
             int j = 0;
-            string[] output = new string[Contar()];
+            List<Comida> output = new List<Comida>();
             for (int i = 0; i < MAXCOMIDA; i++)
             {
                 if (j < Contar() && lComidas[i].Id != -1)
                 {
-                    output[j] = lComidas[i].Listar();
+                    output.Add(lComidas[i]);
                     j++;
                 }
                 if (j == Contar() && lComidas[i].Id == -1)
@@ -207,6 +207,27 @@ namespace DadosDLL
             {
                 if (lComidas[i].Id == comida)
                 {
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// Método para procurar uma comida, recebe o identificador da comida
+        /// </summary>
+        /// <param name="comida">Identificador da comida</param>
+        /// <param name="output">Objeto do tipo comida</param>
+        /// <returns>Retorna true quando retorna encontra o objeto a procurar, se não conseguir retorna false</returns>
+        public static bool Procurar(int comida, out Comida output)
+        {
+            output = new Comida();
+            if (comida == -1 || lComidas == null || !Existe(comida))
+                return false;
+            for (int i = 0; i < MAXCOMIDA; i++)
+            {
+                if (lComidas[i].Id == comida)
+                {
+                    output = new Comida(lComidas[i]);
                     return true;
                 }
             }
