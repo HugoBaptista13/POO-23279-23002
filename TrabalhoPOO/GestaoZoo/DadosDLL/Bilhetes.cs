@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooDLL;
 
 namespace DadosDLL
@@ -14,7 +11,7 @@ namespace DadosDLL
     {
         #region ATRIBUTOS
         private const int MAXBILHETES = 100;
-        private static Bilhete[] lBilhetes;
+        private static List<Bilhete> lBilhetes;
         #endregion
 
         #region METODOS
@@ -24,15 +21,15 @@ namespace DadosDLL
         /// </summary>
         public Bilhetes()
         {
-            lBilhetes = new Bilhete[MAXBILHETES];
+            lBilhetes = new List<Bilhete>();
             for (int i = 0; i < MAXBILHETES; i++)
             {
-                lBilhetes[i] = new Bilhete();
+                lBilhetes.Add(new Bilhete());
             }
         }
         #endregion
         #region PROPRIEDADES
-        public static Bilhete[] LBilhetes
+        public static List<Bilhete> LBilhetes
         {
             set { lBilhetes = value; }
             get { return lBilhetes; }
@@ -84,6 +81,10 @@ namespace DadosDLL
         }
         #endregion
         #region OUTROS
+        /// <summary>
+        /// Método para contar os bilhetes que existem
+        /// </summary>
+        /// <returns>Retorna o número de bilhetes existentes</returns>
         public static int Contar()
         {
             int c = 0;
@@ -97,17 +98,17 @@ namespace DadosDLL
 
         /// <summary>
         /// Método para listar os bilhetes todos
+        /// Retorna uma lista com os dados dos bilhetes
         /// </summary>
-        /// <param name="output">Array de strings com os bilhetes</param>
-        public static string[] Listar()
+        public static List<Bilhete> Listar()
         {
             int j = 0;
-            string[] output = new string[Contar()];
+            List<Bilhete> output = new List<Bilhete>();
             for (int i = 0; i < MAXBILHETES; i++)
             {
                 if (j < Contar() && lBilhetes[i].Id != -1)
                 {
-                    output[j] = lBilhetes[i].Listar();
+                    output.Add(lBilhetes[i]);
                     j++;
                 }
                 if (j == Contar() && lBilhetes[i].Id == -1)
@@ -198,6 +199,27 @@ namespace DadosDLL
             {
                 if (lBilhetes[i].Id == bilhete)
                 {
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// Método para procurar um bilhete, recebe o identificador do bilhete
+        /// </summary>
+        /// <param name="bilhete">Identificador do bilhete</param>
+        /// <param name="output">Objeto do tipo bilhete</param>
+        /// <returns>Retorna true quando retorna encontra o objeto a procurar, se não conseguir retorna false</returns>
+        public static bool Procurar(int bilhete, out Bilhete output)
+        {
+            output = new Bilhete();
+            if (bilhete == -1 || lBilhetes == null || !Existe(bilhete))
+                return false;
+            for (int i = 0; i < MAXBILHETES; i++)
+            {
+                if (lBilhetes[i].Id == bilhete)
+                {
+                    output = new Bilhete(lBilhetes[i]);
                     return true;
                 }
             }

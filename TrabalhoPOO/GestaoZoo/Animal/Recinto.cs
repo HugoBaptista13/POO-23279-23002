@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using InterfaceDLL;
+﻿using InterfaceDLL;
+using System;
 
 namespace ZooDLL
 {
@@ -52,6 +48,19 @@ namespace ZooDLL
             this.comprimento = comprimento;
             this.largura = largura;
             this.altura = altura;
+        }
+        /// <summary>
+        /// Construtor com argumentos
+        /// </summary>
+        /// <param name="recinto">Objeto do tipo recinto</param>
+        public Recinto(Recinto recinto)
+        {
+            this.id = recinto.id;
+            this.nome = recinto.nome;
+            this.tipo = recinto.tipo;
+            this.comprimento = recinto.comprimento;
+            this.largura = recinto.largura;
+            this.altura = recinto.altura;
         }
         #endregion
         #region PROPRIEDADES

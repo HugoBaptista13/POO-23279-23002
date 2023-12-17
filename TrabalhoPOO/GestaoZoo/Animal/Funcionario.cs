@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using InterfaceDLL;
+﻿using InterfaceDLL;
+using System;
 
 namespace ZooDLL
 {
@@ -52,6 +48,19 @@ namespace ZooDLL
             this.telefone = telefone;
             this.email = email;
             this.cargo = cargo;
+        }
+        /// <summary>
+        /// Construtor com argumentos
+        /// </summary>
+        /// <param name="funcionario">Objeto do tipo funcionario</param>
+        public Funcionario(Funcionario funcionario)
+        {
+            this.id = funcionario.id;
+            this.nome = funcionario.nome;
+            this.idade = funcionario.idade;
+            this.telefone = funcionario.telefone;
+            this.email = funcionario.email;
+            this.cargo = funcionario.cargo;
         }
         #endregion
         #region PROPRIEDADES

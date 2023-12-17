@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using InterfaceDLL;
+﻿using InterfaceDLL;
+using System;
 
 namespace ZooDLL
 {
@@ -44,6 +40,17 @@ namespace ZooDLL
             this.tipo = tipo;
             this.preco = preco;
             this.desconto = desconto;
+        }
+        /// <summary>
+        /// Construtor com argumentos
+        /// </summary>
+        /// <param name="bilhete">Objeto do tipo bilhete</param>
+        public Bilhete(Bilhete bilhete)
+        {
+            this.id = bilhete.id;
+            this.tipo = bilhete.tipo;
+            this.preco = bilhete.preco;
+            this.desconto = bilhete.desconto;
         }
         #endregion
         #region PROPRIEDADES

@@ -1,9 +1,6 @@
 ﻿using InterfaceDLL;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooDLL;
 
 namespace DadosDLL
@@ -15,7 +12,7 @@ namespace DadosDLL
     {
         #region ATRIBUTOS
         private const int MAXFUNCIONARIOS = 100;
-        private static Funcionario[] lFuncionarios;
+        private static List<Funcionario> lFuncionarios;
         #endregion
 
         #region METODOS
@@ -25,15 +22,15 @@ namespace DadosDLL
         /// </summary>
         public Funcionarios()
         {
-            lFuncionarios = new Funcionario[MAXFUNCIONARIOS];
+            lFuncionarios = new List<Funcionario>();
             for (int i = 0; i < MAXFUNCIONARIOS; i++)
             {
-                lFuncionarios[i] = new Funcionario();
+                lFuncionarios.Add(new Funcionario());
             }
         }
         #endregion
         #region PROPRIEDADES
-        public static Funcionario[] LFuncionarios
+        public static List<Funcionario> LFuncionarios
         {
             set { lFuncionarios = value; }
             get { return lFuncionarios; }
@@ -85,7 +82,10 @@ namespace DadosDLL
         }
         #endregion
         #region OUTROS
-
+        /// <summary>
+        /// Método para contar os funcionarios que existem
+        /// </summary>
+        /// <returns>Retorna o número de funcionarios existentes</returns>
         public static int Contar()
         {
             int c = 0;
@@ -98,17 +98,17 @@ namespace DadosDLL
         }
         /// <summary>
         /// Método para listar os funcionários todos
-        /// Retorna um array de strings com os dados de todos os funcionários
+        /// Retorna uma lista com os dados dos funcionários
         /// </summary>
-        public static string[] Listar()
+        public static List<Funcionario> Listar()
         {
             int j = 0;
-            string[] output = new string[Contar()];
+            List<Funcionario> output = new List<Funcionario>();
             for (int i = 0; i < MAXFUNCIONARIOS; i++)
             {
                 if (j < Contar() && lFuncionarios[i].Id != -1)
                 {
-                    output[j] = lFuncionarios[i].Listar();
+                    output.Add(lFuncionarios[i]);
                     j++;
                 }
                 if (j == Contar() && lFuncionarios[i].Id == -1)
@@ -204,6 +204,27 @@ namespace DadosDLL
             {
                 if (lFuncionarios[i].Id == funcionario)
                 {
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// Método para procurar um funcionario, recebe o identificador do funcionario
+        /// </summary>
+        /// <param name="funcionario">Identificador do funcionario</param>
+        /// <param name="output">Objeto do tipo funcionario</param>
+        /// <returns>Retorna true quando retorna encontra o objeto a procurar, se não conseguir retorna false</returns>
+        public static bool Procurar(int funcionario, out Funcionario output)
+        {
+            output = new Funcionario();
+            if (funcionario == -1 || lFuncionarios == null || !Existe(funcionario))
+                return false;
+            for (int i = 0; i < MAXFUNCIONARIOS; i++)
+            {
+                if (lFuncionarios[i].Id == funcionario)
+                {
+                    output = new Funcionario(lFuncionarios[i]);
                     return true;
                 }
             }

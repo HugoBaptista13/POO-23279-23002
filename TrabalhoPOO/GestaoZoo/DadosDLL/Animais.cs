@@ -98,16 +98,16 @@ namespace DadosDLL
         /// <summary>
         /// Método para listar os animais todos
         /// </summary>
-        /// <returns>Retorna um array de strings com os dados de todos os animais</returns>
-        public static string[] Listar()
+        /// <returns>Retorna uma lista com os dados dos animais</returns>
+        public static List<Animal> Listar()
         {
             int j = 0;
-            string[] output = new string[Contar()];
+            List<Animal> output = new List<Animal>();
             for (int i = 0; i < MAXANIMAIS; i++)
             {
                 if (j < Contar() && lAnimais[i].Id != -1)
                 {
-                    output[j] = lAnimais[i].Listar();
+                    output.Add(lAnimais[i]);
                     j++;
                 }
                 if (j == Contar() && lAnimais[i].Id == -1)
@@ -226,11 +226,11 @@ namespace DadosDLL
             return false;
         }
         /// <summary>
-        /// Método para procurar um animal, recebe o identificador do animal e um objeto do tipo animal
+        /// Método para procurar um animal, recebe o identificador do animal
         /// </summary>
         /// <param name="animal">Identificador do animal</param>
         /// <param name="output">Objeto do tipo animal</param>
-        /// <returns>Retorna true quando retorna a procurar, se não conseguir retorna false</returns>
+        /// <returns>Retorna true quando encontra o objeto a procurar, se não conseguir retorna false</returns>
         public static bool Procurar(int animal, out Animal output)
         {
             output = new Animal();

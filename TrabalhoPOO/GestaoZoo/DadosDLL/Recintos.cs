@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooDLL;
-using InterfaceDLL;
 
 namespace DadosDLL
 {
@@ -15,7 +11,7 @@ namespace DadosDLL
     {
         #region ATRIBUTOS
         private const int MAXRECINTOS = 100;
-        private static Recinto[] lRecintos;
+        private static List<Recinto> lRecintos;
         #endregion
 
         #region METODOS
@@ -25,15 +21,15 @@ namespace DadosDLL
         /// </summary>
         public Recintos()
         {
-            lRecintos = new Recinto[MAXRECINTOS];
+            lRecintos = new List<Recinto>();
             for (int i = 0; i < MAXRECINTOS; i++)
             {
-                lRecintos[i] = new Recinto();
+                lRecintos.Add(new Recinto());
             }
         }
         #endregion
         #region PROPRIEDADES
-        public static Recinto[] LRecintos
+        public static List<Recinto> LRecintos
         {
             set { lRecintos = value; }
             get { return lRecintos; }
@@ -86,6 +82,10 @@ namespace DadosDLL
         #endregion
         #region OUTROS
 
+        /// <summary>
+        /// Método para contar os recintos que existem
+        /// </summary>
+        /// <returns>Retorna o número de recintos existentes</returns>
         public static int Contar()
         {
             int c = 0;
@@ -98,17 +98,17 @@ namespace DadosDLL
         }
         /// <summary>
         /// Método para listar os recintos todos
-        /// Retorna um array de strings com os dados de todos os recintos 
+        /// Retorna uma lista com os dados dos recintos 
         /// </summary>
-        public static string[] Listar()
+        public static List<Recinto> Listar()
         {
             int j = 0;
-            string[] output = new string[Contar()];
+            List<Recinto> output = new List<Recinto>();
             for (int i = 0; i < MAXRECINTOS; i++)
             {
                 if (j < Contar() && lRecintos[i].Id != -1)
                 {
-                    output[j] = lRecintos[i].Listar();
+                    output.Add(lRecintos[i]);
                     j++;
                 }
                 if (j == Contar() && lRecintos[i].Id == -1)
@@ -204,6 +204,27 @@ namespace DadosDLL
             {
                 if (lRecintos[i].Id == recinto)
                 {
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// Método para procurar um recinto, recebe o identificador do recinto
+        /// </summary>
+        /// <param name="recinto">Identificador do recinto</param>
+        /// <param name="output">Objeto do tipo recinto</param>
+        /// <returns>Retorna true quando encontra o objeto a procurar, se não conseguir retorna false</returns>
+        public static bool Procurar(int recinto, out Recinto output)
+        {
+            output = new Recinto();
+            if (recinto == -1 || lRecintos == null || !Existe(recinto))
+                return false;
+            for (int i = 0; i < MAXRECINTOS; i++)
+            {
+                if (lRecintos[i].Id == recinto)
+                {
+                    output = new Recinto(lRecintos[i]);
                     return true;
                 }
             }
