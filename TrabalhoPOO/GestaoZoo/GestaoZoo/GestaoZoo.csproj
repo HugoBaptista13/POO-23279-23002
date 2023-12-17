@@ -36,6 +36,9 @@
     <Reference Include="DadosDLL">
       <HintPath>..\DadosDLL\bin\Debug\DadosDLL.dll</HintPath>
     </Reference>
+    <Reference Include="FilesDLL">
+      <HintPath>..\FilesDLL\bin\Debug\FilesDLL.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

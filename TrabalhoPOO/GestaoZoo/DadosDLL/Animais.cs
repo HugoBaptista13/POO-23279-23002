@@ -7,11 +7,13 @@ namespace DadosDLL
     /// <summary>
     /// Classe para guardar os animais todos
     /// </summary>
+    [Serializable]
     public class Animais
     {
         #region ATRIBUTOS
+        private static List<Animal> lAnimais;
+        [NonSerialized]
         private const int MAXANIMAIS = 100;
-        private static List<Animal> lAnimais;   
         #endregion
 
         #region METODOS

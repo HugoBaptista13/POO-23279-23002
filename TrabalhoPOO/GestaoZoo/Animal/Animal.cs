@@ -6,6 +6,7 @@ namespace ZooDLL
     /// <summary>
     /// Classe para descrever um animal
     /// </summary>
+    [Serializable]
     public class Animal : IAnimal
     {
         #region ATRIBUTOS

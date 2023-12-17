@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ZooDLL;
 using DadosDLL;
+using FilesDLL;
 
 namespace GestaoZoo
 {
@@ -30,6 +31,10 @@ namespace GestaoZoo
             aux9 = Animais.Listar();
             bool aux10 = Animais.Procurar(2, out Animal c);
             string aux11 = c.Listar();
+
+            bool aux12 = FileAnimal.Guardar(Animais.LAnimais, out string ex);
+            bool aux13 = FileAnimal.Carregar(out List<Animal> lAnimais, out string ex2);
+            lAnimais.ForEach(Console.WriteLine);
             #endregion
         }
     }
