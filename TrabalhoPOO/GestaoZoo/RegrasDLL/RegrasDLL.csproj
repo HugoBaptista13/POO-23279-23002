@@ -31,6 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DadosDLL">
+      <HintPath>..\DadosDLL\bin\Debug\DadosDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcecaoDLL">
+      <HintPath>..\ExcecaoDLL\bin\Debug\ExcecaoDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="FilesDLL">
+      <HintPath>..\FilesDLL\bin\Debug\FilesDLL.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,6 +48,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="ZooDLL">
+      <HintPath>..\Animal\bin\Debug\ZooDLL.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Regras.cs" />

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZooDLL;
+using FilesDLL;
+using ExcecaoDLL;
+using DadosDLL;
 
 namespace RegrasDLL
 {
@@ -12,6 +16,11 @@ namespace RegrasDLL
     public class RegrasAnimais
     {
         #region Inserir
+        public static bool Inserir()
+        {
+            
+            return false;
+        }
         #endregion
         #region Alterar
         #endregion
