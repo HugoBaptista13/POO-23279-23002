@@ -24,6 +24,9 @@ namespace RegrasDLL
         #region Guardar
         #endregion
     }
+    /// <summary>
+    /// Regras de negócio
+    /// </summary>
     public class RegrasFuncionarios
     {
         #region Inserir
@@ -39,6 +42,9 @@ namespace RegrasDLL
         #region Guardar
         #endregion
     }
+    /// <summary>
+    /// Regras de negócio
+    /// </summary>
     public class RegrasEventos
     {
         #region Inserir
@@ -54,6 +60,9 @@ namespace RegrasDLL
         #region Guardar
         #endregion
     }
+    /// <summary>
+    /// Regras de negócio
+    /// </summary>
     public class RegrasBilhete
     {
         #region Inserir
@@ -69,6 +78,9 @@ namespace RegrasDLL
         #region Guardar
         #endregion
     }
+    /// <summary>
+    /// Regras de negócio
+    /// </summary>
     public class RegrasComidas
     {
         #region Inserir
@@ -84,6 +96,9 @@ namespace RegrasDLL
         #region Guardar
         #endregion
     }
+    /// <summary>
+    /// Regras de negócio
+    /// </summary>
     public class RegrasConsultas
     {
         #region Inserir
@@ -99,6 +114,9 @@ namespace RegrasDLL
         #region Guardar
         #endregion
     }
+    /// <summary>
+    /// Regras de negócio
+    /// </summary>
     public class RegrasLimpezas
     {
         #region Inserir
@@ -114,6 +132,9 @@ namespace RegrasDLL
         #region Guardar
         #endregion
     }
+    /// <summary>
+    /// Regras de negócio
+    /// </summary>
     public class RegrasRecintos
     {
         #region Inserir
@@ -129,6 +150,9 @@ namespace RegrasDLL
         #region Guardar
         #endregion
     }
+    /// <summary>
+    /// Regras de negócio
+    /// </summary>
     public class RegrasVendas
     {
         #region Inserir
