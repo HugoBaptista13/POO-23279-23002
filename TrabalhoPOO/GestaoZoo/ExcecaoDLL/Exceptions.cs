@@ -93,5 +93,49 @@ namespace ExcecaoDLL
             throw new InvalidGenderException(inner.Message + " - " + gender, inner);
         }
     }
-
+    public class NegativeNumberException : ApplicationException
+    {
+        public NegativeNumberException() : base(string.Format("Número negativo"))
+        {
+            throw new NegativeNumberException();
+        }
+        public NegativeNumberException(string number) : base(string.Format("Número negativo: {0}", number))
+        {
+            throw new NegativeNumberException(this.Message + " - " + number);
+        }
+        public NegativeNumberException(string number, Exception inner) : base(string.Format("Número negativo: {0}", number), inner)
+        {
+            throw new NegativeNumberException(inner.Message + " - " + number, inner);
+        }
+    }
+    public class GreaterThanPreviousDateException : ApplicationException
+    {
+        public GreaterThanPreviousDateException() : base(string.Format("Data maior do que a anterior"))
+        {
+            throw new GreaterThanPreviousDateException();
+        }
+        public GreaterThanPreviousDateException(string date1, string date2) : base(string.Format("Data maior do que a anterior: {0} > {1}", date1, date2))
+        { 
+            throw new GreaterThanPreviousDateException(date1, date2);
+        }
+        public GreaterThanPreviousDateException(string date1, string date2, Exception inner) : base(string.Format("Data maior do que a anterior: {0} > {1}", date1, date2), inner)
+        {
+            throw new GreaterThanPreviousDateException(inner.Message + " - " + date1 , date2, inner);
+        }
+    }
+    public class InvalidIDException : ApplicationException
+    {
+        public InvalidIDException() : base(string.Format("ID inválido"))
+        {
+            throw new InvalidIDException();
+        }
+        public InvalidIDException(string id) : base(string.Format("ID inválido: {0}", id))
+        {
+            throw new InvalidIDException(this.Message + " - " + id);
+        }
+        public InvalidIDException(string id, Exception inner) : base(string.Format("ID inválido: {0}", id), inner)
+        {
+            throw new InvalidIDException(inner.Message + " - " + id, inner);
+        }
+    }
 }
