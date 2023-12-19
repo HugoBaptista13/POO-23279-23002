@@ -287,12 +287,112 @@ namespace RegrasDLL
         }
         #endregion
         #region Remover
+        public static bool Remover(int animal)
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            try
+            {
+                if (animal <= 0)
+                    throw new InvalidIDException(animal.ToString());
+            }
+            catch
+            {
+                return false;
+            }
+            try
+            {
+                if (!Animais.Existe(animal))
+                    throw new DoesNotExistException(animal.ToString());
+            }
+            catch
+            {
+                return false;
+            }
+            if (!Animais.Remover(animal))
+                return false;
+            return true;
+        }
         #endregion
         #region Procurar
+        public static bool Procurar(int animal, out Animal output)
+        {
+            output = null;
+            /// <summary
+            /// 
+            /// </summary>
+            try
+            {
+                if (animal <= 0)
+                    throw new InvalidIDException(animal.ToString());
+            }
+            catch
+            {
+                return false;
+            }
+            /// <summary
+            /// 
+            /// </summary>
+            try
+            {
+                if (!Animais.Existe(animal))
+                    throw new DoesNotExistException(animal.ToString());
+            }
+            catch
+            {
+                return false;
+            }
+            if (!Animais.Procurar(animal, out output))
+                return false;
+            return true;
+        }
         #endregion
         #region Existe
+        public static bool Existe(int animal)
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            try
+            {
+                if (animal <= 0)
+                    throw new InvalidIDException(animal.ToString());}
+            catch
+            {
+                return false;
+            }
+            if (!Animais.Existe(animal))
+                return false;
+            return true;
+        }
         #endregion
         #region Guardar
+        public static bool Guardar(List<Animal> lAnimais)
+        {
+            bool aux = true;
+            try
+            {
+                if (lAnimais == null)
+                    throw new InvalidDataException();
+            }
+            catch
+            {
+                return false;
+            }
+            try
+            {
+                if (!FileAnimal.Guardar(lAnimais, out string ex))
+                    aux = false;
+                if (ex != string.Empty)
+                    throw new Exception(ex);
+            }
+            catch
+            {
+                return false;
+            }
+            return aux;
+        }
         #endregion
     }
     
@@ -372,24 +472,6 @@ namespace RegrasDLL
     /// Regras de negócio
     /// </summary>
     public class RegrasLimpezas
-    {
-        #region Inserir
-        #endregion
-        #region Alterar
-        #endregion
-        #region Remover
-        #endregion
-        #region Procurar
-        #endregion
-        #region Existe
-        #endregion
-        #region Guardar
-        #endregion
-    }
-    /// <summary>
-    /// Regras de negócio
-    /// </summary>
-    public class RegrasRecintos
     {
         #region Inserir
         #endregion
