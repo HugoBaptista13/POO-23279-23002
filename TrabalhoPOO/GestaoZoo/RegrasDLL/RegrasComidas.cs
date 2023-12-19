@@ -65,10 +65,10 @@ namespace RegrasDLL
 
                 if (comida.Tipo == null)
                     throw new ArgumentNullException("Tipo", "Tipo não pode ser nulo");
-                
+
                 if (comida.Dieta == null)
                     throw new ArgumentNullException("Dieta", "Dieta não pode ser nulo");
-                
+
                 if (comida.Stock <= 0)
                     throw new NegativeNumberException(comida.Stock.ToString());
 
