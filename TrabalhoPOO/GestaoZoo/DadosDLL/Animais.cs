@@ -199,7 +199,7 @@ namespace DadosDLL
                     lAnimais[i].Classe = "";
                     lAnimais[i].Especie = "";
                     lAnimais[i].Dieta = "";
-                    lAnimais[i].Estado = -1;
+                    lAnimais[i].Estado = "";
                     lAnimais[i].DataUltimaConsulta = DateTime.MinValue;
                     lAnimais[i].DataProximaConsulta = DateTime.MinValue;
                     lAnimais[i].Recinto = -1;

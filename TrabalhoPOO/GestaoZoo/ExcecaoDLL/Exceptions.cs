@@ -95,30 +95,30 @@ namespace ExcecaoDLL
     }
     public class NegativeNumberException : ApplicationException
     {
-        public NegativeNumberException() : base(string.Format("Número negativo"))
+        public NegativeNumberException() : base(string.Format("Número não pode ser negativo"))
         {
             throw new NegativeNumberException();
         }
-        public NegativeNumberException(string number) : base(string.Format("Número negativo: {0}", number))
+        public NegativeNumberException(string number) : base(string.Format("Número não pode ser negativo: {0}", number))
         {
             throw new NegativeNumberException(this.Message + " - " + number);
         }
-        public NegativeNumberException(string number, Exception inner) : base(string.Format("Número negativo: {0}", number), inner)
+        public NegativeNumberException(string number, Exception inner) : base(string.Format("Número não pode ser negativo: {0}", number), inner)
         {
             throw new NegativeNumberException(inner.Message + " - " + number, inner);
         }
     }
     public class GreaterThanPreviousDateException : ApplicationException
     {
-        public GreaterThanPreviousDateException() : base(string.Format("Data maior do que a anterior"))
+        public GreaterThanPreviousDateException() : base(string.Format("Data não pode ser maior do que a anterior"))
         {
             throw new GreaterThanPreviousDateException();
         }
-        public GreaterThanPreviousDateException(string date1, string date2) : base(string.Format("Data maior do que a anterior: {0} > {1}", date1, date2))
+        public GreaterThanPreviousDateException(string date1, string date2) : base(string.Format("Data não pode ser maior do que a anterior: {0} > {1}", date1, date2))
         { 
             throw new GreaterThanPreviousDateException(date1, date2);
         }
-        public GreaterThanPreviousDateException(string date1, string date2, Exception inner) : base(string.Format("Data maior do que a anterior: {0} > {1}", date1, date2), inner)
+        public GreaterThanPreviousDateException(string date1, string date2, Exception inner) : base(string.Format("Data não pode ser maior do que a anterior: {0} > {1}", date1, date2), inner)
         {
             throw new GreaterThanPreviousDateException(inner.Message + " - " + date1 , date2, inner);
         }
@@ -136,6 +136,36 @@ namespace ExcecaoDLL
         public InvalidIDException(string id, Exception inner) : base(string.Format("ID inválido: {0}", id), inner)
         {
             throw new InvalidIDException(inner.Message + " - " + id, inner);
+        }
+    }
+    public class AlreadyExistsException : ApplicationException
+    {
+        public AlreadyExistsException() : base(string.Format("O objeto já existe"))
+        {
+            throw new AlreadyExistsException();
+        }
+        public AlreadyExistsException(string id) : base(string.Format("O objeto {0} já existe", id))
+        {
+            throw new AlreadyExistsException(this.Message + " - " + id);
+        }
+        public AlreadyExistsException(string id, Exception inner) : base(string.Format("O objeto {0} já existe", id), inner)
+        {
+            throw new AlreadyExistsException(inner.Message + " - " + id, inner);
+        }
+    }
+    public class InvalidStateException : ApplicationException
+    {
+        public InvalidStateException() : base(string.Format("Estado inválido"))
+        {
+            throw new InvalidStateException();
+        }
+        public InvalidStateException(string state) : base(string.Format("Estado inválido: {0}", state))
+        {
+            throw new InvalidStateException(this.Message + " - " + state);
+        }
+        public InvalidStateException(string state, Exception inner) : base(string.Format("Estado inválido: {0}", state), inner)
+        {
+            throw new InvalidStateException(inner.Message + " - " + state, inner);
         }
     }
 }

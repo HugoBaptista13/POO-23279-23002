@@ -17,7 +17,7 @@ namespace ZooDLL
         private string classe;
         private string especie;
         private string dieta;
-        private int estado;
+        private string estado;
         private DateTime dataUltimaConsulta;
         private DateTime dataProximaConsulta;
         private int recinto;
@@ -38,7 +38,7 @@ namespace ZooDLL
             this.classe = string.Empty;
             this.especie = string.Empty;
             this.dieta = string.Empty;
-            this.estado = -1;
+            this.estado = string.Empty;
             this.dataUltimaConsulta = DateTime.Now;
             this.dataProximaConsulta = new DateTime(DateTime.Today.Year+1,DateTime.Today.Month,DateTime.Today.Day);
             this.recinto = -1;
@@ -59,7 +59,7 @@ namespace ZooDLL
         /// <param name="dataProximaConsulta">Data da próxima consulta</param>
         /// <param name="recinto">Recinto do animal</param>
         /// <param name="descricao">Descrição do animal</param>
-        public Animal(int id, string nome, int idade, string sexo, string classe, string especie, string dieta, int estado, DateTime dataUltimaConsulta, DateTime dataProximaConsulta, int recinto, string descricao)
+        public Animal(int id, string nome, int idade, string sexo, string classe, string especie, string dieta, string estado, DateTime dataUltimaConsulta, DateTime dataProximaConsulta, int recinto, string descricao)
         {
             this.id = id;
             this.nome = nome;
@@ -130,7 +130,7 @@ namespace ZooDLL
             set { dieta = value; }
             get { return dieta; } 
         }
-        public int Estado
+        public string Estado
         {
             set { estado = value; }
             get { return estado; }
