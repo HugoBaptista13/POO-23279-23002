@@ -261,5 +261,24 @@ namespace RegrasDLL
             return aux;
         }
         #endregion
+        #region Carregar
+        public static bool Carregar(out List<Recinto> lRecintos, out string ex)
+        {
+            lRecintos = null;
+            ex = string.Empty;
+            try
+            {
+                if (!FileRecinto.Carregar(out lRecintos, out ex))
+                    return false;
+                if (ex != string.Empty)
+                    throw new Exception(ex);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+        #endregion
     }
 }
