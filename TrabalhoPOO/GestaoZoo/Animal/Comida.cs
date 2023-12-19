@@ -30,7 +30,7 @@ namespace ZooDLL
             this.tipo = string.Empty;
             this.dieta = string.Empty;
             this.stock = -1;
-            this.dataValidade = new DateTime(DateTime.Today.Year,DateTime.Now.Month+1,DateTime.Now.Day);
+            this.dataValidade = new DateTime(DateTime.Today.Year+1,DateTime.Now.Month,DateTime.Now.Day);
         }
         /// <summary>
         /// Construtor com argumentos

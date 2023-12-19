@@ -15,6 +15,54 @@ namespace GestaoZoo
     {
         static void Main(string[] args)
         {
+            #region INICIALIZACAO
+            new Animais();
+            new Bilhetes();
+            new Vendas();
+            new Recintos();
+            new Funcionarios();
+            new Eventos();
+            new Consultas();
+            new Limpezas();
+            new Comidas();
+
+            bool cAnimais = RegrasAnimais.Carregar(out List<Animal> animais);
+            if (cAnimais)
+                Animais.LAnimais = animais;
+
+            bool cRecintos = RegrasRecintos.Carregar(out List<Recinto> recintos);
+            if (cRecintos)
+                Recintos.LRecintos = recintos;
+
+            bool cBilhetes = RegrasBilhetes.Carregar(out List<Bilhete> bilhetes);
+            if (cBilhetes)
+                Bilhetes.LBilhetes = bilhetes;
+
+            bool cVendas = RegrasVendas.Carregar(out List<Venda> vendas);
+            if (cVendas)
+                Vendas.LVendas = vendas;
+
+            bool cFuncionarios = RegrasFuncionarios.Carregar(out List<Funcionario> funcionarios);
+            if (cFuncionarios)
+                Funcionarios.LFuncionarios = funcionarios;
+
+            bool cEventos = RegrasEventos.Carregar(out List<Evento> eventos);
+            if (cEventos)
+                Eventos.LEventos = eventos;
+
+            bool cConsultas = RegrasConsultas.Carregar(out List<Consulta> consultas);
+            if (cConsultas)
+                Consultas.LConsultas = consultas;
+
+            bool cLimpezas = RegrasLimpezas.Carregar(out List<Limpeza> limpezas);
+            if (cLimpezas)
+                Limpezas.LLimpezas = limpezas;
+
+            bool cComidas = RegrasComidas.Carregar(out List<Comida> comidas);
+            if (cComidas)
+                Comidas.LComidas = comidas;
+
+            #endregion
             #region TESTES_ANIMAIS
             //new Animais();
             //Animal a = new Animal(1,"Peppa",6,"feminino","mamífero","Sus domesticus", "omnívoro","Muito Bom",new DateTime(2023,11,12),new DateTime(2024,1,15),2,"Porca de estimação");
@@ -39,13 +87,6 @@ namespace GestaoZoo
             #endregion
 
             #region TESTES_REGRAS_ANIMAIS
-            bool carregarA = RegrasAnimais.Carregar(out List<Animal> animais);
-            if (carregarA)
-                Animais.LAnimais = animais;
-
-            bool carregarR = RegrasRecintos.Carregar(out List<Recinto> recintos);
-            if (carregarR)
-                Recintos.LRecintos = recintos;
 
             Recinto r1 = new Recinto(2, "Recinto dos Porcos", "Normal", 40, 40, 10);
             Recinto r2 = new Recinto(7, "Santuário dos Leões", "Santuário", 600, 400, 20);

@@ -32,7 +32,7 @@ namespace ZooDLL
             this.lotacaoTotal = lotacao+1;
             this.local = string.Empty;
             this.dataInicio = DateTime.Today;
-            this.dataFim = new DateTime(dataInicio.Year,dataInicio.Month+1,dataInicio.Day);
+            this.dataFim = new DateTime(dataInicio.Year+1,dataInicio.Month,dataInicio.Day);
         }
         /// <summary>
         /// Construtor com argumentos

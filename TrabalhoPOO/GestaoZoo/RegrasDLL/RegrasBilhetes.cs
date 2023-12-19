@@ -10,7 +10,7 @@ namespace RegrasDLL
     /// <summary>
     /// Regras de negócio
     /// </summary>
-    public class RegrasBilhete
+    public class RegrasBilhetes
     {
         #region OUTROS
         private static readonly string[] tipos = { "Normal", "Estudante", "Senior", "Criança", "Família" };
@@ -27,7 +27,7 @@ namespace RegrasDLL
         {
             foreach (char c in s)
             {
-                if (!Char.IsLetter(c) || c != ' ')
+                if (!Char.IsLetter(c) && c != ' ')
                     return false;
             }
             return true;

@@ -17,7 +17,7 @@ namespace RegrasDLL
         {
             foreach (char c in s)
             {
-                if (!Char.IsLetterOrDigit(c) || c != ' ')
+                if (!Char.IsLetterOrDigit(c) && c != ' ')
                     return false;
             }
             return true;

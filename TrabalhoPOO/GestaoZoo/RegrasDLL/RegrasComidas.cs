@@ -19,7 +19,7 @@ namespace RegrasDLL
         {
             foreach (char c in s)
             {
-                if (!Char.IsLetter(c) || c != ' ')
+                if (!Char.IsLetter(c) && c != ' ')
                     return false;
             }
             return true;
@@ -37,10 +37,10 @@ namespace RegrasDLL
         {
             foreach (string a in dietas)
             {
-                if (a != s)
-                    return false;
+                if (a == s)
+                    return true;
             }
-            return true;
+            return false;
         }
         #endregion
         #region Inserir
