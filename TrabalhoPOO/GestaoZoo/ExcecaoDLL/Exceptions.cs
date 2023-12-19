@@ -20,15 +20,15 @@ namespace ExcecaoDLL
 
     public class InvalidNameException : ApplicationException
     {
-        public InvalidNameException() : base(string.Format("Nome inválido"))
+        public InvalidNameException() : base(string.Format("Nome inválido (a-z,A-Z)"))
         {
             throw new InvalidNameException();
         }
-        public InvalidNameException(string name) : base(string.Format("Nome inválido: {0}", name))
+        public InvalidNameException(string name) : base(string.Format("Nome inválido: {0}; (a-z,A-Z)", name))
         {
             throw new InvalidNameException(this.Message + " - " + name);
         }
-        public InvalidNameException(string name, Exception inner) : base(string.Format("Nome inválido: {0}", name), inner)
+        public InvalidNameException(string name, Exception inner) : base(string.Format("Nome inválido: {0}; (a-z,A-Z)", name), inner)
         {
             throw new InvalidNameException(inner.Message + " - " + name, inner);
         }
@@ -78,32 +78,32 @@ namespace ExcecaoDLL
             throw new InvalidTypeException(inner.Message + " - " + message, inner);
         }
     }
-    public class InvalidGenderException : ApplicationException
+    public class InvalidSexException : ApplicationException
     {
-        public InvalidGenderException() : base(string.Format("Sexo inválido"))
+        public InvalidSexException() : base(string.Format("Sexo inválido"))
         {
-            throw new InvalidGenderException();
+            throw new InvalidSexException();
         }
-        public InvalidGenderException(string gender) : base(string.Format("Sexo inválido: {0}", gender))
+        public InvalidSexException(string sex) : base(string.Format("Sexo inválido: {0}", sex))
         {
-            throw new InvalidGenderException(this.Message + " - " + gender);
+            throw new InvalidSexException(this.Message + " - " + sex);
         }
-        public InvalidGenderException(string gender, Exception inner) : base(string.Format("Sexo inválido: {0}", gender), inner)
+        public InvalidSexException(string sex, Exception inner) : base(string.Format("Sexo inválido: {0}", sex), inner)
         {
-            throw new InvalidGenderException(inner.Message + " - " + gender, inner);
+            throw new InvalidSexException(inner.Message + " - " + sex, inner);
         }
     }
     public class NegativeNumberException : ApplicationException
     {
-        public NegativeNumberException() : base(string.Format("Número não pode ser negativo"))
+        public NegativeNumberException() : base(string.Format("Número não pode ser negativo, nem zero"))
         {
             throw new NegativeNumberException();
         }
-        public NegativeNumberException(string number) : base(string.Format("Número não pode ser negativo: {0}", number))
+        public NegativeNumberException(string number) : base(string.Format("Número não pode ser negativo, nem zero: {0}", number))
         {
             throw new NegativeNumberException(this.Message + " - " + number);
         }
-        public NegativeNumberException(string number, Exception inner) : base(string.Format("Número não pode ser negativo: {0}", number), inner)
+        public NegativeNumberException(string number, Exception inner) : base(string.Format("Número não pode ser negativo, nem zero: {0}", number), inner)
         {
             throw new NegativeNumberException(inner.Message + " - " + number, inner);
         }
@@ -166,6 +166,81 @@ namespace ExcecaoDLL
         public InvalidStateException(string state, Exception inner) : base(string.Format("Estado inválido: {0}", state), inner)
         {
             throw new InvalidStateException(inner.Message + " - " + state, inner);
+        }
+    }
+    public class InvalidValueException : ApplicationException
+    {
+        public InvalidValueException() : base(string.Format("Valor inválido"))
+        {
+            throw new InvalidValueException();
+        }
+        public InvalidValueException(string value) : base(string.Format("Valor inválido: {0}", value))
+        {
+            throw new InvalidValueException(this.Message + " - " + value);
+        }
+        public InvalidValueException(string value, Exception inner) : base(string.Format("Valor inválido: {0}", value), inner)
+        {
+            throw new InvalidValueException(inner.Message + " - " + value, inner);
+        }
+    }
+    public class InvalidClassException : ApplicationException
+    {
+        public InvalidClassException() : base(string.Format("Classe inválida"))
+        {
+            throw new InvalidClassException();
+        }
+        public InvalidClassException(string classe) : base(string.Format("Classe inválida: {0}", classe))
+        {
+            throw new InvalidClassException(this.Message + " - " + classe);
+        }
+        public InvalidClassException(string classe, Exception inner) : base(string.Format("Classe inválida: {0}", classe), inner)
+        {
+            throw new InvalidClassException(inner.Message + " - " + classe, inner);
+        }
+    }
+    public class InvalidDietException : ApplicationException
+    {
+        public InvalidDietException() : base(string.Format("Dieta inválida"))
+        {
+            throw new InvalidDietException();
+        }
+        public InvalidDietException(string diet) : base(string.Format("Dieta inválida: {0}", diet))
+        {
+            throw new InvalidDietException(this.Message + " - " + diet);
+        }
+        public InvalidDietException(string diet, Exception inner) : base(string.Format("Dieta inválida: {0}", diet), inner)
+        {
+            throw new InvalidDietException(inner.Message + " - " + diet, inner);
+        }
+    }
+    public class DoesNotExistException : ApplicationException
+    {
+        public DoesNotExistException() : base(string.Format("O objeto não existe"))
+        {
+            throw new DoesNotExistException();
+        }
+        public DoesNotExistException(string id) : base(string.Format("O objeto {0} não existe", id))
+        {
+            throw new DoesNotExistException(this.Message + " - " + id);
+        }
+        public DoesNotExistException(string id, Exception inner) : base(string.Format("O objeto {0} não existe", id), inner)
+        {
+            throw new DoesNotExistException(inner.Message + " - " + id, inner);
+        }
+    }
+    public class InvalidTextException : ApplicationException
+    {
+        public InvalidTextException() : base(string.Format("Texto inválido; (a-z,A-Z)"))
+        {
+            throw new InvalidTextException();
+        }
+        public InvalidTextException(string text) : base(string.Format("Texto inválido: {0}; (a-z,A-Z)", text))
+        {
+            throw new InvalidTextException(this.Message + " - " + text);
+        }
+        public InvalidTextException(string text, Exception inner) : base(string.Format("Texto inválido: {0}; (a-z,A-Z)", text), inner)
+        {
+            throw new InvalidTextException(inner.Message + " - " + text, inner);
         }
     }
 }
