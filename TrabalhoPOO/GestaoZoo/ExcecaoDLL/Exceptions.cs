@@ -319,4 +319,19 @@ namespace ExcecaoDLL
             throw new LessThanZeroNumberException(inner.Message + " - " + number, inner);
         }
     }
+    public class OutOfExpirationDateException : ApplicationException
+    {
+        public OutOfExpirationDateException() : base(string.Format("Data de validade expirada"))
+        {
+            throw new OutOfExpirationDateException();
+        }
+        public OutOfExpirationDateException(string date) : base(string.Format("Data de validade expirada: {0}", date))
+        {
+            throw new OutOfExpirationDateException(this.Message + " - " + date);
+        }
+        public OutOfExpirationDateException(string date, Exception inner) : base(string.Format("Data de validade expirada: {0}", date), inner)
+        {
+            throw new OutOfExpirationDateException(inner.Message + " - " + date, inner);
+        }
+    }
 }

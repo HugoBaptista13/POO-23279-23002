@@ -2,6 +2,7 @@
 using ExcecaoDLL;
 using FilesDLL;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,17 @@ namespace RegrasDLL
     /// </summary>
     public class RegrasBilhete
     {
-        #region outros
+        #region OUTROS
+        private static readonly string[] tipos = { "Normal", "Estudante", "Senior", "Criança", "Família" };
+        private static bool IsValidType(string s)
+        {
+            foreach (string tipo in tipos)
+            {
+                if (s == tipo)
+                    return true;
+            }
+            return false;
+        }
         private static bool IsAllLetters(string s)
         {
             foreach (char c in s)
@@ -46,8 +57,8 @@ namespace RegrasDLL
                 if (bilhete.Preco <= 0)
                     throw new NegativeNumberException(bilhete.Preco.ToString());
 
-                if (bilhete.Desconto <= 0)
-                    throw new NegativeNumberException(bilhete.Desconto.ToString());
+                if (bilhete.Desconto < 0)
+                    throw new LessThanZeroNumberException(bilhete.Desconto.ToString());
 
             }
             catch
@@ -61,6 +72,9 @@ namespace RegrasDLL
             {
                 if (!IsAllLetters(bilhete.Tipo.Trim()) || bilhete.Tipo == string.Empty)
                     throw new InvalidNameException(bilhete.Tipo.Trim());
+
+                if (!IsValidType(bilhete.Tipo.Trim()))
+                    throw new InvalidTypeException(bilhete.Tipo.Trim());
             }
             catch
             {
@@ -104,8 +118,8 @@ namespace RegrasDLL
                 if (bilhete.Preco <= 0)
                     throw new NegativeNumberException(bilhete.Preco.ToString());
 
-                if (bilhete.Desconto <= 0)
-                    throw new NegativeNumberException(bilhete.Desconto.ToString());
+                if (bilhete.Desconto < 0)
+                    throw new LessThanZeroNumberException(bilhete.Desconto.ToString());
             }
             catch
             {
@@ -118,6 +132,9 @@ namespace RegrasDLL
             {
                 if (!IsAllLetters(bilhete.Tipo.Trim()) || bilhete.Tipo == string.Empty)
                     throw new InvalidNameException(bilhete.Tipo.Trim());
+
+                if (!IsValidType(bilhete.Tipo.Trim()))
+                    throw new InvalidTypeException(bilhete.Tipo.Trim());
             }
             catch
             {
