@@ -11,6 +11,8 @@ namespace RegrasDLL
     /// </summary>
     public class RegrasBilhete
     {
+        #region outros
+        #endregion
         #region Inserir
         #endregion
         #region Alterar

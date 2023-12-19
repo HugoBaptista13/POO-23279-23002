@@ -10,7 +10,10 @@ using ZooDLL;
 
 namespace RegrasDLL
 {
-    public class RegrasRecintos
+    /// <summary>
+    /// Regras de negócio
+    /// </summary>
+    public class RegrasBilhete
     {
         #region outros
         private static bool IsAllLetters(string s)
@@ -24,33 +27,28 @@ namespace RegrasDLL
         }
         #endregion
         #region Inserir
-        public static bool Inserir(Recinto recinto)
+        public static bool Inserir(Bilhete bilhete)
         {
             /// <summary>
             /// 
             /// </summary>
             try
             {
-                if (recinto == null)
-                    throw new ArgumentNullException("Recinto", "Funcionario não pode ser nulo");
+                if (bilhete == null)
+                    throw new ArgumentNullException("Bilhete", "Bilhete não pode ser nulo");
 
-                if (recinto.Id <= 0)
-                    throw new InvalidIDException(recinto.Id.ToString());
+                if (bilhete.Id <= 0)
+                    throw new InvalidIDException(bilhete.Id.ToString());
 
-                if (recinto.Nome == null)
-                    throw new ArgumentNullException("Nome", "Nome não pode ser nulo");
-
-                if (recinto.Tipo == null)
+                if (bilhete.Tipo == null)
                     throw new ArgumentNullException("Tipo", "Tipo não pode ser nulo");
 
-                if (recinto.Comprimento <= 0)
-                    throw new NegativeNumberException(recinto.Comprimento.ToString());
+                if (bilhete.Preco <= 0)
+                    throw new NegativeNumberException(bilhete.Preco.ToString());
 
-                if (recinto.Largura <= 0)
-                    throw new NegativeNumberException(recinto.Largura.ToString());
+                if (bilhete.Desconto <= 0)
+                    throw new NegativeNumberException(bilhete.Desconto.ToString());
 
-                if (recinto.Altura <= 0)
-                    throw new NegativeNumberException(recinto.Altura.ToString());
             }
             catch
             {
@@ -61,10 +59,8 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (!IsAllLetters(recinto.Nome.Trim()) || recinto.Nome == string.Empty)
-                    throw new InvalidNameException(recinto.Nome.Trim());
-                if (!IsAllLetters(recinto.Tipo.Trim()) || recinto.Tipo == string.Empty)
-                    throw new InvalidTextException(recinto.Tipo.Trim());
+                if (!IsAllLetters(bilhete.Tipo.Trim()) || bilhete.Tipo == string.Empty)
+                    throw new InvalidNameException(bilhete.Tipo.Trim());
             }
             catch
             {
@@ -76,46 +72,40 @@ namespace RegrasDLL
             try
             {
 
-                if (Recintos.Existe(recinto.Id))
-                    throw new AlreadyExistsException(recinto.Id.ToString());
+                if (Bilhetes.Existe(bilhete.Id))
+                    throw new AlreadyExistsException(bilhete.Id.ToString());
             }
             catch
             {
                 return false;
             }
-            if (!Recintos.Inserir(recinto))
+            if (!Bilhetes.Inserir(bilhete))
                 return false;
             return true;
         }
         #endregion
         #region Alterar
-        public static bool Alterar(Recinto recinto)
+        public static bool Alterar(Bilhete bilhete)
         {
             /// <summary>
             /// 
             /// </summary>
             try
             {
-                if (recinto == null)
-                    throw new ArgumentNullException("Recinto", "Recinto não pode ser nulo");
+                if (bilhete == null)
+                    throw new ArgumentNullException("Bilhete", "Bilhete não pode ser nulo");
 
-                if (recinto.Id <= 0)
-                    throw new InvalidIDException(recinto.Id.ToString());
+                if (bilhete.Id <= 0)
+                    throw new InvalidIDException(bilhete.Id.ToString());
 
-                if (recinto.Nome == null)
-                    throw new ArgumentNullException("Nome", "Nome não pode ser nulo");
+                if (bilhete.Tipo == null)
+                    throw new ArgumentNullException("Bilhete", "Bilhete não pode ser nulo");
 
-                if (recinto.Tipo == null)
-                    throw new ArgumentNullException("Tipo", "Tipo não pode ser nulo");
+                if (bilhete.Preco <= 0)
+                    throw new NegativeNumberException(bilhete.Preco.ToString());
 
-                if (recinto.Comprimento <= 0)
-                    throw new NegativeNumberException(recinto.Comprimento.ToString());
-
-                if (recinto.Largura <= 0)
-                    throw new NegativeNumberException(recinto.Largura.ToString());
-
-                if (recinto.Altura <= 0)
-                    throw new NegativeNumberException(recinto.Altura.ToString());
+                if (bilhete.Desconto <= 0)
+                    throw new NegativeNumberException(bilhete.Desconto.ToString());
             }
             catch
             {
@@ -126,10 +116,8 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (!IsAllLetters(recinto.Nome.Trim()) || recinto.Nome == string.Empty)
-                    throw new InvalidNameException(recinto.Nome.Trim());
-                if (!IsAllLetters(recinto.Tipo.Trim()) || recinto.Tipo == string.Empty)
-                    throw new InvalidTextException(recinto.Tipo.Trim());
+                if (!IsAllLetters(bilhete.Tipo.Trim()) || bilhete.Tipo == string.Empty)
+                    throw new InvalidNameException(bilhete.Tipo.Trim());
             }
             catch
             {
@@ -140,28 +128,28 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (!Recintos.Existe(recinto.Id))
-                    throw new DoesNotExistException(recinto.Id.ToString());
+                if (!Bilhetes.Existe(bilhete.Id))
+                    throw new DoesNotExistException(bilhete.Id.ToString());
             }
             catch
             {
                 return false;
             }
-            if (!Recintos.Alterar(recinto))
+            if (!Bilhetes.Alterar(bilhete))
                 return false;
             return true;
         }
         #endregion
         #region Remover
-        public static bool Remover(int recinto)
+        public static bool Remover(int bilhete)
         {
             /// <summary>
             /// 
             /// </summary>
             try
             {
-                if (recinto <= 0)
-                    throw new InvalidIDException(recinto.ToString());
+                if (bilhete <= 0)
+                    throw new InvalidIDException(bilhete.ToString());
             }
             catch
             {
@@ -169,20 +157,20 @@ namespace RegrasDLL
             }
             try
             {
-                if (!Recintos.Existe(recinto))
-                    throw new DoesNotExistException(recinto.ToString());
+                if (!Bilhetes.Existe(bilhete))
+                    throw new DoesNotExistException(bilhete.ToString());
             }
             catch
             {
                 return false;
             }
-            if (!Recintos.Remover(recinto))
+            if (!Bilhetes.Remover(bilhete))
                 return false;
             return true;
         }
         #endregion
         #region Procurar
-        public static bool Procurar(int recinto, out Recinto output)
+        public static bool Procurar(int bilhete, out Bilhete output)
         {
             output = null;
             /// <summary
@@ -190,8 +178,8 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (recinto <= 0)
-                    throw new InvalidIDException(recinto.ToString());
+                if (bilhete <= 0)
+                    throw new InvalidIDException(bilhete.ToString());
             }
             catch
             {
@@ -202,45 +190,45 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (!Recintos.Existe(recinto))
-                    throw new DoesNotExistException(recinto.ToString());
+                if (!Bilhetes.Existe(bilhete))
+                    throw new DoesNotExistException(bilhete.ToString());
             }
             catch
             {
                 return false;
             }
-            if (!Recintos.Procurar(recinto, out output))
+            if (!Bilhetes.Procurar(bilhete, out output))
                 return false;
             return true;
         }
         #endregion
         #region Existe
-        public static bool Existe(int recinto)
+        public static bool Existe(int bilhete)
         {
             /// <summary>
             /// 
             /// </summary>
             try
             {
-                if (recinto <= 0)
-                    throw new InvalidIDException(recinto.ToString());
+                if (bilhete <= 0)
+                    throw new InvalidIDException(bilhete.ToString());
             }
             catch
             {
                 return false;
             }
-            if (!Recintos.Existe(recinto))
+            if (!Bilhetes.Existe(bilhete))
                 return false;
             return true;
         }
         #endregion
         #region Guardar
-        public static bool Guardar(List<Recinto> lRecintos)
+        public static bool Guardar(List<Bilhete> lBilhetes)
         {
             bool aux = true;
             try
             {
-                if (lRecintos == null)
+                if (lBilhetes == null)
                     throw new InvalidDataException();
             }
             catch
@@ -249,7 +237,7 @@ namespace RegrasDLL
             }
             try
             {
-                if (!FileRecinto.Guardar(lRecintos, out string ex))
+                if (!FileBilhete.Guardar(lBilhetes, out string ex))
                     aux = false;
                 if (ex != string.Empty)
                     throw new Exception(ex);
@@ -262,13 +250,13 @@ namespace RegrasDLL
         }
         #endregion
         #region Carregar
-        public static bool Carregar(out List<Recinto> lRecintos, out string ex)
+        public static bool Carregar(out List<Bilhete> lBilhetes, out string ex)
         {
-            lRecintos = null;
+            lBilhetes = null;
             ex = string.Empty;
             try
             {
-                if (!FileRecinto.Carregar(out lRecintos, out ex))
+                if (!FileBilhete.Carregar(out lBilhetes, out ex))
                     return false;
                 if (ex != string.Empty)
                     throw new Exception(ex);
@@ -281,4 +269,5 @@ namespace RegrasDLL
         }
         #endregion
     }
+
 }
