@@ -7,6 +7,7 @@ using ZooDLL;
 using DadosDLL;
 using FilesDLL;
 using RegrasDLL;
+using System.Net;
 
 namespace GestaoZoo
 {
@@ -38,6 +39,14 @@ namespace GestaoZoo
             #endregion
 
             #region TESTES_REGRAS_ANIMAIS
+            bool carregarA = RegrasAnimais.Carregar(out List<Animal> animais);
+            if (carregarA)
+                Animais.LAnimais = animais;
+
+            bool carregarR = RegrasRecintos.Carregar(out List<Recinto> recintos);
+            if (carregarR)
+                Recintos.LRecintos = recintos;
+
             Recinto r1 = new Recinto(2, "Recinto dos Porcos", "Normal", 40, 40, 10);
             Recinto r2 = new Recinto(7, "Santuário dos Leões", "Santuário", 600, 400, 20);
             Recinto r3 = new Recinto(4, "Recinto das Focas", "Misto", 100, 100, 20);
@@ -45,6 +54,20 @@ namespace GestaoZoo
             bool aux1 = RegrasRecintos.Inserir(r1);
             bool aux2 = RegrasRecintos.Inserir(r2);
             bool aux3 = RegrasRecintos.Inserir(r3);
+
+            bool guardarR = RegrasRecintos.Guardar(Recintos.LRecintos);
+
+
+            if (aux1 && aux2 && aux3)
+                return;
+
+            Animal a = new Animal(1, "Peppa", 6, "Feminino", "Mamífero", "Sus domesticus", "Omnívoro", "Muito Bom", new DateTime(2023, 11, 12), new DateTime(2024, 1, 15), 2, "Porca de estimação");
+            bool aux4 = RegrasAnimais.Inserir(a);
+            Animal b = new Animal(3, "Leandro", 4, "Masculino", "Mamífero", "Panthera leo", "Carnívoro", "Muito Bom", new DateTime(2023, 10, 24), new DateTime(2024, 1, 26), 7, "Leão mais novo");
+            bool aux5 = RegrasAnimais.Inserir(new Animal(2, "Piggy", 6, "Feminino", "Mamífero", "Sus domesticus", "Omnívoro", "Muito Bom", new DateTime(2023, 11, 12), new DateTime(2024, 1, 15), 2, "Porca de estimação"));
+            bool aux6 = RegrasAnimais.Alterar(new Animal(2, "MissP", 8, "Feminino", "Mamífero", "Sus domesticus", "Omnívoro", "Muito Bom", new DateTime(2023, 11, 10), new DateTime(2024, 1, 15), 2, "Porca de estimação"));
+            bool aux7 = RegrasAnimais.Inserir(b);
+            bool aux8 = RegrasAnimais.Inserir(new Animal(2, "Teste", 4, "Masculino", "Mamífero", "Especie", "Necrófago", "Sólido", new DateTime(2023, 11, 10), new DateTime(2024, 1, 15), 2, "Teste"));
             #endregion
         }
     }

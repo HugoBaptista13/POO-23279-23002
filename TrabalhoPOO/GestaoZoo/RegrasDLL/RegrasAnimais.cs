@@ -71,7 +71,7 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (animal == null)
+                if (animal is null)
                     throw new ArgumentNullException("Animal", "Animal não pode ser nulo");
 
                 if (animal.Id <= 0)
@@ -181,7 +181,7 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (animal == null)
+                if (animal is null)
                     throw new ArgumentNullException("Animal", "Animal não pode ser nulo");
 
                 if (animal.Id <= 0)
@@ -392,10 +392,10 @@ namespace RegrasDLL
         }
         #endregion
         #region Carregar
-        public static bool Carregar(out List<Animal> lAnimais, out string ex)
+        public static bool Carregar(out List<Animal> lAnimais)
         {
             lAnimais = null;
-            ex = string.Empty;
+            string ex = string.Empty;
             try
             {
                 if (!FileAnimal.Carregar(out lAnimais, out ex))

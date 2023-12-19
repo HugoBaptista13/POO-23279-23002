@@ -31,7 +31,7 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (evento == null)
+                if (evento is null)
                     throw new ArgumentNullException("Evento", "Evento não pode ser nulo");
 
                 if (evento.Id <= 0)
@@ -106,7 +106,7 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (evento == null)
+                if (evento is null)
                     throw new ArgumentNullException("Evento", "Evento não pode ser nulo");
 
                 if (evento.Id <= 0)
@@ -283,10 +283,10 @@ namespace RegrasDLL
         }
         #endregion
         #region Carregar
-        public static bool Carregar(out List<Evento> lEventos, out string ex)
+        public static bool Carregar(out List<Evento> lEventos)
         {
             lEventos = null;
-            ex = string.Empty;
+            string ex = string.Empty;
             try
             {
                 if (!FileEvento.Carregar(out lEventos, out ex))
@@ -294,10 +294,7 @@ namespace RegrasDLL
                 if (ex != string.Empty)
                     throw new Exception(ex);
             }
-            catch
-            {
-                return false;
-            }
+            catch { return false; }
             return true;
         }
         #endregion

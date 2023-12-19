@@ -64,7 +64,7 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (funcionario == null)
+                if (funcionario is null)
                     throw new ArgumentNullException("Funcionario", "Funcionario não pode ser nulo");
 
                 if (funcionario.Id <= 0)
@@ -141,7 +141,7 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (funcionario == null)
+                if (funcionario is null)
                     throw new ArgumentNullException("Funcionario", "Funcionario não pode ser nulo");
 
                 if (funcionario.Id <= 0)
@@ -320,10 +320,10 @@ namespace RegrasDLL
         }
         #endregion
         #region Carregar
-        public static bool Carregar(out List<Funcionario> lFuncionarios, out string ex)
+        public static bool Carregar(out List<Funcionario> lFuncionarios)
         {
             lFuncionarios = null;
-            ex = string.Empty;
+            string ex = string.Empty;
             try
             {
                 if (!FileFuncionario.Carregar(out lFuncionarios, out ex))
@@ -331,10 +331,7 @@ namespace RegrasDLL
                 if (ex != string.Empty)
                     throw new Exception(ex);
             }
-            catch
-            {
-                return false;
-            }
+            catch { return false; }
             return true;
         }
         #endregion

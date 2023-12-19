@@ -20,7 +20,7 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (limpeza == null)
+                if (limpeza is null)
                     throw new ArgumentNullException("Limpeza", "limpeza não pode ser nulo");
 
                 if (limpeza.Id <= 0)
@@ -86,7 +86,7 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (limpeza == null)
+                if (limpeza is null)
                     throw new ArgumentNullException("Limpeza", "limpeza não pode ser nulo");
 
                 if (limpeza.Id <= 0)
@@ -252,10 +252,10 @@ namespace RegrasDLL
         }
         #endregion
         #region Carregar
-        public static bool Carregar(out List<Limpeza> lLimpezas, out string ex)
+        public static bool Carregar(out List<Limpeza> lLimpezas)
         {
             lLimpezas = null;
-            ex = string.Empty;
+            string ex = string.Empty;
             try
             {
                 if (!FileLimpeza.Carregar(out lLimpezas, out ex))
@@ -263,10 +263,7 @@ namespace RegrasDLL
                 if (ex != string.Empty)
                     throw new Exception(ex);
             }
-            catch
-            {
-                return false;
-            }
+            catch { return false; }
             return true;
         }
         #endregion

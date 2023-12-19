@@ -20,7 +20,7 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (venda == null)
+                if (venda is null)
                     throw new ArgumentNullException("Venda", "Venda não pode ser nulo");
 
                 if (venda.Id <= 0)
@@ -70,7 +70,7 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (venda == null)
+                if (venda is null)
                     throw new ArgumentNullException("Venda", "Venda não pode ser nulo");
 
                 if (venda.Id <= 0)
@@ -222,10 +222,10 @@ namespace RegrasDLL
         }
         #endregion
         #region Carregar
-        public static bool Carregar(out List<Venda> lVendas, out string ex)
+        public static bool Carregar(out List<Venda> lVendas)
         {
             lVendas = null;
-            ex = string.Empty;
+            string ex = string.Empty;
             try
             {
                 if (!FileVenda.Carregar(out lVendas, out ex))

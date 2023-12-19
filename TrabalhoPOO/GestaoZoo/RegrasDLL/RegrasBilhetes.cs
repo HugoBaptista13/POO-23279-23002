@@ -41,7 +41,7 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (bilhete == null)
+                if (bilhete is null)
                     throw new ArgumentNullException("Bilhete", "Bilhete não pode ser nulo");
 
                 if (bilhete.Id <= 0)
@@ -102,7 +102,7 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (bilhete == null)
+                if (bilhete is null)
                     throw new ArgumentNullException("Bilhete", "Bilhete não pode ser nulo");
 
                 if (bilhete.Id <= 0)
@@ -263,10 +263,10 @@ namespace RegrasDLL
         }
         #endregion
         #region Carregar
-        public static bool Carregar(out List<Bilhete> lBilhetes, out string ex)
+        public static bool Carregar(out List<Bilhete> lBilhetes)
         {
             lBilhetes = null;
-            ex = string.Empty;
+            string ex = string.Empty;
             try
             {
                 if (!FileBilhete.Carregar(out lBilhetes, out ex))
@@ -274,10 +274,7 @@ namespace RegrasDLL
                 if (ex != string.Empty)
                     throw new Exception(ex);
             }
-            catch
-            {
-                return false;
-            }
+            catch { return false; }
             return true;
         }
         #endregion

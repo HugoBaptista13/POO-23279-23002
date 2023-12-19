@@ -51,7 +51,7 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (comida == null)
+                if (comida is null)
                     throw new ArgumentNullException("Comida", "Comida não pode ser nulo");
 
                 if (comida.Id <= 0)
@@ -128,7 +128,7 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (comida == null)
+                if (comida is null)
                     throw new ArgumentNullException("Comida", "Comida não pode ser nulo");
 
                 if (comida.Id <= 0)
@@ -307,10 +307,10 @@ namespace RegrasDLL
         }
         #endregion
         #region Carregar
-        public static bool Carregar(out List<Comida> lComidas, out string ex)
+        public static bool Carregar(out List<Comida> lComidas)
         {
             lComidas = null;
-            ex = string.Empty;
+            string ex = string.Empty;
             try
             {
                 if (!FileComida.Carregar(out lComidas, out ex))
@@ -318,10 +318,7 @@ namespace RegrasDLL
                 if (ex != string.Empty)
                     throw new Exception(ex);
             }
-            catch
-            {
-                return false;
-            }
+            catch { return false; }
             return true;
         }
         #endregion

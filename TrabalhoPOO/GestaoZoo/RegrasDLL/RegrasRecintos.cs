@@ -34,11 +34,11 @@ namespace RegrasDLL
         public static bool Inserir(Recinto recinto)
         {
             /// <summary>
-            /// 1º fase de validações
+            /// Fase de validações
             /// </summary>
             try
             {
-                if (recinto == null)
+                if (recinto is null)
                     throw new ArgumentNullException("Recinto", "Recinto não pode ser nulo");
 
                 if (recinto.Id <= 0)
@@ -58,36 +58,17 @@ namespace RegrasDLL
 
                 if (recinto.Altura <= 0)
                     throw new NegativeNumberException(recinto.Altura.ToString());
-            }
-            catch
-            {
-                return false;
-            }
-            /// <summary>
-            /// 2º fase de validações
-            /// </summary>
-            try
-            {
-                if (!IsAllLetters(recinto.Nome.Trim()) || recinto.Nome == string.Empty)
-                    throw new InvalidNameException(recinto.Nome.Trim());
-
-                if (!IsAllLetters(recinto.Tipo.Trim()) || recinto.Tipo == string.Empty)
-                    throw new InvalidTextException(recinto.Tipo.Trim());
-            }
-            catch
-            {
-                return false;
-            }
-            /// <summary>
-            /// 3º fase de validações
-            /// </summary>
-            try
-            {
                 if (!IsValidType(recinto.Tipo.Trim()))
                     throw new InvalidTypeException(recinto.Tipo.Trim());
 
                 if (Recintos.Existe(recinto.Id))
                     throw new AlreadyExistsException(recinto.Id.ToString());
+            
+                if (!IsAllLetters(recinto.Nome.Trim()) || recinto.Nome == string.Empty)
+                    throw new InvalidNameException(recinto.Nome.Trim());
+
+                if (!IsAllLetters(recinto.Tipo.Trim()) || recinto.Tipo == string.Empty)
+                    throw new InvalidTextException(recinto.Tipo.Trim());
             }
             catch
             {
@@ -106,7 +87,7 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (recinto == null)
+                if (recinto is null)
                     throw new ArgumentNullException("Recinto", "Recinto não pode ser nulo");
 
                 if (recinto.Id <= 0)
@@ -276,10 +257,10 @@ namespace RegrasDLL
         }
         #endregion
         #region Carregar
-        public static bool Carregar(out List<Recinto> lRecintos, out string ex)
+        public static bool Carregar(out List<Recinto> lRecintos)
         {
             lRecintos = null;
-            ex = string.Empty;
+            string ex = string.Empty;
             try
             {
                 if (!FileRecinto.Carregar(out lRecintos, out ex))
@@ -287,10 +268,7 @@ namespace RegrasDLL
                 if (ex != string.Empty)
                     throw new Exception(ex);
             }
-            catch
-            {
-                return false;
-            }
+            catch { return false; }
             return true;
         }
         #endregion
