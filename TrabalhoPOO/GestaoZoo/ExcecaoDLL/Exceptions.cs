@@ -304,4 +304,19 @@ namespace ExcecaoDLL
             throw new GreaterThanMaxCapacityException(inner.Message + " - " + capacity, MaxCapacity, inner);
         }
     }
+    public class LessThanZeroNumberException : ApplicationException
+    {
+        public LessThanZeroNumberException() : base(string.Format("Número não pode ser negativo, mas pode ser zero"))
+        {
+            throw new LessThanZeroNumberException();
+        }
+        public LessThanZeroNumberException(string number) : base(string.Format("Número não pode ser negativo, mas pode ser zero: {0}", number))
+        {
+            throw new LessThanZeroNumberException(this.Message + " - " + number);
+        }
+        public LessThanZeroNumberException(string number, Exception inner) : base(string.Format("Número não pode ser negativo, mas pode ser zero: {0}", number), inner)
+        {
+            throw new LessThanZeroNumberException(inner.Message + " - " + number, inner);
+        }
+    }
 }

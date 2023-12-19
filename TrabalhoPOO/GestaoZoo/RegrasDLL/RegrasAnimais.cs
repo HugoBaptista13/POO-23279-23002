@@ -435,42 +435,6 @@ namespace RegrasDLL
     /// <summary>
     /// Regras de negócio
     /// </summary>
-    public class RegrasConsultas
-    {
-        #region Inserir
-        #endregion
-        #region Alterar
-        #endregion
-        #region Remover
-        #endregion
-        #region Procurar
-        #endregion
-        #region Existe
-        #endregion
-        #region Guardar
-        #endregion
-    }
-    /// <summary>
-    /// Regras de negócio
-    /// </summary>
-    public class RegrasLimpezas
-    {
-        #region Inserir
-        #endregion
-        #region Alterar
-        #endregion
-        #region Remover
-        #endregion
-        #region Procurar
-        #endregion
-        #region Existe
-        #endregion
-        #region Guardar
-        #endregion
-    }
-    /// <summary>
-    /// Regras de negócio
-    /// </summary>
     public class RegrasVendas
     {
         #region Inserir
