@@ -99,16 +99,28 @@ namespace GestaoZoo
             bool guardarR = RegrasRecintos.Guardar(Recintos.LRecintos);
 
 
-            if (aux1 && aux2 && aux3)
-                return;
-
             Animal a = new Animal(1, "Peppa", 6, "Feminino", "Mamífero", "Sus domesticus", "Omnívoro", "Muito Bom", new DateTime(2023, 11, 12), new DateTime(2024, 1, 15), 2, "Porca de estimação");
             bool aux4 = RegrasAnimais.Inserir(a);
             Animal b = new Animal(3, "Leandro", 4, "Masculino", "Mamífero", "Panthera leo", "Carnívoro", "Muito Bom", new DateTime(2023, 10, 24), new DateTime(2024, 1, 26), 7, "Leão mais novo");
             bool aux5 = RegrasAnimais.Inserir(new Animal(2, "Piggy", 6, "Feminino", "Mamífero", "Sus domesticus", "Omnívoro", "Muito Bom", new DateTime(2023, 11, 12), new DateTime(2024, 1, 15), 2, "Porca de estimação"));
             bool aux6 = RegrasAnimais.Alterar(new Animal(2, "MissP", 8, "Feminino", "Mamífero", "Sus domesticus", "Omnívoro", "Muito Bom", new DateTime(2023, 11, 10), new DateTime(2024, 1, 15), 2, "Porca de estimação"));
             bool aux7 = RegrasAnimais.Inserir(b);
-            bool aux8 = RegrasAnimais.Inserir(new Animal(2, "Teste", 4, "Masculino", "Mamífero", "Especie", "Necrófago", "Sólido", new DateTime(2023, 11, 10), new DateTime(2024, 1, 15), 2, "Teste"));
+            bool aux8 = Animais.Inserir(new Animal(4, "Sifa", 7, "Feminino", "Mamífero", "Panthera leo", "Carnívoro", "Bom", new DateTime(2023, 10, 22), new DateTime(2024, 1, 24), 7, "Leoa agressiva"));
+
+            bool guardarA = RegrasAnimais.Guardar(Animais.LAnimais);
+
+
+            Funcionario f = new Funcionario(1,"Joaquim", 34, 918274240, "macacosmemordam@zoologico.fixe" , "Veterinário");
+            bool aux9 = RegrasFuncionarios.Inserir(f);
+
+            bool guardarF = RegrasFuncionarios.Guardar(Funcionarios.LFuncionarios);
+
+            Consulta c = new Consulta(1, 2, 1, new DateTime(2023, 11, 10));
+            bool aux10 = RegrasConsultas.Inserir(c);
+
+            bool guardarC = RegrasConsultas.Guardar(Consultas.LConsultas);
+
+            var teste = Consultas.Listar();
             #endregion
         }
     }
