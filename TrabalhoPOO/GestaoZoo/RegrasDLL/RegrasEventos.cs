@@ -16,44 +16,47 @@ namespace RegrasDLL
     public class RegrasEventos
     {
         #region outros
-        private static bool IsAllLetters(string s)
+        private static bool IsAllLettersAndNumbers(string s)
         {
             foreach (char c in s)
             {
-                if (!Char.IsLetter(c) || c != ' ')
+                if (!Char.IsLetterOrDigit(c) || c != ' ')
                     return false;
             }
             return true;
         }
         #endregion
         #region Inserir
-        public static bool Inserir(Recinto recinto)
+        public static bool Inserir(Evento evento)
         {
             /// <summary>
             /// 
             /// </summary>
             try
             {
-                if (recinto == null)
-                    throw new ArgumentNullException("Recinto", "Funcionario não pode ser nulo");
+                if (evento == null)
+                    throw new ArgumentNullException("Evento", "Evento não pode ser nulo");
 
-                if (recinto.Id <= 0)
-                    throw new InvalidIDException(recinto.Id.ToString());
+                if (evento.Id <= 0)
+                    throw new InvalidIDException(evento.Id.ToString());
 
-                if (recinto.Nome == null)
+                if (evento.Nome == null)
                     throw new ArgumentNullException("Nome", "Nome não pode ser nulo");
 
-                if (recinto.Tipo == null)
-                    throw new ArgumentNullException("Tipo", "Tipo não pode ser nulo");
+                if (evento.Lotacao <= 0)
+                    throw new NegativeNumberException(evento.Lotacao.ToString());
 
-                if (recinto.Comprimento <= 0)
-                    throw new NegativeNumberException(recinto.Comprimento.ToString());
+                if (evento.LotacaoTotal <= 0)
+                    throw new NegativeNumberException(evento.LotacaoTotal.ToString());
 
-                if (recinto.Largura <= 0)
-                    throw new NegativeNumberException(recinto.Largura.ToString());
+                if (evento.Local == null)
+                    throw new ArgumentNullException("Local", "Nome não pode ser nulo");
 
-                if (recinto.Altura <= 0)
-                    throw new NegativeNumberException(recinto.Altura.ToString());
+                if (evento.DataInicio == null)
+                    throw new InvalidDateException();
+
+                if (evento.DataFim == null)
+                    throw new InvalidDateException();
             }
             catch
             {
@@ -64,10 +67,12 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (!IsAllLetters(recinto.Nome.Trim()) || recinto.Nome == string.Empty)
-                    throw new InvalidNameException(recinto.Nome.Trim());
-                if (!IsAllLetters(recinto.Tipo.Trim()) || recinto.Tipo == string.Empty)
-                    throw new InvalidTextException(recinto.Tipo.Trim());
+                if (!IsAllLettersAndNumbers(evento.Nome.Trim()) || evento.Nome == string.Empty)
+                    throw new InvalidNameException(evento.Nome.Trim());
+
+                if (!IsAllLettersAndNumbers(evento.Local.Trim()) || evento.Local == string.Empty)
+                    throw new InvalidTextException(evento.Local.Trim());
+
             }
             catch
             {
@@ -78,47 +83,55 @@ namespace RegrasDLL
             /// </summary>
             try
             {
+                if (evento.DataInicio > evento.DataFim)
+                    throw new GreaterThanPreviousDateException(evento.DataInicio.ToString(), evento.DataFim.ToString());
 
-                if (Recintos.Existe(recinto.Id))
-                    throw new AlreadyExistsException(recinto.Id.ToString());
+                if (evento.Lotacao > evento.LotacaoTotal)
+                    throw new GreaterThanMaxCapacityException(evento.Lotacao.ToString(), evento.LotacaoTotal.ToString());
+
+                if (Eventos.Existe(evento.Id))
+                    throw new AlreadyExistsException(evento.Id.ToString());
             }
             catch
             {
                 return false;
             }
-            if (!Recintos.Inserir(recinto))
+            if (!Eventos.Inserir(evento))
                 return false;
             return true;
         }
         #endregion
         #region Alterar
-        public static bool Alterar(Recinto recinto)
+        public static bool Alterar(Evento evento)
         {
             /// <summary>
             /// 
             /// </summary>
             try
             {
-                if (recinto == null)
-                    throw new ArgumentNullException("Recinto", "Funcionario não pode ser nulo");
+                if (evento == null)
+                    throw new ArgumentNullException("Evento", "Evento não pode ser nulo");
 
-                if (recinto.Id <= 0)
-                    throw new InvalidIDException(recinto.Id.ToString());
+                if (evento.Id <= 0)
+                    throw new InvalidIDException(evento.Id.ToString());
 
-                if (recinto.Nome == null)
+                if (evento.Nome == null)
                     throw new ArgumentNullException("Nome", "Nome não pode ser nulo");
 
-                if (recinto.Tipo == null)
-                    throw new ArgumentNullException("Tipo", "Tipo não pode ser nulo");
+                if (evento.Lotacao <= 0)
+                    throw new NegativeNumberException(evento.Lotacao.ToString());
 
-                if (recinto.Comprimento <= 0)
-                    throw new NegativeNumberException(recinto.Comprimento.ToString());
+                if (evento.LotacaoTotal <= 0)
+                    throw new NegativeNumberException(evento.LotacaoTotal.ToString());
 
-                if (recinto.Largura <= 0)
-                    throw new NegativeNumberException(recinto.Largura.ToString());
+                if (evento.Local == null)
+                    throw new ArgumentNullException("Local", "Local não pode ser nulo");
 
-                if (recinto.Altura <= 0)
-                    throw new NegativeNumberException(recinto.Altura.ToString());
+                if (evento.DataInicio == null)
+                    throw new InvalidDateException();
+
+                if (evento.DataFim == null)
+                    throw new InvalidDateException();
             }
             catch
             {
@@ -129,10 +142,12 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (!IsAllLetters(recinto.Nome.Trim()) || recinto.Nome == string.Empty)
-                    throw new InvalidNameException(recinto.Nome.Trim());
-                if (!IsAllLetters(recinto.Tipo.Trim()) || recinto.Tipo == string.Empty)
-                    throw new InvalidTextException(recinto.Tipo.Trim());
+                if (!IsAllLettersAndNumbers(evento.Nome.Trim()) || evento.Nome == string.Empty)
+                    throw new InvalidNameException(evento.Nome.Trim());
+
+                if (!IsAllLettersAndNumbers(evento.Local.Trim()) || evento.Local == string.Empty)
+                    throw new InvalidTextException(evento.Local.Trim());
+
             }
             catch
             {
@@ -143,28 +158,34 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (!Recintos.Existe(recinto.Id))
-                    throw new DoesNotExistException(recinto.Id.ToString());
+                if (evento.DataInicio > evento.DataFim)
+                    throw new GreaterThanPreviousDateException(evento.DataInicio.ToString(), evento.DataFim.ToString());
+
+                if (evento.Lotacao > evento.LotacaoTotal)
+                    throw new GreaterThanMaxCapacityException(evento.Lotacao.ToString(), evento.LotacaoTotal.ToString());
+
+                if (!Eventos.Existe(evento.Id))
+                    throw new DoesNotExistException(evento.Id.ToString());
             }
             catch
             {
                 return false;
             }
-            if (!Recintos.Alterar(recinto))
+            if (!Eventos.Alterar(evento))
                 return false;
             return true;
         }
         #endregion
         #region Remover
-        public static bool Remover(int recinto)
+        public static bool Remover(int evento)
         {
             /// <summary>
             /// 
             /// </summary>
             try
             {
-                if (recinto <= 0)
-                    throw new InvalidIDException(recinto.ToString());
+                if (evento <= 0)
+                    throw new InvalidIDException(evento.ToString());
             }
             catch
             {
@@ -172,20 +193,20 @@ namespace RegrasDLL
             }
             try
             {
-                if (!Recintos.Existe(recinto))
-                    throw new DoesNotExistException(recinto.ToString());
+                if (!Eventos.Existe(evento))
+                    throw new DoesNotExistException(evento.ToString());
             }
             catch
             {
                 return false;
             }
-            if (!Recintos.Remover(recinto))
+            if (!Eventos.Remover(evento))
                 return false;
             return true;
         }
         #endregion
         #region Procurar
-        public static bool Procurar(int recinto, out Recinto output)
+        public static bool Procurar(int evento, out Evento output)
         {
             output = null;
             /// <summary
@@ -193,8 +214,8 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (recinto <= 0)
-                    throw new InvalidIDException(recinto.ToString());
+                if (evento <= 0)
+                    throw new InvalidIDException(evento.ToString());
             }
             catch
             {
@@ -205,45 +226,45 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (!Recintos.Existe(recinto))
-                    throw new DoesNotExistException(recinto.ToString());
+                if (!Eventos.Existe(evento))
+                    throw new DoesNotExistException(evento.ToString());
             }
             catch
             {
                 return false;
             }
-            if (!Recintos.Procurar(recinto, out output))
+            if (!Eventos.Procurar(evento, out output))
                 return false;
             return true;
         }
         #endregion
         #region Existe
-        public static bool Existe(int recinto)
+        public static bool Existe(int evento)
         {
             /// <summary>
             /// 
             /// </summary>
             try
             {
-                if (recinto <= 0)
-                    throw new InvalidIDException(recinto.ToString());
+                if (evento <= 0)
+                    throw new InvalidIDException(evento.ToString());
             }
             catch
             {
                 return false;
             }
-            if (!Recintos.Existe(recinto))
+            if (!Eventos.Existe(evento))
                 return false;
             return true;
         }
         #endregion
         #region Guardar
-        public static bool Guardar(List<Recinto> lRecintos)
+        public static bool Guardar(List<Evento> lEventos)
         {
             bool aux = true;
             try
             {
-                if (lRecintos == null)
+                if (lEventos == null)
                     throw new InvalidDataException();
             }
             catch
@@ -252,7 +273,7 @@ namespace RegrasDLL
             }
             try
             {
-                if (!FileRecinto.Guardar(lRecintos, out string ex))
+                if (!FileEvento.Guardar(lEventos, out string ex))
                     aux = false;
                 if (ex != string.Empty)
                     throw new Exception(ex);
@@ -265,13 +286,13 @@ namespace RegrasDLL
         }
         #endregion
         #region Carregar
-        public static bool Carregar(out List<Recinto> lRecintos, out string ex)
+        public static bool Carregar(out List<Evento> lEventos, out string ex)
         {
-            lRecintos = null;
+            lEventos = null;
             ex = string.Empty;
             try
             {
-                if (!FileRecinto.Carregar(out lRecintos, out ex))
+                if (!FileEvento.Carregar(out lEventos, out ex))
                     return false;
                 if (ex != string.Empty)
                     throw new Exception(ex);

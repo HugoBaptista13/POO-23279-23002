@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.ConstrainedExecution;
 
 namespace ExcecaoDLL
 {
@@ -286,6 +287,21 @@ namespace ExcecaoDLL
         public InvalidRoleException(string role, Exception inner) : base(string.Format("Cargo inválido: {0}", role), inner)
         {
             throw new InvalidRoleException(inner.Message + " - " + role, inner);
+        }
+    }
+    public class GreaterThanMaxCapacityException : ApplicationException
+    {
+        public GreaterThanMaxCapacityException() : base(string.Format("Lotação não pode ser maior do que a lotação total"))
+        {
+            throw new GreaterThanMaxCapacityException();
+        }
+        public GreaterThanMaxCapacityException(string capacity, string maxCapacity) : base(string.Format("Lotação não pode ser maior do que a lotação total: {0} > {1}", capacity, maxCapacity))
+        {
+            throw new GreaterThanMaxCapacityException(capacity, maxCapacity);
+        }
+        public GreaterThanMaxCapacityException(string capacity, string MaxCapacity, Exception inner) : base(string.Format("Lotação não pode ser maior do que a lotação total: {0} > {1}", capacity, MaxCapacity), inner)
+        {
+            throw new GreaterThanMaxCapacityException(inner.Message + " - " + capacity, MaxCapacity, inner);
         }
     }
 }
