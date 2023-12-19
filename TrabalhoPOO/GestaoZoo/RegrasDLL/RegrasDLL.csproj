@@ -59,6 +59,7 @@
     <Compile Include="RegrasConsultas.cs" />
     <Compile Include="RegrasEventos.cs" />
     <Compile Include="RegrasFuncionarios.cs" />
+    <Compile Include="RegrasLimpezas.cs" />
     <Compile Include="RegrasRecintos.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

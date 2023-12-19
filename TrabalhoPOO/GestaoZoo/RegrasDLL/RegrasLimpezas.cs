@@ -13,29 +13,29 @@ namespace RegrasDLL
     /// <summary>
     /// Regras de negócio
     /// </summary>
-    public class RegrasConsultas
+    public class RegrasLimpezas
     {
         #region Inserir
-        public static bool Inserir(Consulta consulta)
+        public static bool Inserir(Limpeza limpeza)
         {
             /// <summary>
             /// 
             /// </summary>
             try
             {
-                if (consulta == null)
-                    throw new ArgumentNullException("Consulta", "Consulta não pode ser nulo");
+                if (limpeza == null)
+                    throw new ArgumentNullException("Limpeza", "limpeza não pode ser nulo");
 
-                if (consulta.Id <= 0)
-                    throw new InvalidIDException(consulta.Id.ToString());
-                
-                if (consulta.Animal <= 0)
-                    throw new InvalidIDException(consulta.Animal.ToString());
+                if (limpeza.Id <= 0)
+                    throw new InvalidIDException(limpeza.Id.ToString());
 
-                if (consulta.Funcionario <= 0)
-                    throw new InvalidIDException(consulta.Funcionario.ToString());
+                if (limpeza.Recinto <= 0)
+                    throw new InvalidIDException(limpeza.Recinto.ToString());
 
-                if (consulta.Data == null)
+                if (limpeza.Funcionario <= 0)
+                    throw new InvalidIDException(limpeza.Funcionario.ToString());
+
+                if (limpeza.Data == null)
                     throw new InvalidDateException();
             }
             catch
@@ -47,12 +47,12 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (!Animais.Existe(consulta.Animal))
-                    throw new DoesNotExistException(consulta.Animal.ToString());
-                if (consulta.Data == null)
+                if (!Limpezas.Existe(limpeza.Recinto))
+                    throw new DoesNotExistException(limpeza.Recinto.ToString());
+                if (limpeza.Data == null)
                     throw new InvalidDateException();
-                if (!Funcionarios.Existe(consulta.Funcionario))
-                    throw new DoesNotExistException(consulta.Funcionario.ToString());
+                if (!Funcionarios.Existe(limpeza.Funcionario))
+                    throw new DoesNotExistException(limpeza.Funcionario.ToString());
             }
             catch
             {
@@ -64,21 +64,21 @@ namespace RegrasDLL
             try
             {
 
-                if (Consultas.Existe(consulta.Id))
-                    throw new AlreadyExistsException(consulta.Id.ToString());
+                if (Limpezas.Existe(limpeza.Id))
+                    throw new AlreadyExistsException(limpeza.Id.ToString());
             }
             catch
             {
                 return false;
             }
 
-            if (!Consultas.Inserir(consulta))
+            if (!Limpezas.Inserir(limpeza))
                 return false;
             return true;
         }
         #endregion
         #region Alterar
-        public static bool Alterar(Consulta consulta)
+        public static bool Alterar(Limpeza limpeza)
         {
 
             /// <summary>
@@ -86,19 +86,19 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (consulta == null)
-                    throw new ArgumentNullException("Consulta", "Consulta não pode ser nulo");
+                if (limpeza == null)
+                    throw new ArgumentNullException("Limpeza", "limpeza não pode ser nulo");
 
-                if (consulta.Id <= 0)
-                    throw new InvalidIDException(consulta.Id.ToString());
+                if (limpeza.Id <= 0)
+                    throw new InvalidIDException(limpeza.Id.ToString());
 
-                if (consulta.Animal <= 0)
-                    throw new InvalidIDException(consulta.Animal.ToString());
+                if (limpeza.Recinto <= 0)
+                    throw new InvalidIDException(limpeza.Recinto.ToString());
 
-                if (consulta.Funcionario <= 0)
-                    throw new InvalidIDException(consulta.Funcionario.ToString());
+                if (limpeza.Funcionario <= 0)
+                    throw new InvalidIDException(limpeza.Funcionario.ToString());
 
-                if (consulta.Data == null)
+                if (limpeza.Data == null)
                     throw new InvalidDateException();
             }
             catch
@@ -110,12 +110,12 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (!Animais.Existe(consulta.Animal))
-                    throw new DoesNotExistException(consulta.Animal.ToString());
-                if (consulta.Data == null)
+                if (!Limpezas.Existe(limpeza.Recinto))
+                    throw new DoesNotExistException(limpeza.Recinto.ToString());
+                if (limpeza.Data == null)
                     throw new InvalidDateException();
-                if (!Funcionarios.Existe(consulta.Funcionario))
-                    throw new DoesNotExistException(consulta.Funcionario.ToString());
+                if (!Funcionarios.Existe(limpeza.Funcionario))
+                    throw new DoesNotExistException(limpeza.Funcionario.ToString());
             }
             catch
             {
@@ -126,28 +126,28 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (!Consultas.Existe(consulta.Id))
-                    throw new DoesNotExistException(consulta.Id.ToString());
+                if (!Limpezas.Existe(limpeza.Id))
+                    throw new DoesNotExistException(limpeza.Id.ToString());
             }
             catch
             {
                 return false;
             }
-            if (!Consultas.Alterar(consulta))
+            if (!Limpezas.Alterar(limpeza))
                 return false;
             return true;
         }
         #endregion
         #region Remover
-        public static bool Remover(int consulta)
+        public static bool Remover(int limpeza)
         {
             /// <summary>
             /// 
             /// </summary>
             try
             {
-                if (consulta <= 0)
-                    throw new InvalidIDException(consulta.ToString());
+                if (limpeza <= 0)
+                    throw new InvalidIDException(limpeza.ToString());
             }
             catch
             {
@@ -155,20 +155,20 @@ namespace RegrasDLL
             }
             try
             {
-                if (!Consultas.Existe(consulta))
-                    throw new DoesNotExistException(consulta.ToString());
+                if (!Limpezas.Existe(limpeza))
+                    throw new DoesNotExistException(limpeza.ToString());
             }
             catch
             {
                 return false;
             }
-            if (!Consultas.Remover(consulta))
+            if (!Limpezas.Remover(limpeza))
                 return false;
             return true;
         }
         #endregion
         #region Procurar
-        public static bool Procurar(int consulta, out Consulta output)
+        public static bool Procurar(int limpeza, out Limpeza output)
         {
             output = null;
             /// <summary
@@ -176,8 +176,8 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (consulta <= 0)
-                    throw new InvalidIDException(consulta.ToString());
+                if (limpeza <= 0)
+                    throw new InvalidIDException(limpeza.ToString());
             }
             catch
             {
@@ -188,45 +188,45 @@ namespace RegrasDLL
             /// </summary>
             try
             {
-                if (!Consultas.Existe(consulta))
-                    throw new DoesNotExistException(consulta.ToString());
+                if (!Limpezas.Existe(limpeza))
+                    throw new DoesNotExistException(limpeza.ToString());
             }
             catch
             {
                 return false;
             }
-            if (!Consultas.Procurar(consulta, out output))
+            if (!Limpezas.Procurar(limpeza, out output))
                 return false;
             return true;
         }
         #endregion
         #region Existe
-        public static bool Existe(int consulta)
+        public static bool Existe(int limpeza)
         {
             /// <summary>
             /// 
             /// </summary>
             try
             {
-                if (consulta <= 0)
-                    throw new InvalidIDException(consulta.ToString());
+                if (limpeza <= 0)
+                    throw new InvalidIDException(limpeza.ToString());
             }
             catch
             {
                 return false;
             }
-            if (!Consultas.Existe(consulta))
+            if (!Limpezas.Existe(limpeza))
                 return false;
             return true;
         }
         #endregion
         #region Guardar
-        public static bool Guardar(List<Consulta> lConsultas)
+        public static bool Guardar(List<Limpeza> lLimpezas)
         {
             bool aux = true;
             try
             {
-                if (lConsultas == null)
+                if (lLimpezas == null)
                     throw new InvalidDataException();
             }
             catch
@@ -235,7 +235,7 @@ namespace RegrasDLL
             }
             try
             {
-                if (!FileConsulta.Guardar(lConsultas, out string ex))
+                if (!FileLimpeza.Guardar(lLimpezas, out string ex))
                     aux = false;
                 if (ex != string.Empty)
                     throw new Exception(ex);
@@ -248,13 +248,13 @@ namespace RegrasDLL
         }
         #endregion
         #region Carregar
-        public static bool Carregar(out List<Consulta> lConsultas, out string ex)
+        public static bool Carregar(out List<Limpeza> lLimpezas, out string ex)
         {
-            lConsultas = null;
+            lLimpezas = null;
             ex = string.Empty;
             try
             {
-                if (!FileConsulta.Carregar(out lConsultas, out ex))
+                if (!FileLimpeza.Carregar(out lLimpezas, out ex))
                     return false;
                 if (ex != string.Empty)
                     throw new Exception(ex);
