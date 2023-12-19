@@ -3,9 +3,6 @@ using ExcecaoDLL;
 using FilesDLL;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooDLL;
 
 namespace RegrasDLL
@@ -13,6 +10,16 @@ namespace RegrasDLL
     public class RegrasRecintos
     {
         #region outros
+        private static readonly string[] tipos = { "Normal", "Santuário", "Interativo", "Com cobertura", "Aquático", "Misto" };
+        private static bool IsValidType(string s)
+        {
+            foreach (string tipo in tipos)
+            {
+                if (s == tipo)
+                    return true;
+            }
+            return false;
+        }
         private static bool IsAllLetters(string s)
         {
             foreach (char c in s)
@@ -27,7 +34,7 @@ namespace RegrasDLL
         public static bool Inserir(Recinto recinto)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -57,7 +64,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -72,10 +79,12 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 3º fase de validações
             /// </summary>
             try
             {
+                if (!IsValidType(recinto.Tipo.Trim()))
+                    throw new InvalidTypeException(recinto.Tipo.Trim());
 
                 if (Recintos.Existe(recinto.Id))
                     throw new AlreadyExistsException(recinto.Id.ToString());
@@ -93,7 +102,7 @@ namespace RegrasDLL
         public static bool Alterar(Recinto recinto)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -123,7 +132,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -138,10 +147,13 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 3º fase de validações
             /// </summary>
             try
             {
+                if (!IsValidType(recinto.Tipo.Trim()))
+                    throw new InvalidTypeException(recinto.Tipo.Trim());
+
                 if (!Recintos.Existe(recinto.Id))
                     throw new DoesNotExistException(recinto.Id.ToString());
             }
@@ -158,7 +170,7 @@ namespace RegrasDLL
         public static bool Remover(int recinto)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -188,7 +200,7 @@ namespace RegrasDLL
         {
             output = null;
             /// <summary
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -200,7 +212,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary
-            /// 
+            /// 3º fase de validações
             /// </summary>
             try
             {
@@ -220,7 +232,7 @@ namespace RegrasDLL
         public static bool Existe(int recinto)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {

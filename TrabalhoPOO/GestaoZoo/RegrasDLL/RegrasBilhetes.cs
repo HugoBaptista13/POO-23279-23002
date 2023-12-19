@@ -2,11 +2,7 @@
 using ExcecaoDLL;
 using FilesDLL;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooDLL;
 
 namespace RegrasDLL
@@ -41,7 +37,7 @@ namespace RegrasDLL
         public static bool Inserir(Bilhete bilhete)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -66,7 +62,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -81,7 +77,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 3º fase de validações
             /// </summary>
             try
             {
@@ -102,7 +98,7 @@ namespace RegrasDLL
         public static bool Alterar(Bilhete bilhete)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -126,7 +122,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -141,7 +137,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 3º fase de validações
             /// </summary>
             try
             {
@@ -161,7 +157,7 @@ namespace RegrasDLL
         public static bool Remover(int bilhete)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -191,7 +187,7 @@ namespace RegrasDLL
         {
             output = null;
             /// <summary
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -203,7 +199,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -223,7 +219,7 @@ namespace RegrasDLL
         public static bool Existe(int bilhete)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {

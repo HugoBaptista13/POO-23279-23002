@@ -3,9 +3,6 @@ using ExcecaoDLL;
 using FilesDLL;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooDLL;
 
 namespace RegrasDLL
@@ -15,7 +12,7 @@ namespace RegrasDLL
     /// </summary>
     public class RegrasEventos
     {
-        #region outros
+        #region OUTROS
         private static bool IsAllLettersAndNumbers(string s)
         {
             foreach (char c in s)
@@ -30,7 +27,7 @@ namespace RegrasDLL
         public static bool Inserir(Evento evento)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -63,7 +60,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -79,7 +76,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 3º fase de validações
             /// </summary>
             try
             {
@@ -105,7 +102,7 @@ namespace RegrasDLL
         public static bool Alterar(Evento evento)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -138,7 +135,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -154,7 +151,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 3º fase de validações
             /// </summary>
             try
             {
@@ -180,7 +177,7 @@ namespace RegrasDLL
         public static bool Remover(int evento)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -210,7 +207,7 @@ namespace RegrasDLL
         {
             output = null;
             /// <summary
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -222,7 +219,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -242,7 +239,7 @@ namespace RegrasDLL
         public static bool Existe(int evento)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {

@@ -3,9 +3,6 @@ using ExcecaoDLL;
 using FilesDLL;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooDLL;
 
 namespace RegrasDLL
@@ -19,7 +16,7 @@ namespace RegrasDLL
         public static bool Inserir(Consulta consulta)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -43,14 +40,13 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
                 if (!Animais.Existe(consulta.Animal))
                     throw new DoesNotExistException(consulta.Animal.ToString());
-                if (consulta.Data == null)
-                    throw new InvalidDateException();
+
                 if (!Funcionarios.Existe(consulta.Funcionario))
                     throw new DoesNotExistException(consulta.Funcionario.ToString());
             }
@@ -59,10 +55,14 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 3º fase de validações
             /// </summary>
             try
             {
+                bool result = Funcionarios.Procurar(consulta.Funcionario, out Funcionario aux);
+
+                if (result && aux.Cargo != "Veterinário")
+                    throw new InvalidRoleException(aux.Cargo);
 
                 if (Consultas.Existe(consulta.Id))
                     throw new AlreadyExistsException(consulta.Id.ToString());
@@ -82,7 +82,7 @@ namespace RegrasDLL
         {
 
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -106,14 +106,13 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
                 if (!Animais.Existe(consulta.Animal))
                     throw new DoesNotExistException(consulta.Animal.ToString());
-                if (consulta.Data == null)
-                    throw new InvalidDateException();
+
                 if (!Funcionarios.Existe(consulta.Funcionario))
                     throw new DoesNotExistException(consulta.Funcionario.ToString());
             }
@@ -122,10 +121,15 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 3º fase de validações
             /// </summary>
             try
             {
+                bool result = Funcionarios.Procurar(consulta.Funcionario, out Funcionario aux);
+
+                if (result && aux.Cargo != "Veterinário")
+                    throw new InvalidRoleException(aux.Cargo);
+
                 if (!Consultas.Existe(consulta.Id))
                     throw new DoesNotExistException(consulta.Id.ToString());
             }
@@ -142,7 +146,7 @@ namespace RegrasDLL
         public static bool Remover(int consulta)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -172,7 +176,7 @@ namespace RegrasDLL
         {
             output = null;
             /// <summary
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -184,7 +188,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -204,7 +208,7 @@ namespace RegrasDLL
         public static bool Existe(int consulta)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {

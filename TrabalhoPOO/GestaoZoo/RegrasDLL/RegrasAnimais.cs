@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ZooDLL;
-using FilesDLL;
+﻿using DadosDLL;
 using ExcecaoDLL;
-using DadosDLL;
+using FilesDLL;
+using System;
+using System.Collections.Generic;
+using ZooDLL;
 
 namespace RegrasDLL
 {
@@ -70,7 +67,7 @@ namespace RegrasDLL
         public static bool Inserir(Animal animal)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -115,7 +112,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -154,7 +151,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 3º fase de validações
             /// </summary>
             try
             {
@@ -180,7 +177,7 @@ namespace RegrasDLL
         public static bool Alterar(Animal animal)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -225,7 +222,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -264,7 +261,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 3º fase de validações
             /// </summary>
             try
             {
@@ -290,7 +287,7 @@ namespace RegrasDLL
         public static bool Remover(int animal)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -320,7 +317,7 @@ namespace RegrasDLL
         {
             output = null;
             /// <summary
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -332,7 +329,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -352,7 +349,7 @@ namespace RegrasDLL
         public static bool Existe(int animal)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -414,24 +411,4 @@ namespace RegrasDLL
         }
         #endregion
     }
-    
-    /// <summary>
-    /// Regras de negócio
-    /// </summary>
-    public class RegrasVendas
-    {
-        #region Inserir
-        #endregion
-        #region Alterar
-        #endregion
-        #region Remover
-        #endregion
-        #region Procurar
-        #endregion
-        #region Existe
-        #endregion
-        #region Guardar
-        #endregion
-    }
-
 }

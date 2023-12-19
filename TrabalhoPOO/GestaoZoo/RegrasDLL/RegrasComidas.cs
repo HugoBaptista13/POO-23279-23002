@@ -3,9 +3,6 @@ using ExcecaoDLL;
 using FilesDLL;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooDLL;
 
 namespace RegrasDLL
@@ -50,7 +47,7 @@ namespace RegrasDLL
         public static bool Inserir(Comida comida)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -80,7 +77,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -104,7 +101,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 3º fase de validações
             /// </summary>
             try
             {
@@ -127,7 +124,7 @@ namespace RegrasDLL
         public static bool Alterar(Comida comida)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -157,7 +154,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -181,7 +178,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 3º fase de validações
             /// </summary>
             try
             {
@@ -204,7 +201,7 @@ namespace RegrasDLL
         public static bool Remover(int comida)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -234,7 +231,7 @@ namespace RegrasDLL
         {
             output = null;
             /// <summary
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -246,7 +243,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -266,7 +263,7 @@ namespace RegrasDLL
         public static bool Existe(int comida)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {

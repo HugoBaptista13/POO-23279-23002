@@ -3,9 +3,6 @@ using ExcecaoDLL;
 using FilesDLL;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooDLL;
 
 namespace RegrasDLL
@@ -19,7 +16,7 @@ namespace RegrasDLL
         public static bool Inserir(Limpeza limpeza)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -43,14 +40,13 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
-                if (!Limpezas.Existe(limpeza.Recinto))
+                if (!Recintos.Existe(limpeza.Recinto))
                     throw new DoesNotExistException(limpeza.Recinto.ToString());
-                if (limpeza.Data == null)
-                    throw new InvalidDateException();
+                
                 if (!Funcionarios.Existe(limpeza.Funcionario))
                     throw new DoesNotExistException(limpeza.Funcionario.ToString());
             }
@@ -59,10 +55,14 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 3º fase de validações
             /// </summary>
             try
             {
+                bool result = Funcionarios.Procurar(limpeza.Funcionario, out Funcionario aux);
+
+                if (result && aux.Cargo != "Zelador")
+                    throw new InvalidRoleException(aux.Cargo);
 
                 if (Limpezas.Existe(limpeza.Id))
                     throw new AlreadyExistsException(limpeza.Id.ToString());
@@ -82,7 +82,7 @@ namespace RegrasDLL
         {
 
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -106,14 +106,13 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
-                if (!Limpezas.Existe(limpeza.Recinto))
+                if (!Recintos.Existe(limpeza.Recinto))
                     throw new DoesNotExistException(limpeza.Recinto.ToString());
-                if (limpeza.Data == null)
-                    throw new InvalidDateException();
+
                 if (!Funcionarios.Existe(limpeza.Funcionario))
                     throw new DoesNotExistException(limpeza.Funcionario.ToString());
             }
@@ -122,10 +121,15 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary>
-            /// 
+            /// 3º fase de validações
             /// </summary>
             try
             {
+                bool result = Funcionarios.Procurar(limpeza.Funcionario, out Funcionario aux);
+
+                if (result && aux.Cargo != "Zelador")
+                    throw new InvalidRoleException(aux.Cargo);
+
                 if (!Limpezas.Existe(limpeza.Id))
                     throw new DoesNotExistException(limpeza.Id.ToString());
             }
@@ -142,7 +146,7 @@ namespace RegrasDLL
         public static bool Remover(int limpeza)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -172,7 +176,7 @@ namespace RegrasDLL
         {
             output = null;
             /// <summary
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
@@ -184,7 +188,7 @@ namespace RegrasDLL
                 return false;
             }
             /// <summary
-            /// 
+            /// 2º fase de validações
             /// </summary>
             try
             {
@@ -204,7 +208,7 @@ namespace RegrasDLL
         public static bool Existe(int limpeza)
         {
             /// <summary>
-            /// 
+            /// 1º fase de validações
             /// </summary>
             try
             {
