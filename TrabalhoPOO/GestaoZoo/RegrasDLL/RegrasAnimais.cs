@@ -414,43 +414,6 @@ namespace RegrasDLL
         }
         #endregion
     }
-
-    /// <summary>
-    /// Regras de negócio
-    /// </summary>
-    public class RegrasEventos
-    {
-        #region Inserir
-        #endregion
-        #region Alterar
-        #endregion
-        #region Remover
-        #endregion
-        #region Procurar
-        #endregion
-        #region Existe
-        #endregion
-        #region Guardar
-        #endregion
-    }
-    /// <summary>
-    /// Regras de negócio
-    /// </summary>
-    public class RegrasBilhete
-    {
-        #region Inserir
-        #endregion
-        #region Alterar
-        #endregion
-        #region Remover
-        #endregion
-        #region Procurar
-        #endregion
-        #region Existe
-        #endregion
-        #region Guardar
-        #endregion
-    }
     /// <summary>
     /// Regras de negócio
     /// </summary>
