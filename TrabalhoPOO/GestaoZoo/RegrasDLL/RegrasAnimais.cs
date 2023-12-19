@@ -394,8 +394,27 @@ namespace RegrasDLL
             return aux;
         }
         #endregion
+        #region Carregar
+        public static bool Carregar(out List<Animal> lAnimais, out string ex)
+        {
+            lAnimais = null;
+            ex = string.Empty;
+            try
+            {
+                if (!FileAnimal.Carregar(out lAnimais, out ex))
+                    return false;
+                if (ex != string.Empty)
+                    throw new Exception(ex);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+        #endregion
     }
-    
+
     /// <summary>
     /// Regras de negócio
     /// </summary>

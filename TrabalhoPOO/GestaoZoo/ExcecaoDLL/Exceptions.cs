@@ -243,4 +243,49 @@ namespace ExcecaoDLL
             throw new InvalidTextException(inner.Message + " - " + text, inner);
         }
     }
+    public class InvalidEmailException : ApplicationException
+    {
+        public InvalidEmailException() : base(string.Format("Email inválido"))
+        {
+            throw new InvalidEmailException();
+        }
+        public InvalidEmailException(string email) : base(string.Format("Email inválido: {0}", email))
+        {
+            throw new InvalidEmailException(this.Message + " - " + email);
+        }
+        public InvalidEmailException(string email, Exception inner) : base(string.Format("Email inválido: {0}", email), inner)
+        {
+            throw new InvalidEmailException(inner.Message + " - " + email, inner);
+        }
+    }
+    public class InvalidPhoneException : ApplicationException
+    {
+        public InvalidPhoneException() : base(string.Format("Telefone inválido"))
+        {
+            throw new InvalidPhoneException();
+        }
+        public InvalidPhoneException(string phone) : base(string.Format("Telefone inválido: {0}", phone))
+        {
+            throw new InvalidPhoneException(this.Message + " - " + phone);
+        }
+        public InvalidPhoneException(string phone, Exception inner) : base(string.Format("Telefone inválido: {0}", phone), inner)
+        {
+            throw new InvalidPhoneException(inner.Message + " - " + phone, inner);
+        }
+    }
+    public class InvalidRoleException : ApplicationException
+    {
+        public InvalidRoleException() : base(string.Format("Cargo inválido"))
+        {
+            throw new InvalidRoleException();
+        }
+        public InvalidRoleException(string role) : base(string.Format("Cargo inválido: {0}", role))
+        {
+            throw new InvalidRoleException(this.Message + " - " + role);
+        }
+        public InvalidRoleException(string role, Exception inner) : base(string.Format("Cargo inválido: {0}", role), inner)
+        {
+            throw new InvalidRoleException(inner.Message + " - " + role, inner);
+        }
+    }
 }
