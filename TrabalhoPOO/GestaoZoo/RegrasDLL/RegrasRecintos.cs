@@ -32,7 +32,7 @@ namespace RegrasDLL
             try
             {
                 if (recinto == null)
-                    throw new ArgumentNullException("Recinto", "Funcionario não pode ser nulo");
+                    throw new ArgumentNullException("Recinto", "Recinto não pode ser nulo");
 
                 if (recinto.Id <= 0)
                     throw new InvalidIDException(recinto.Id.ToString());
@@ -63,6 +63,7 @@ namespace RegrasDLL
             {
                 if (!IsAllLetters(recinto.Nome.Trim()) || recinto.Nome == string.Empty)
                     throw new InvalidNameException(recinto.Nome.Trim());
+
                 if (!IsAllLetters(recinto.Tipo.Trim()) || recinto.Tipo == string.Empty)
                     throw new InvalidTextException(recinto.Tipo.Trim());
             }
@@ -128,6 +129,7 @@ namespace RegrasDLL
             {
                 if (!IsAllLetters(recinto.Nome.Trim()) || recinto.Nome == string.Empty)
                     throw new InvalidNameException(recinto.Nome.Trim());
+
                 if (!IsAllLetters(recinto.Tipo.Trim()) || recinto.Tipo == string.Empty)
                     throw new InvalidTextException(recinto.Tipo.Trim());
             }
