@@ -108,7 +108,7 @@ namespace RegrasDLL
                     throw new ArgumentNullException("Estado", "Estado não pode ser nulo");
 
                 if (animal.Recinto <= 0)
-                    throw new NegativeNumberException(animal.Recinto.ToString());
+                    throw new InvalidIDException(animal.Recinto.ToString());
             }
             catch
             {
@@ -218,7 +218,7 @@ namespace RegrasDLL
                     throw new ArgumentNullException("Estado", "Estado não pode ser nulo");
 
                 if (animal.Recinto <= 0)
-                    throw new NegativeNumberException(animal.Recinto.ToString());
+                    throw new InvalidIDException(animal.Recinto.ToString());
             }
             catch
             {
@@ -414,24 +414,7 @@ namespace RegrasDLL
         }
         #endregion
     }
-    /// <summary>
-    /// Regras de negócio
-    /// </summary>
-    public class RegrasComidas
-    {
-        #region Inserir
-        #endregion
-        #region Alterar
-        #endregion
-        #region Remover
-        #endregion
-        #region Procurar
-        #endregion
-        #region Existe
-        #endregion
-        #region Guardar
-        #endregion
-    }
+    
     /// <summary>
     /// Regras de negócio
     /// </summary>
