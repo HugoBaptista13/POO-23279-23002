@@ -397,3 +397,7 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 /TrabalhoPOO/GestaoZoo/.vs/GestaoZoo/v17/.suo
+/TrabalhoPOO/GestaoZoo/GestaoZoo/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/TrabalhoPOO/GestaoZoo/GestaoZoo/obj/Debug/GestaoZoo.csproj.AssemblyReference.cache
+/.gitignore
+/.gitignore
